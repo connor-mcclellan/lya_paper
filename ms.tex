@@ -170,12 +170,14 @@ $J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequen
 \ee
 where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-% TODO: (Connor) Fill out the rest of this paragraph and include equations
-Rewriting Eq. C17 from \citet{2006ApJ...649...14D} in our notation, a comparison can be made with the surface flux derived from their closed-form solution, Eq. \ref{eq:H0surf}. Under the two-stream approximation, it is expected that the boundary condition in Eq. \ref{eq:bc} hold true if the solutions are consistent. 
-
-
-
 In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid.
+
+% TODO: (Connor) Fill out the rest of this paragraph and include equations
+To characterize the internal consistency of the solution in \citet{2006ApJ...649...14D}, the approximation made in their Eq. C13 is checked to see if it yields a surface flux satisfying Eq. \ref{eq:bc}. Beginning with their Eq. C12, the surface flux is derived and compared with the total emerging flux density at the surface of the sphere (Eq. C17). Under the two-stream approximation, it is expected that the surface boundary condition $J=\sqrt{3}H$ hold true if the solutions are consistent. 
+
+TODO: If the solutions end up being consistent, their prescription works better than one would expect, seeing as they started with a $J=0$ boundary condition and arrived at $J=\sqrt{3}H$ through their eigenvalue approximation. If the solutions are not consistent, then their emerging spectrum is inaccurate under their assumptions.
+
+
 
 A different solution method is attempted here, namely a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
