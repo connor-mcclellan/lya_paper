@@ -170,16 +170,9 @@ $J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequen
 \ee
 where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid.
+In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from his Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Note that under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
 
-% TODO: (Connor) Fill out the rest of this paragraph and include equations
-To characterize the internal consistency of the solution in \citet{2006ApJ...649...14D}, the approximation made in their Eq. C13 is checked to see if it yields a surface flux satisfying Eq. \ref{eq:bc}. Beginning with their Eq. C12, the surface flux is derived and compared with the total emerging flux density at the surface of the sphere (Eq. C17). Under the two-stream approximation, it is expected that the surface boundary condition $J=\sqrt{3}H$ hold true if the solutions are consistent. 
-
-TODO: If the solutions end up being consistent, their prescription works better than one would expect, seeing as they started with a $J=0$ boundary condition and arrived at $J=\sqrt{3}H$ through their eigenvalue approximation. If the solutions are not consistent, then their emerging spectrum is inaccurate under their assumptions.
-
-
-
-A different solution method is attempted here, namely a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
+A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
 J(r,\nu) & = & J_0(r,\nu) + J_{\rm bc}(r,\nu)
 \ee
@@ -255,7 +248,7 @@ For each numerical solution, the monochromatic source of photons was initialized
     \sigma_0 = \frac{\beta}{a} \rm x_{init}^3
 \end{equation}
 
-where $\beta = \sqrt{2 \pi ^2 / 27}$. Monte Carlo numerical simulations were performed with $\rm x_{init} = (0.0, 2.0, 4.0 ... 12.0)$ and optical depths $\tau_0 = (10^6, 10^7)$. In Fig. \ref{fig:sol_mc_residual_0}, \ref{fig:sol_mc_residual_6} and \ref{fig:sol_mc_residual_12}, these are compared with the analytic solutions at selected initial frequencies. In each of these figures, the contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the solution $H_{\rm d}$ derived by \citet{1973MNRAS.162...43H} diverges significantly from the Monte Carlo simulations in the line wings. The $H_{\rm bc}$ correction term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, produces a successful analytical result that characterizes the probability distribution of frequencies for escaping photons, including situations in which the photons are given initial frequencies outside of the line core.
+where $\beta = \sqrt{2 \pi / 27}$. Monte Carlo numerical simulations were performed with $\rm x_{init} = (0.0, 2.0, 4.0 ... 12.0)$ and optical depths $\tau_0 = (10^6, 10^7)$. In Fig. \ref{fig:sol_mc_residual_0}, \ref{fig:sol_mc_residual_6} and \ref{fig:sol_mc_residual_12}, these are compared with the analytic solutions at selected initial frequencies. In each of these figures, the contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the solution $H_{\rm d}$ derived by \citet{1973MNRAS.162...43H} diverges significantly from the Monte Carlo simulations in the line wings. The $H_{\rm bc}$ correction term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, produces a successful analytical result that characterizes the probability distribution of frequencies for escaping photons, including situations in which the photons are given initial frequencies outside of the line core.
 
 This can best be seen by comparing the results shown in Fig. \ref{fig:sol_mc_residual_0} with those in Fig. \ref{fig:sol_mc_residual_12}. The $\rm H_{0+bc}$ analytic solution remains accurate in the line wing when photons are emitted away from line center, while the residuals of $\rm H_d$ and $\rm H_0$ become noticeably larger. It can be concluded that the $\rm H_{bc}$ correction term more accurately represents the additional flux from photons that escape without ever being scattered through the line core.
 
@@ -301,10 +294,13 @@ J(n,\sigma,\omega) & \propto & e^{-\kappa_n \Delta |\sigma| /k}
 
 To solve the second order Equation \ref{eq:response}, starting points at large $\pm |\sigma|$ are chosen, and the dependence in Equation \ref{eq:finite_bc} is used for the starting slope. The solution is then integrated toward the singularity at $\sigma_s$ from each side. The two starting values are varied until $J(n,\sigma,\omega)$ is continuous at $\sigma_s$ and satisfies the desired jump in slope in Equation \ref{eq:discontinuity}. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
+For small $t$ the solution is nearly a delta function in radius TODO
 
+It is expected that the time-integrated spectrum of the response to an impulse will agree well with the time-independent spectrum. We first evaluate the time-dependent response using our eigenfrequency sweeping method. Once the probabilities $P_{nm}(\sigma)$ are calculated as above, the escape time distributions for all photon frequencies are calculated by summing over the frequency eigenfunctions $P_{nm} \exp(s_{nm}t)$. Integrating $P_{nm}$ with respect to $t$, we obtain
 
-For small $t$ the solution is nearly a delta function in radius
-
+\be
+\int 
+\ee
 
 
     
