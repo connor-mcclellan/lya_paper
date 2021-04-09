@@ -298,6 +298,8 @@ The resulting equation for $J(r,\sigma,t)$ is
 \label{eq:diffusion_eqn}
 \ee
 
+
+TODO: Don't use s in these equations. Use damping rate omega here.
 We employ an expansion in terms of spherical Bessel functions in $r$ and a Laplace expansion with the imaginary frequency variable $s=-i\omega$. The eigenvalues $s$ are real and negative for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
 
 \be
@@ -312,6 +314,17 @@ J(n, \sigma, s) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^
 \ee
 
 Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
+
+\be
+ - \left( \frac{3k\phi s}{c}  +   \kappa_n^2 \right) J(n,\sigma,s)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,s)}{d\sigma^2} = \frac{2\kappa_n^2}{R} (-1) \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
+\ee
+
+Now at $\sigma=\sigma_s$ continuity must be enforced in $J$ and the discontinuity in $dJ/d\sigma$  must be equal to
+
+\be
+\frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
+- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
+\ee
 
 %% FOURIER STUFF
 \ifx
