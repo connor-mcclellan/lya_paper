@@ -174,9 +174,9 @@ $J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequen
 \lambda \tan(\lambda B) & = & \frac{3}{2} \phi,
 \label{eq:evalue}
 \ee
-where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
+where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from his Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Note that under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
+In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from his Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
@@ -199,7 +199,12 @@ J_{\rm bc}(R,\nu) + \frac{1}{\sqrt{3}k\phi} \frac{\partial J_{\rm bc}(R,\nu)}{\p
 \sqrt{3} H_0(R,\nu).
 \label{eq:bc2}
 \ee
-Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
+Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. 
+
+
+% Fourier analysis stuff which we can take out
+%\ifx
+The solution can then be represented as
 \be
 J_{\rm bc}(r,\nu) & = & 
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
@@ -216,7 +221,7 @@ Plugging Equation \ref{eq:Jbc} into Equation \ref{eq:bc2} leads to the following
 \label{eq:bc3}
 \ee
 where $H_0(R,\nu)$ is given by Equation \ref{eq:H0surf}. Discretization of Equation \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally space points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Equation \ref{eq:Jbc}, and the flux is given by
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Equation \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \frac{\partial J_{\rm bc}(r,\nu)}{\partial r}
@@ -227,6 +232,9 @@ H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \label{eq:Hbc}
 \ee
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
+%\fi
+
+
 
 \subsection{Numerical Methods}
 \label{subsec:no_destruction:methods}
@@ -289,6 +297,24 @@ The resulting equation for $J(r,\sigma,t)$ is
 & = & - \frac{\sqrt{6} kE}{4\pi \Delta^2} \delta(\vec{x}) \delta (\sigma - \sigma_s ) \delta (t).
 \label{eq:diffusion_eqn}
 \ee
+
+We employ an expansion in terms of spherical Bessel functions in $r$ and a Laplace expansion with the imaginary frequency variable $s=-i\omega$. The eigenvalues $s$ are real and negative for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
+
+\be
+\label{eq:jrsigmat_expansion}
+J(r, \sigma, t) = \sum_{n=1}^{\infty} \int \frac{ds}{2\pi i} e^{st} j_0\left(\kappa_n r\right) J(n, \sigma, s).
+\ee
+
+The definition of the Laplace transform is
+
+\be
+J(n, \sigma, s) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{-st} J(r, \sigma, t).
+\ee
+
+Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
+
+%% FOURIER STUFF
+\ifx
 The coefficient of $\partial J/\partial t$ has explicit dependence on $\sigma$. Separation of variables may be achieved in Equation \ref{eq:diffusion_eqn} by assuming an expansion in terms of spherical Bessel functions in $r$ and a Fourier expansion in time to find the form
 \be
 J(r,\sigma,t) & = & \sum_{n=1}^\infty \int_{-\infty}^\infty \frac{d\omega}{2\pi} J(n,\sigma,\omega) j_0(\kappa_n r) e^{-i \omega t},
@@ -312,7 +338,7 @@ J(n,\sigma,\omega) & \propto & e^{-\kappa_n \Delta |\sigma| /k}
 = e^{-\sqrt{\pi} n |\sigma | / \tau_0}.
 \label{eq:finite_bc}
 \ee
-
+\fi
 
 \subsection{Numerical Methods}
 \label{subsec:time_dependent:numerical_methods}
