@@ -326,6 +326,33 @@ Now at $\sigma=\sigma_s$ continuity must be enforced in $J$ and the discontinuit
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
 \ee
 
+Two numerical integrations are performed inward from large $\pm \sigma$ to the source $
+\sigma_s$. The starting values of J are set to be $J_1$ and $J_2$ for the rightward and leftward integrations, respectively. Choices of these starting values are adjusted to ensure that the matching conditions at the source are met.
+
+Separating the real and imaginary parts of the solution $J = J_r + i J_i$, we have
+
+\be
+ \frac{\partial^2 J_r}{\partial \sigma^2} &= & 
+  \frac{\Delta^2 \kappa_n^2}{k^2} J_r  
+ + 3 \omega \frac{\Delta^2 \phi}{kc}    J_i
+\ee
+and
+\be
+ \frac{\partial^2 J_i}{\partial \sigma^2} &= & 
+  \frac{\Delta^2 \kappa_n^2}{k^2} J_i   
+ - 3 \omega \frac{\Delta^2 \phi}{kc}    J_r.
+\ee
+
+The starting conditions are $J_{1,r}$, $J_{1,i}$, $J_{2,r}$, $J_{2,i}$.
+The rightgoing and leftgoing integrations then produce $J_{-,r}$, $J_{-,i}$, $J^\prime_{-,r}$, $J^\prime_{-,i}$,  $J_{+,r}$, $J_{+,i}$, $J^\prime_{+,r}$, $J^\prime_{+,i}$, where the prime means $\partial/\partial \sigma$. The matching conditions are then
+\be
+J_{-,r} & =& J_{+,r} \\
+J_{-,i} & =& J_{+,i} \\
+ J_{+,r}^\prime - J_{+,r}^\prime & = & 
+- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3} \\
+J_{+,i}^\prime - J_{+,i}^\prime & = & 0.
+\ee
+
 %% FOURIER STUFF
 \ifx
 The coefficient of $\partial J/\partial t$ has explicit dependence on $\sigma$. Separation of variables may be achieved in Equation \ref{eq:diffusion_eqn} by assuming an expansion in terms of spherical Bessel functions in $r$ and a Fourier expansion in time to find the form
