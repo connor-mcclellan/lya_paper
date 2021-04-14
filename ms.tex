@@ -298,9 +298,7 @@ The resulting equation for $J(r,\sigma,t)$ is
 \label{eq:diffusion_eqn}
 \ee
 
-
-TODO: Don't use s in these equations. Use damping rate omega here.
-We employ an expansion in terms of spherical Bessel functions in $r$ and a Laplace expansion with the imaginary frequency variable $s=-i\omega$. The eigenvalues $s$ are real and negative for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
+We employ an expansion in terms of spherical Bessel functions in $r$ and transform the time dependence into an imaginary frequency variable $\omega$. The eigenvalues $i\omega$ are real and positive for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
 
 \be
 \label{eq:jrsigmat_expansion}
@@ -316,20 +314,19 @@ J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \i
 Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
 
 \be
- \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,\omega)}{d\sigma^2} = \frac{2\kappa_n^2}{R} (-1) \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
+ \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,\omega)}{d\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
 
 Now at $\sigma=\sigma_s$ continuity must be enforced in $J$ and the discontinuity in $dJ/d\sigma$  must be equal to
 
 \be
 \frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
-- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
+- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}
 \ee
 
-Two numerical integrations are performed inward from large $\pm \sigma$ to the source $
-\sigma_s$. The starting values of J are set to be $J_1$ and $J_2$ for the rightward and leftward integrations, respectively. Choices of these starting values are adjusted to ensure that the matching conditions at the source are met.
+according to the differential equation. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$. The starting values of J are set to be $J_1$ and $J_2$ for the rightward and leftward integrations, respectively. Choices of these starting values are adjusted to ensure that the matching conditions at the source are met.
 
-Separating the real and imaginary parts of the solution $J = J_r + i J_i$, we have
+Separating the real and imaginary parts of the solution $J = J_r + i J_i$, the differential equation becomes
 
 \be
  \frac{\partial^2 J_r}{\partial \sigma^2} &= & 
@@ -343,8 +340,8 @@ and
  - 3 \omega \frac{\Delta^2 \phi}{kc}    J_r.
 \ee
 
-The starting conditions are $J_{1,r}$, $J_{1,i}$, $J_{2,r}$, $J_{2,i}$.
-The rightgoing and leftgoing integrations then produce $J_{-,r}$, $J_{-,i}$, $J^\prime_{-,r}$, $J^\prime_{-,i}$,  $J_{+,r}$, $J_{+,i}$, $J^\prime_{+,r}$, $J^\prime_{+,i}$, where the prime means $\partial/\partial \sigma$. The matching conditions are then
+The starting conditions are then $J_1 = J_{1,r} + iJ_{1,i}$ and $J_2 = J_{2,r}+iJ_{2,i}$.
+The rightward and leftward integrations then produce $J_{-,r}$, $J_{-,i}$, $J^\prime_{-,r}$, $J^\prime_{-,i}$,  $J_{+,r}$, $J_{+,i}$, $J^\prime_{+,r}$, $J^\prime_{+,i}$, where a prime indicates a derivative $\partial/\partial \sigma$. The matching conditions at the source frequency $\sigma_s$ are then
 \be
 J_{-,r} & =& J_{+,r} \\
 J_{-,i} & =& J_{+,i} \\
@@ -352,6 +349,8 @@ J_{-,i} & =& J_{+,i} \\
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3} \\
 J_{+,i}^\prime - J_{+,i}^\prime & = & 0.
 \ee
+
+The solutions at $\sigma=\sigma_s$ are parametrized as a linear combination of the real and imaginary parts of the starting conditions and are solved as a $4\times4$ matrix equation.
 
 %% FOURIER STUFF
 \ifx
