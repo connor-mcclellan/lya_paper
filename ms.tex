@@ -313,44 +313,11 @@ J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \i
 
 Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
 
-\be
- \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,\omega)}{d\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
+\be \label{eq:diffusion_plugged_in}
+ \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
 
-Now at $\sigma=\sigma_s$ continuity must be enforced in $J$ and the discontinuity in $dJ/d\sigma$  must be equal to
 
-\be
-\frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
-- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}
-\ee
-
-according to the differential equation. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$. The starting values of J are set to be $J_1$ and $J_2$ for the rightward and leftward integrations, respectively. Choices of these starting values are adjusted to ensure that the matching conditions at the source are met.
-
-Separating the real and imaginary parts of the solution $J = J_r + i J_i$, the differential equation becomes
-
-\be
- \frac{\partial^2 J_r}{\partial \sigma^2} &= & 
-  \frac{\Delta^2 \kappa_n^2}{k^2} J_r  
- + 3 \omega \frac{\Delta^2 \phi}{kc}    J_i
-\ee
-and
-\be
- \frac{\partial^2 J_i}{\partial \sigma^2} &= & 
-  \frac{\Delta^2 \kappa_n^2}{k^2} J_i   
- - 3 \omega \frac{\Delta^2 \phi}{kc}    J_r.
-\ee
-
-The starting conditions are then $J_1 = J_{1,r} + iJ_{1,i}$ and $J_2 = J_{2,r}+iJ_{2,i}$.
-The rightward and leftward integrations then produce $J_{-,r}$, $J_{-,i}$, $J^\prime_{-,r}$, $J^\prime_{-,i}$,  $J_{+,r}$, $J_{+,i}$, $J^\prime_{+,r}$, $J^\prime_{+,i}$, where a prime indicates a derivative $\partial/\partial \sigma$. The matching conditions at the source frequency $\sigma_s$ are then
-\be
-J_{-,r} & =& J_{+,r} \\
-J_{-,i} & =& J_{+,i} \\
- J_{+,r}^\prime - J_{+,r}^\prime & = & 
-- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3} \\
-J_{+,i}^\prime - J_{+,i}^\prime & = & 0.
-\ee
-
-The solutions at $\sigma=\sigma_s$ are parametrized as a linear combination of the real and imaginary parts of the starting conditions and are solved as a $4\times4$ matrix equation.
 
 %% FOURIER STUFF
 \ifx
@@ -382,7 +349,39 @@ J(n,\sigma,\omega) & \propto & e^{-\kappa_n \Delta |\sigma| /k}
 \subsection{Numerical Methods}
 \label{subsec:time_dependent:numerical_methods}
 
-To solve the second order Equation \ref{eq:response}, starting points at large $\pm |\sigma|$ are chosen, and the dependence in Equation \ref{eq:finite_bc} is used for the starting slope. The solution is then integrated toward the singularity at $\sigma_s$ from each side. The two starting values are varied until $J(n,\sigma,\omega)$ is continuous at $\sigma_s$ and satisfies the desired jump in slope in Equation \ref{eq:discontinuity}. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
+At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
+
+\be \label{eq:matching_condition_1}
+J_+ = J_-
+\ee
+
+and the discontinuity in $dJ/d\sigma$  must be
+
+\be \label{matching_condition_2}
+\frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
+- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}
+\ee
+
+according to the differential equation. At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
+
+\be \label{eq:diffusion_at_large_sigma}
+\frac{\partial^2J(n, \sigma, \omega)}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J.
+\ee
+
+which has solutions 
+
+\be
+J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}
+\ee
+
+and thus
+
+\be \label{eq:single_j_derivative}
+\frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J
+\ee
+
+
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This yields values for $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained everywhere in the range of photon frequencies. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
 For small $t$ the solution is nearly a delta function in radius TODO
 
