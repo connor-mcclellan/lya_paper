@@ -304,19 +304,19 @@ We employ an expansion in terms of spherical Bessel functions in $r$ and a Lapla
 
 \be
 \label{eq:jrsigmat_expansion}
-J(r, \sigma, t) = \sum_{n=1}^{\infty} \int \frac{ds}{2\pi i} e^{st} j_0\left(\kappa_n r\right) J(n, \sigma, s).
+J(r, \sigma, t) = -\sum_{n=1}^{\infty} \int \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega).
 \ee
 
-The definition of the Laplace transform is
+with
 
 \be
-J(n, \sigma, s) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{-st} J(r, \sigma, t).
+J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
 
 Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
 
 \be
- - \left( \frac{3k\phi s}{c}  +   \kappa_n^2 \right) J(n,\sigma,s)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,s)}{d\sigma^2} = \frac{2\kappa_n^2}{R} (-1) \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
+ \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{d^2J(n,\sigma,\omega)}{d\sigma^2} = \frac{2\kappa_n^2}{R} (-1) \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
 
 Now at $\sigma=\sigma_s$ continuity must be enforced in $J$ and the discontinuity in $dJ/d\sigma$  must be equal to
