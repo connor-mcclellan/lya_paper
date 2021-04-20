@@ -176,7 +176,7 @@ $J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequen
 \ee
 where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, his Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from his Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
+In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, their Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from their Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
@@ -381,11 +381,65 @@ and thus
 \ee
 
 
-where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This yields values for $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained everywhere in the range of photon frequencies. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained everywhere in the range of photon frequencies. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
-For small $t$ the solution is nearly a delta function in radius TODO
+There are certain values of $\omega$ for which a resonant response is produced. We will call these eigenfrequencies $\omega_{nm}$. Near these frequencies, the solution will have the form 
 
-It is expected that the time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. TODO: Steady state eqn). We first evaluate the time-dependent response using our eigenfrequency sweeping method. Once the probabilities $P_{nm}(\sigma)$ are calculated as above, the escape time distributions for all photon frequencies are calculated by summing over the frequency eigenfunctions $P_{nm} \exp(s_{nm}t)$. Integrating $P_{nm}$ with respect to $t$, we obtain
+\be
+J(n,\sigma,s) & \simeq \frac{ J_{nm}(\sigma) }{s - s_{nm}} + {\rm terms\ which\ vary\ slowly\ in\ s}.
+\ee
+
+Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration.
+
+\be
+J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-i\omega t}J(n,\sigma,\omega)
+\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-i\omega t} \frac{ J_{nm}(\sigma) }{\omega - \omega_{nm}} 
+\nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+\ee
+
+To find this result, we have closed the integral along the $i\omega$ axis by a semi-circle at infinity, and we then used the residue theorem to evaluate the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial n's and over all eigenmodes $m$ for a given $n$, we get the final form of the result
+\be
+J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+\ee
+Using the derivative
+\be
+\frac{dj_0(\kappa_n r)}{dr} \rfloor_R & =& \frac{d}{dr}  \rfloor_R \left( \frac{\sin(\kappa_n r)}{\kappa_n r} \right)
+=  \left( \frac{\cos(\kappa_n R)}{R} - \frac{\sin(\kappa_n R)}{\kappa_n R^2} \right)\rfloor_R
+\nonumber \\ & = & \frac{(-1)^n}{R},
+\ee
+the flux at the surface is
+\be
+F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
+= - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+\ee
+Multiplying by $4\pi R^2$ gives the energy per time per frequency
+\be
+\frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+\label{eq:dEdtdnu}
+\ee
+If we integrate this expression over time, giving a factor $1/s_{nm}$, and over $d\nu = \sqrt{3/2} \Delta^2 \phi d\sigma$, a ``sum rule" results
+\be
+1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^n (-i\omega_{nm})^{-1} \int d\sigma J_{nm}(\sigma).
+\ee
+This non-trivial expression provides a check on the values of $s_{nm}$ and the functions $J_{nm}(\sigma)$. This expression can also be written as
+\be
+1 & =& \sum_{nm} P_{nm},
+\label{eq:sumrule}
+\ee
+where the contribution of each eigenfunction is
+\be
+P_{nm} & \equiv & -\sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n (i\omega_{nm})^{-1} \int d\sigma J_{nm}(\sigma).
+\ee
+These coefficients can have either sign depending on the value of $n$. 
+
+Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies, and this should agree with the steady state solution. Dividing by the energy $E$, we find the probability distribution
+\be \label{eq:spectrum}
+P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n s_{nm}^{-1} J_{nm}(\sigma).
+\ee
+Integrating over $\nu$ gives unity if the sum rule in Equation \ref{eq:sumrule} is true.
+
+
+It is expected that the time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:spectrum}). We first evaluate the time-dependent response using our eigenfrequency sweeping method. Once the probabilities $P_{nm}(\sigma)$ are calculated as above, the escape time distributions for all photon frequencies are calculated by summing over the frequency eigenfunctions $P_{nm} \exp(s_{nm}t)$. Integrating $P_{nm}$ with respect to $t$, we obtain
 
 \subsection{Results}
 \label{subsec:time_dependent:results}
