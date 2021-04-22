@@ -383,23 +383,23 @@ and thus
 
 where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained everywhere in the range of photon frequencies. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
-There are certain values of $\omega$ for which a resonant response is produced. We will call these eigenfrequencies $\omega_{nm}$. Near these frequencies, the solution will have the form 
+Let us define the damping time to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $m$ is an index that represents individual temporal eigenmodes, as opposed to $n$ which represents the spatial mode number. Near these frequencies, the solution will have the form 
 
 \be
-J(n,\sigma,s) & \simeq \frac{ J_{nm}(\sigma) }{s - s_{nm}} + {\rm terms\ which\ vary\ slowly\ in\ s}.
+J(n,\sigma,\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
 
-Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration.
+Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration. 
 
 \be
-J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-i\omega t}J(n,\sigma,\omega)
-\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-i\omega t} \frac{ J_{nm}(\sigma) }{\omega - \omega_{nm}} 
-\nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-\gamma t}J(n,\sigma,\gamma)
+\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
+\nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 
-(TODO: Rewrite) To find this result, we have closed the integral along the $i\omega$ axis by a semi-circle at infinity, and we then used the residue theorem to evaluate the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial n's and over all eigenmodes $m$ for a given $n$, we get the final form of the result
+(TODO: Rewrite) Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
 \be
-J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 Using the derivative
 \be
@@ -410,36 +410,33 @@ Using the derivative
 the flux at the surface is
 \be
 F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
-= - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+= - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 Multiplying by $4\pi R^2$ gives the energy per time per frequency
 \be
-\frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-i\omega_{nm}t}.
+\frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \label{eq:dEdtdnu}
 \ee
-If we integrate this expression over time, giving a factor $1/s_{nm}$, and over $d\nu = \sqrt{3/2} \Delta^2 \phi d\sigma$, a ``sum rule" results
+Integrating this over time yields a factor $-1/\gamma_{nm}$, and over $d\nu = \sqrt{3/2} \Delta^2 \phi d\sigma$, a ``sum rule" results
 \be
-1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^n (-i\omega_{nm})^{-1} \int d\sigma J_{nm}(\sigma).
+1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-This non-trivial expression provides a check on the values of $s_{nm}$ and the functions $J_{nm}(\sigma)$. This expression can also be written as
+This non-trivial expression provides a check on the values of $\gamma_{nm}$ and the functions $J_{nm}(\sigma)$. This expression can also be written as
 \be
 1 & =& \sum_{nm} P_{nm},
 \label{eq:sumrule}
 \ee
 where the contribution of each eigenfunction is
 \be
-P_{nm} & \equiv & -\sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n (i\omega_{nm})^{-1} \int d\sigma J_{nm}(\sigma).
+P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
 These coefficients can have either sign depending on the value of $n$. 
 
-Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies, and this should agree with the steady state solution. Dividing by the energy $E$, we find the probability distribution
+Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:spectrum}). Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
-P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n s_{nm}^{-1} J_{nm}(\sigma).
+P(\nu) & = &  -\frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
 Integrating over $\nu$ gives unity if the sum rule in Equation \ref{eq:sumrule} is true.
-
-
-It is expected that the time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:spectrum}). We first evaluate the time-dependent response using our eigenfrequency sweeping method. Once the probabilities $P_{nm}(\sigma)$ are calculated as above, the escape time distributions for all photon frequencies are calculated by summing over the frequency eigenfunctions $P_{nm} \exp(s_{nm}t)$. Integrating $P_{nm}$ with respect to $t$, we obtain
 
 \subsection{Results}
 \label{subsec:time_dependent:results}
