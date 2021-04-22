@@ -88,7 +88,7 @@ A third class of methods are modified random walk methods \citep{1984JCoPh..54..
 \subsection{Background}
 \label{subsec:no_destruction:background}
 
-Three solutions will be considered for this problem. A ``divergent" solution due to the delta function source, a ``J=0" solution which includes the delta function solution at the source and satisfies $J=0$ at $r=R$, and the ``bc" solution that allows the boundary conditions to be satisfied. The divergent solution is discussed for qualitative understanding, and the full solution is the sum of the $J=0$ solution and the bc solution.
+Three solutions will be considered for this problem: a ``divergent" solution due to the delta function source, a ``J=0" solution which includes the delta function solution at the source and satisfies $J=0$ at $r=R$, and the ``bc" solution that allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The divergent solution is discussed for qualitative understanding, and the full solution is the sum of the $J=0$ solution and the bc solution.
 
 \subsection{Equations}
 \label{subsec:no_destruction:equations}
@@ -99,7 +99,7 @@ The problem is as follows. Consider a sphere of radius $R$ and uniform density, 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s})
 \label{eq:rt_no_destr}
 \ee
-where the form of the source term is in Equation \ref{eq:jem_v2}. The boundary condition is no incoming flux at the surface, which can be written
+where the form of the source term is in Equation \ref{eq:jem_v2}. The boundary condition is that there is no incoming flux at the surface, which can be written
 \citep{1986rpa..book.....R}
 \be
 J & = & \sqrt{3} H
@@ -234,45 +234,25 @@ H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
 %\fi
 
-
+In Section \ref{subsec:no_destruction:results}, each of these solutions are compared with Monte Carlo simulations for a limited range of physical parameters $\tau_0$ and $x_s$.
 
 \subsection{Numerical Methods}
 \label{subsec:no_destruction:methods}
-For each numerical solution, the monochromatic source of photons was initialized with a different starting frequency to evaluate the analytic solutions' accuracy with variation of the parameter $\rm \sigma_s$. This is related to $\rm x_{init}$ by 
-\begin{equation} \label{sigma0_xinit}
-    \sigma_0 = \frac{\beta}{a} \rm x_{init}^3
-\end{equation}
 
-where $\beta = \sqrt{2 \pi / 27}$. Monte Carlo numerical simulations were performed with $\rm x_{init} = (0.0, 2.0, 4.0 ... 12.0)$ and optical depths $\tau_0 = (10^6, 10^7)$.
-
-
+TODO: Add Monte Carlo description
 
 \subsection{Results}
 \label{subsec:no_destruction:results}
 \begin{figure}
     \centering
     \includegraphics{pdf_xinit0.0.pdf}
-    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$.} 
+    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$. Residuals of each solution to the Monte Carlo data points are shown in the third panel.} 
     \label{fig:sol_mc_residual_0}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics{pdf_xinit6.0.pdf}
-    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 6.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$.} 
-    \label{fig:sol_mc_residual_6}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics{pdf_xinit12.0.pdf}
-    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 12.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$.} 
-    \label{fig:sol_mc_residual_12}
-\end{figure}
-
- In Fig. \ref{fig:sol_mc_residual_0}, \ref{fig:sol_mc_residual_6} and \ref{fig:sol_mc_residual_12}, these are compared with the analytic solutions at selected initial frequencies. In each of these figures, the contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the solution $H_{\rm d}$ derived by \citet{1973MNRAS.162...43H} diverges significantly from the Monte Carlo simulations in the line wings. The $H_{\rm bc}$ correction term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, produces a successful analytical result that characterizes the probability distribution of frequencies for escaping photons, including situations in which the photons are given initial frequencies outside of the line core.
-
-This can best be seen by comparing the results shown in Fig. \ref{fig:sol_mc_residual_0} with those in Fig. \ref{fig:sol_mc_residual_12}. The $\rm H_{0+bc}$ analytic solution remains accurate in the line wing when photons are emitted away from line center, while the residuals of $\rm H_d$ and $\rm H_0$ become noticeably larger. It can be concluded that the $\rm H_{bc}$ correction term more accurately represents the additional flux from photons that escape without ever being scattered through the line core.
+ In Fig. \ref{fig:sol_mc_residual_0}, the fluxes derived in Section \ref{subsec:no_destruction:equations} are compared with the Monte Carlo at selected initial frequencies. The contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the ``divergent'' solution $H_{\rm d}$ fails by a large margin in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum as well as the slight deficit in the line wings, improving the agreement of the analytic solution with the numerical result.
+ 
+ TODO: Add optical depth comparison figure, $x_s$ comparison figure
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
