@@ -252,6 +252,13 @@ TODO: Add Monte Carlo description
 
  In Fig. \ref{fig:sol_mc_residual_0}, the fluxes derived in Section \ref{subsec:no_destruction:equations} are compared with the Monte Carlo at selected initial frequencies. The contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the ``divergent'' solution $H_{\rm d}$ fails by a large margin in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum as well as the slight deficit in the line wings, improving the agreement of the analytic solution with the numerical result.
  
+ \begin{figure}
+    \centering
+    \includegraphics{threepanel_test.png}
+    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0, 6.0, 12.0$ to examine the solutions' accuracy with a changing source frequency.} 
+    \label{fig:sol_mc_xinit}
+\end{figure}
+ 
  TODO: Add optical depth comparison figure, $x_s$ comparison figure
 
 \section{Time-Dependent Diffusion}
