@@ -10,6 +10,9 @@
 \renewcommand{\vec}[1]{\mathbf{#1}}
 %\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}} %boldface vector style
 \newcommand{\grad}{\mathbf{\nabla}}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\proposed}[1]{\textcolor{blue}{#1}}
+
 
 
 %%% FOR DRAFTING: REMOVE AFTER PAPER IS COMPLETE!
@@ -54,16 +57,31 @@ The solution of the radiative transfer equation for resonant scattering of Lyman
 
 
 
-ccc\section{Introduction} 
+\section{Introduction} 
 \label{sec:intro}
 
-\textcolor{red}{Nice summary paragraph from recent Bourier  papers.}
+\proposed{
+The outer layers of planetary atmospheres are central to a planet's evolution, as they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space. There exist several fundamental questions about the evolution and stability of irradiated exoplanet atmospheres; understanding which physical and chemical processes are important in these regions can assist in the creation of robust models which determine the rate of atmospheric mass loss. We seek to characterize one such mechanism: the transfer of resonance-line radiation in spherical symmetry at large optical depths. 
+}
 
+\todo{
 Hubble Space Telescope observations have found large Lyman $\alpha$ transit depths around the gas giants HD 209458b \citep{2003Natur.422..143V}, HD 189733b \citep{2012A&A...543L...4L} and 55 Cnc b \citep{2012A&A...547A..18E}, Neptune-size planets GJ 436 b 
 \citep{2015Natur.522..459E}
 %, 2017A&A...605L...7L,2019A&A...629A..47D}   
 and GJ 3470 b \citep{2018A&A...620A.147B}, and possibly the super-Earth HD 219134b \citep{2019EPSC...13.1928L}.
 Non-detections or marginal detections have been reported for the super-Earths 55 Cnc e \citep{2012A&A...547A..18E}, super-Earth HD 97658 b \citep{2017A&A...597A..26B} , super-Earth GJ 1132 b \citep{2019AJ....158...50W}, super-Earth $\pi$ Men c \citep{2020ApJ...888L..21G}, and marginal detections were  Earth-size TRAPPIST-1 \citep{2017A&A...599L...3B} and sub-Earth Kepler-444 \citep{2017A&A...602A.106B}.
+}
+
+\proposed{
+Hubble Space Telescope (HST) observations with STIS have found large Lyman $\alpha$ transit depths around the gas giants HD 209458b \citep{2003Natur.422..143V}, HD 189733b \citep{2012A&A...543L...4L} and 55 Cnc b \citep{2012A&A...547A..18E}, Neptune-size planets GJ 436 b 
+\citep{2015Natur.522..459E}
+and GJ 3470 b \citep{2018A&A...620A.147B}, and possibly the super-Earth HD 219134b \citep{2019EPSC...13.1928L}. In the case of GJ 436 b, ultraviolet transit depths of 56\% are reported, claiming a total Ly-$\alpha$ eclipse would have been possible for a central transit. The most notable absorption is stated to occur in the blue wing of the Ly-$\alpha$ line. Non-detections or marginal detections have been reported for the super-Earths 55 Cnc e \citep{2012A&A...547A..18E}, super-Earth HD 97658 b \citep{2017A&A...597A..26B} , super-Earth GJ 1132 b \citep{2019AJ....158...50W}, super-Earth $\pi$ Men c \citep{2020ApJ...888L..21G}, and marginal detections were Earth-size TRAPPIST-1 \citep{2017A&A...599L...3B} and sub-Earth Kepler-444 \citep{2017A&A...602A.106B}. Observations of GJ 436b show blue-shifted absorption, possibly due to acceleration of the planet’s atmosphere by radiation pressure from the star. \cite{2021ApJ...907L..36M} reports a detection of CII ions in a single transit of the exoplanet $\pi$ Men c, with transit depths and Doppler velocities consistent with an escaping atmosphere.
+}
+
+\proposed{
+These observations of transiting planets have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars. In the case of HD 209458b, observations detected atomic hydrogen (H) absorption in the stellar Ly-$\alpha$ line during three transits. Observational data was taken from the Space Telescope Imaging Spectrograph (STIS) onboard the Hubble Space Telescope (HST) using the G140M grating to minimize contamination from Earth's Ly-$\alpha$ geocoronal emission. The planet's radius and mass suggest the absorption takes place beyond the Roche limit (i.e., the absorption is occurring in escaped H atoms). The magnitude of absorption (15\%) is larger than it should be for a planet that occults only 1.5\% of the star's visible surface. A maximally-filled Roche lobe would account for only 10\% absorption. The outlying 5\% suggests that hydrogen is escaping the planet's atmosphere. Models designed by \citet{2003Natur.422..143V} suggest that the escaping hydrogen atoms expand in an asymmetric comet-like tail and progressively disappear when moving away from the planet, which is consistent with their observations. The absorption is thought to last well after the end of the transit due to the large physical size of the evaporating tail. In this way, planetary mass and radius measurements allow detailed analysis of Ly-$\alpha$ spectral features, as it is possible to discern what fraction of the absorbing atoms are gravitationally bound to the planet.
+}
+
 
 The main impediment to peforming magnetohydrodynamic simulations with fully a coupled radiative transfer solution via Monte Carlo methods is the prohibitive computational cost. A primary factor in the cost of Monte Carlo is that the number of scatterings a photon (packet/superphoton?) undergoes is proportional to the line center optical depth.  Near the base of the atmosphere individual simulation cells can have optical depths of more than a million so most of the time is spent integrating photons in these cells. This means that any method that can treat these zone via an analytic solution has the potential to greatly accelerate the calculation.
 
@@ -75,11 +93,15 @@ A third class of methods are modified random walk methods \citep{1984JCoPh..54..
 
 \section{ previous analytic work }
 
-\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{1990ApJ...350..216N} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} discusses solutions for the sphere, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core.
+\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{1990ApJ...350..216N} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. \todo{However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.} 
+
+\todo{Elaborate on or reorganize these citations:}
+Radiation forces have been calculated in \citet{1976ApJ...208..286W}, and a discussion of Monte Carlo code acceleration for large optical depths in a uniform, plane-parallel medium with no absorption is presented in  \citet{2002ApJ...567..922A,2015MNRAS.449.4336S}. \citet{1994ApJ...427..603R} introduce an ansatz for the Fokker-Planck approximation using the full Voigt function for the line profile.
 
 
 %%%%%%%%% TEMPORARY %%%%%%%%%%%%%%%
-\textcolor{red}{
+\ifx
+\todo{
 \citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} started work on analytic solutions as you get a Laplace equation. Doesn't get boundary condition right.
 \citet{1990ApJ...350..216N} has analytic solutions following Harrington.
 \citet{1990ApJ...350..216N} improved on Harrington. Does have divergent inhomogeneous solution in slab geometry! Also has discussion of absorption.
@@ -90,6 +112,7 @@ A third class of methods are modified random walk methods \citep{1984JCoPh..54..
 \citet{2002ApJ...567..922A,2015MNRAS.449.4336S} discusses acceleration.
 \citet{2015MNRAS.449.4336S}: amounts to drawing the atom velocity from a truncated Gaussian distribution to force it back into the wing.  The logic seems to be that almost all of the core scattering results in zero spatial diffusion until you get far enough from the line wing.  It seems like this is just calibrated by modifying the truncation until the spectrum doesn’t seem to depend sensitively on the choice of truncation.  
 }
+\fi
 \section{ no photon destruction }
 \label{sec:no_destruction}
 
@@ -248,7 +271,7 @@ In Section \ref{subsec:no_destruction:results}, each of these solutions are comp
 \subsection{Numerical Methods}
 \label{subsec:no_destruction:methods}
 
-\textcolor{red}{
+\todo{
 TODO: Add Monte Carlo description
 }
 \subsection{Results}
@@ -269,7 +292,7 @@ TODO: Add Monte Carlo description
     \label{fig:sol_mc_xinit}
 \end{figure}
  
- \textcolor{red}{
+ \todo{
  TODO: Add optical depth comparison figure, $x_s$ comparison figure
 }
 \section{Time-Dependent Diffusion}
@@ -403,7 +426,7 @@ J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-\gamma t}J(n
 \nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 
-\textcolor{red}{(TODO: Rewrite) Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result}
+\todo{(TODO: Rewrite) Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result}
 \be
 J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
