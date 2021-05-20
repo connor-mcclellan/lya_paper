@@ -26,7 +26,7 @@
 
 
 \shorttitle{Lyman $\alpha$}
-\shortauthors{uva lyman alpha group}
+\shortauthors{McClellan et al.}
 
 \graphicspath{{./}{figures/}}
 
@@ -37,12 +37,12 @@
 
 
 
-\correspondingauthor{Phil Arras}
-\email{arras@virginia.edu}
+\correspondingauthor{Connor McClellan}
+\email{bcm2vn@virginia.edu}
 
-\author{uva lyman alpha group}
-%\author{Phil Arras}
-%\author{Shane Davis}
+\author{Connor McClellan}
+\author{Shane Davis}
+\author{Phil Arras}
 \affiliation{Department of Astronomy, University of Virginia, Charlottesville, VA 22904, USA}
 
 
@@ -61,9 +61,17 @@ The solution of the radiative transfer equation for resonant scattering of Lyman
 \label{sec:intro}
 
 \proposed{
-The outer layers of planetary atmospheres are central to a planet's evolution, as they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space. There exist several fundamental questions about the evolution and stability of irradiated exoplanet atmospheres; understanding which physical and chemical processes are important in these regions can assist in the creation of robust models which determine the rate of atmospheric mass loss. We seek to characterize one such mechanism: the transfer of resonance-line radiation in spherical symmetry at large optical depths. 
-}
+The outer layers of planetary atmospheres are central to a planet's evolution, as they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space.} % Add something about lyman alpha here
+%There's a much thicker layer of atomic hydrogen
+%It's a very optically thick region
+% Care about lya going into the planet's atmosphere and dissociating molecules
+% Observational: observe the transits in lyman alpha
+%Chen liang's paper - focus on the section where he shows the results of the lya transfer - can cause heating deeper in the atmosphere, collisional de-excitation. Summarize some of the things that lya does to the atmosphere. Ionize low ionization-potential atoms (<10.2 eV)
+%Large Lya line intensity, lots of H atoms, then lya is constantly exciting and de-exciting. Then, n=2 is populated so Balmer lines can also be absorbed. This explains why strong balmer absorption is observed in transits to begin with. Otherwise, you would need very high temperatures to populate the n=2 state.
+% Focus on later sections, especially balmer absorption near the end of the paper.
+\todo{There exist several fundamental questions about the evolution and stability of exoplanet atmospheres that have become irradiated by their host stars; understanding which physical and chemical processes are important in these regions can assist in the creation of robust models to answer such questions. (TODO: This sentence reads mostly like fluff but I'm not sure how to outline the problem otherwise.)}
 
+\ifx
 \todo{
 Hubble Space Telescope observations have found large Lyman $\alpha$ transit depths around the gas giants HD 209458b \citep{2003Natur.422..143V}, HD 189733b \citep{2012A&A...543L...4L} and 55 Cnc b \citep{2012A&A...547A..18E}, Neptune-size planets GJ 436 b 
 \citep{2015Natur.522..459E}
@@ -71,17 +79,23 @@ Hubble Space Telescope observations have found large Lyman $\alpha$ transit dept
 and GJ 3470 b \citep{2018A&A...620A.147B}, and possibly the super-Earth HD 219134b \citep{2019EPSC...13.1928L}.
 Non-detections or marginal detections have been reported for the super-Earths 55 Cnc e \citep{2012A&A...547A..18E}, super-Earth HD 97658 b \citep{2017A&A...597A..26B} , super-Earth GJ 1132 b \citep{2019AJ....158...50W}, super-Earth $\pi$ Men c \citep{2020ApJ...888L..21G}, and marginal detections were  Earth-size TRAPPIST-1 \citep{2017A&A...599L...3B} and sub-Earth Kepler-444 \citep{2017A&A...602A.106B}.
 }
+\fi
+
+
+% Put emphasis on the fact that Lya is generated within the atmosphere --- ionization and rate equilibrium balanced by recombination. Recombination gives you lyman alpha again. Collisions decrease the density in the 2s states. The efficiency of producing lya is quite high, and that's immediately at high optical depth.
 
 \proposed{
-Hubble Space Telescope (HST) observations with STIS have found large Lyman $\alpha$ transit depths around the gas giants HD 209458b \citep{2003Natur.422..143V}, HD 189733b \citep{2012A&A...543L...4L} and 55 Cnc b \citep{2012A&A...547A..18E}, Neptune-size planets GJ 436 b 
+Hubble Space Telescope (HST) observations with STIS have found large Lyman $\alpha$ transit depths around the gas giants HD 209458b \citep{2003Natur.422..143V}, HD 189733b \citep{2012A&A...543L...4L} and 55 Cnc b \citep{2012A&A...547A..18E}, Neptune-size planets GJ 436 b
 \citep{2015Natur.522..459E}
-and GJ 3470 b \citep{2018A&A...620A.147B}, and possibly the super-Earth HD 219134b \citep{2019EPSC...13.1928L}. In the case of GJ 436 b, ultraviolet transit depths of 56\% are reported, claiming a total Ly-$\alpha$ eclipse would have been possible for a central transit. The most notable absorption is stated to occur in the blue wing of the Ly-$\alpha$ line. Non-detections or marginal detections have been reported for the super-Earths 55 Cnc e \citep{2012A&A...547A..18E}, super-Earth HD 97658 b \citep{2017A&A...597A..26B} , super-Earth GJ 1132 b \citep{2019AJ....158...50W}, super-Earth $\pi$ Men c \citep{2020ApJ...888L..21G}, and marginal detections were Earth-size TRAPPIST-1 \citep{2017A&A...599L...3B} and sub-Earth Kepler-444 \citep{2017A&A...602A.106B}. Observations of GJ 436b show blue-shifted absorption, possibly due to acceleration of the planet’s atmosphere by radiation pressure from the star. \cite{2021ApJ...907L..36M} reports a detection of CII ions in a single transit of the exoplanet $\pi$ Men c, with transit depths and Doppler velocities consistent with an escaping atmosphere.
+and GJ 3470 b \citep{2018A&A...620A.147B}, and possibly the super-Earth HD 219134b \citep{2019EPSC...13.1928L}. In the case of GJ 436 b, ultraviolet transit depths of 56\% are reported, claiming a total Ly-$\alpha$ eclipse would have been possible for a central transit. The most notable absorption is stated to occur in the blue wing of the Ly-$\alpha$ line. Follow-up observations of GJ 3470 b by \citet{2021arXiv210309864B} confirm the presence of an exospheric hydrogen cloud around the planet with a radius of 1.3 times its Roche lobe in the far-ultraviolet, implying that H atoms are escaping the atmosphere. 
+Non-detections or marginal detections have been reported for the super-Earths 55 Cnc e \citep{2012A&A...547A..18E}, super-Earth HD 97658 b \citep{2017A&A...597A..26B} , super-Earth GJ 1132 b \citep{2019AJ....158...50W}, super-Earth $\pi$ Men c \citep{2020ApJ...888L..21G}, and marginal detections were Earth-size TRAPPIST-1 \citep{2017A&A...599L...3B} and sub-Earth Kepler-444 \citep{2017A&A...602A.106B}.  \cite{2021ApJ...907L..36M} reports a detection of CII ions in a single transit of the exoplanet $\pi$ Men c, with transit depths and Doppler velocities consistent with an escaping atmosphere.
 }
 
 \proposed{
-These observations of transiting planets have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars. In the case of HD 209458b, observations detected atomic hydrogen (H) absorption in the stellar Ly-$\alpha$ line during three transits. Observational data was taken from the Space Telescope Imaging Spectrograph (STIS) onboard the Hubble Space Telescope (HST) using the G140M grating to minimize contamination from Earth's Ly-$\alpha$ geocoronal emission. The planet's radius and mass suggest the absorption takes place beyond the Roche limit (i.e., the absorption is occurring in escaped H atoms). The magnitude of absorption (15\%) is larger than it should be for a planet that occults only 1.5\% of the star's visible surface. A maximally-filled Roche lobe would account for only 10\% absorption. The outlying 5\% suggests that hydrogen is escaping the planet's atmosphere. Models designed by \citet{2003Natur.422..143V} suggest that the escaping hydrogen atoms expand in an asymmetric comet-like tail and progressively disappear when moving away from the planet, which is consistent with their observations. The absorption is thought to last well after the end of the transit due to the large physical size of the evaporating tail. In this way, planetary mass and radius measurements allow detailed analysis of Ly-$\alpha$ spectral features, as it is possible to discern what fraction of the absorbing atoms are gravitationally bound to the planet.
+These observations have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars. In the case of HD 209458b, observations detected atomic hydrogen (H) absorption in the stellar Ly-$\alpha$ line during three transits. Observational data was taken from the Space Telescope Imaging Spectrograph (STIS) onboard the Hubble Space Telescope (HST) using the G140M grating to minimize contamination from Earth's Ly-$\alpha$ geocoronal emission. The planet's radius and mass suggest the absorption takes place beyond the Roche limit (i.e., the absorption is occurring in escaped H atoms). The magnitude of absorption (15\%) is larger than it should be for a planet that occults only 1.5\% of the star's visible surface. A maximally-filled Roche lobe would account for only 10\% absorption. The outlying 5\% suggests that hydrogen is escaping the planet's atmosphere. Additionally, the transits show blue-shifted absorption, possibly due to acceleration of the planet’s atmosphere by radiation pressure from the star. Models designed by \citet{2003Natur.422..143V} suggest that the escaping hydrogen atoms expand in an asymmetric comet-like tail and progressively disappear when moving away from the planet, which is consistent with most observations mentioned here. The absorption is thought to last well after the end of the transit due to the large physical size of the evaporating tail. In this way, planetary mass and radius measurements allow detailed analysis of Ly-$\alpha$ spectral features, as it is possible to discern what fraction of the absorbing atoms are gravitationally bound to the planet.
 }
 
+\todo{Transition to semi-analytic approach, justification for building models}
 
 The main impediment to peforming magnetohydrodynamic simulations with fully a coupled radiative transfer solution via Monte Carlo methods is the prohibitive computational cost. A primary factor in the cost of Monte Carlo is that the number of scatterings a photon (packet/superphoton?) undergoes is proportional to the line center optical depth.  Near the base of the atmosphere individual simulation cells can have optical depths of more than a million so most of the time is spent integrating photons in these cells. This means that any method that can treat these zone via an analytic solution has the potential to greatly accelerate the calculation.
 
