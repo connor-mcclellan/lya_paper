@@ -12,6 +12,7 @@
 \newcommand{\grad}{\mathbf{\nabla}}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 \newcommand{\proposed}[1]{\textcolor{blue}{#1}}
+\newcommand\lya{Ly$\alpha$\ }
 
 
 
@@ -37,10 +38,10 @@
 
 
 
-\correspondingauthor{Connor McClellan}
+\correspondingauthor{B. Connor McClellan}
 \email{bcm2vn@virginia.edu}
 
-\author{Connor McClellan}
+\author{B. Connor McClellan}
 \author{Shane Davis}
 \author{Phil Arras}
 \affiliation{Department of Astronomy, University of Virginia, Charlottesville, VA 22904, USA}
@@ -61,7 +62,7 @@ The solution of the radiative transfer equation for resonant scattering of Lyman
 \label{sec:intro}
 
 \proposed{
-The outer layers of planetary atmospheres are central to a planet's evolution, as they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space.} % Add something about lyman alpha here
+The outer layers of planetary atmospheres are central to a planet's evolution, as they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space. In atmospheres with thick layers of atomic hydrogen, stellar Lyman Alpha (\lya) radiation is especially important as the optical depth at line center is large. Recombination can generate \lya within the planet's atmosphere, dissociating molecules in lower layers and causing heating by collisional de-excitation. It can also excite H atoms to the 2p state, creating a population of Balmer-line absorbers that can be observed via transmission spectroscopy. } % Add something about lyman alpha here
 %There's a much thicker layer of atomic hydrogen
 %It's a very optically thick region
 % Care about lya going into the planet's atmosphere and dissociating molecules
@@ -69,7 +70,6 @@ The outer layers of planetary atmospheres are central to a planet's evolution, a
 %Chen liang's paper - focus on the section where he shows the results of the lya transfer - can cause heating deeper in the atmosphere, collisional de-excitation. Summarize some of the things that lya does to the atmosphere. Ionize low ionization-potential atoms (<10.2 eV)
 %Large Lya line intensity, lots of H atoms, then lya is constantly exciting and de-exciting. Then, n=2 is populated so Balmer lines can also be absorbed. This explains why strong balmer absorption is observed in transits to begin with. Otherwise, you would need very high temperatures to populate the n=2 state.
 % Focus on later sections, especially balmer absorption near the end of the paper.
-\todo{There exist several fundamental questions about the evolution and stability of exoplanet atmospheres that have become irradiated by their host stars; understanding which physical and chemical processes are important in these regions can assist in the creation of robust models to answer such questions. (TODO: This sentence reads mostly like fluff but I'm not sure how to outline the problem otherwise.)}
 
 \ifx
 \todo{
@@ -107,7 +107,7 @@ A third class of methods are modified random walk methods \citep{1984JCoPh..54..
 
 \section{ previous analytic work }
 
-\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{1990ApJ...350..216N} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. \todo{However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.} 
+\proposed{\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{1990ApJ...350..216N} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again.} \todo{However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.} 
 
 \todo{Elaborate on or reorganize these citations:}
 Radiation forces have been calculated in \citet{1976ApJ...208..286W}, and a discussion of Monte Carlo code acceleration for large optical depths in a uniform, plane-parallel medium with no absorption is presented in  \citet{2002ApJ...567..922A,2015MNRAS.449.4336S}. \citet{1994ApJ...427..603R} introduce an ansatz for the Fokker-Planck approximation using the full Voigt function for the line profile.
