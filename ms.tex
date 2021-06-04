@@ -70,7 +70,7 @@ The outer layers of planetary atmospheres are central to a planet's evolution, s
 
 % Put emphasis on the fact that Lya is generated within the atmosphere --- ionization balanced by recombination, rate equilibrium. Recombination gives you lyman alpha again. Collisions decrease the density in the 2s states. The efficiency of producing lya is quite high, and that's immediately at high optical depth.
 
-Hubble Space Telescope (HST) observations with STIS have found large Lyman $\alpha$ transit depths, indicating an extended distribution of hydrogen around a handful of exoplanets \todo{Organize these by date?} (\citealp{2003Natur.422..143V}; \citealp{2012A&A...543L...4L}; \citealp{2012A&A...547A..18E}; \citealp{2015Natur.522..459E}; \citealp{2018A&A...620A.147B}; \citealp{2019EPSC...13.1928L}; \citealp{2021arXiv210309864B}; \citealp{2012A&A...547A..18E}; \citealp{2017A&A...597A..26B}; \citealp{2019AJ....158...50W}; \citealp{2020ApJ...888L..21G}; \citealp{2017A&A...599L...3B}; \citealp{2017A&A...602A.106B}). These observations have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars, motivating a study of the physics of \lya interactions with H atoms surrounding a planet. The importance of the \lya line in the atmospheric dynamics of these systems necessitates a careful treatment of resonant scattering in order to construct accurate models of atmospheric heating and escape. However, the extreme optical depths at \lya line center introduce a computational barrier to simulating radiative transfer via Monte Carlo methods.
+Hubble Space Telescope (HST) observations with STIS have found large Lyman $\alpha$ transit depths, indicating an extended distribution of hydrogen around a handful of exoplanets: \citet{2003Natur.422..143V, 2012A&A...543L...4L, 2012A&A...547A..18E, 2015Natur.522..459E,  2017A&A...597A..26B, 2017A&A...599L...3B, 2017A&A...602A.106B, 2018A&A...620A.147B, 2019AJ....158...50W, 2019EPSC...13.1928L, 2020ApJ...888L..21G,2021arXiv210309864B}. These observations have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars, motivating a study of the physics of \lya interactions with H atoms surrounding a planet. The importance of the \lya line in the atmospheric dynamics of these systems necessitates a careful treatment of resonant scattering in order to construct accurate models of atmospheric heating and escape. However, the extreme optical depths at \lya line center introduce a computational barrier to simulating radiative transfer via Monte Carlo methods.
 
 The main impediment to performing magnetohydrodynamic simulations with fully a coupled radiative transfer solution via Monte Carlo methods is the prohibitive computational cost. A primary factor in the cost of Monte Carlo is that the number of scatterings a photon undergoes is proportional to the line center optical depth.  Near the base of the atmosphere, individual simulation cells can have optical depths of more than a million, so most of the time is spent integrating photons in these cells. This means that any method that can treat these zone via an analytic solution has the potential to greatly accelerate the calculation.
 
@@ -86,45 +86,44 @@ A third class of methods are modified random walk methods \citep{1984JCoPh..54..
 
 \section{ previous analytic work }
 
-\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{?} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. \todo{However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.} 
+\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution for large optical depths would suggest the mean intensity at the boundary of the slab is zero, which is unphysical. A more detailed discussion of the boundary condition is included in Section \ref{sec:no_destruction}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{?} improved on this approach, producing a divergent, inhomogeneous solution to the problem in 1D slab geometry that includes the effect of photon absorption within the medium. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.
 
-\todo{Elaborate on or reorganize these citations:}
-Radiation forces have been calculated in \citet{1976ApJ...208..286W}, and a discussion of Monte Carlo code acceleration for large optical depths in a uniform, plane-parallel medium with no absorption is presented in  \citet{2002ApJ...567..922A,2015MNRAS.449.4336S}. \citet{1994ApJ...427..603R} introduce an ansatz for the Fokker-Planck approximation using the full Voigt function for the line profile.
-
-
-%%%%%%%%% TEMPORARY %%%%%%%%%%%%%%%
-\ifx
-\todo{
-\citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} started work on analytic solutions as you get a Laplace equation. Doesn't get boundary condition right.
-\citet{1990ApJ...350..216N} has analytic solutions following Harrington.
-\citet{1990ApJ...350..216N} improved on Harrington. Does have divergent inhomogeneous solution in slab geometry! Also has discussion of absorption.
-\citet{2006ApJ...649...14D} generalized Harrington to spherical geometry
-\citet{1976ApJ...208..286W} tries to compute the radiation force
-\citet{1994ApJ...427..603R} discuss an ansatz for the fokker-planck approximation where the full voigt profile is used.
-\citet{2020arXiv200509692L} discusses solutions for the sphere. Follows \citet{2006ApJ...649...14D}. They cite \citet{2015MNRAS.449.4336S} on core skipping.
-\citet{2002ApJ...567..922A,2015MNRAS.449.4336S} discusses acceleration.
-\citet{2015MNRAS.449.4336S}: amounts to drawing the atom velocity from a truncated Gaussian distribution to force it back into the wing.  The logic seems to be that almost all of the core scattering results in zero spatial diffusion until you get far enough from the line wing.  It seems like this is just calibrated by modifying the truncation until the spectrum doesn’t seem to depend sensitively on the choice of truncation.  
-}
-\fi
-\section{ no photon destruction }
-\label{sec:no_destruction}
+Radiation forces due to \lya transfer have been calculated in \citet{1976ApJ...208..286W} in plane-parallel geometry. However, these solutions are limited to optical depths below $2.5 \times 10^3$. In the grid cells of a radiation magnetohydrodynamic simulation that includes resonant scattering, for example, it would be necessary to calculate the radiation force on each cell face due to \lya at line center optical depths of up to 1 million. A discussion of Monte Carlo code acceleration for optical depths as large as these in a uniform, plane-parallel medium with no absorption is presented in  \citet{2002ApJ...567..922A,2015MNRAS.449.4336S}. In terms of the time dependence, \citet{1994ApJ...427..603R} introduce an ansatz for the Fokker-Planck diffusion equation in order to quantify the relaxation timescale necessary to reach a quasi-static solution. Notably, the full Voigt function is used for the line profile rather than restricting scattering to the damping wing only.
 
 
-\subsection{Background}
-\label{subsec:no_destruction:background}
+\section{STEADY-STATE SOLUTION}
+\label{sec:steadystate}
 
-Three solutions will be considered for this problem: a ``divergent" solution due to the delta function source, a ``J=0" solution which includes the delta function solution at the source and satisfies $J=0$ at $r=R$, and the ``bc" solution that allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The divergent solution is discussed for qualitative understanding, and the full solution is the sum of the $J=0$ solution and the bc solution.
+Three solutions will be considered for this problem.
 
-\subsection{Equations}
-\label{subsec:no_destruction:equations}
+\begin{enumerate}
+    \item a \textbf{divergent solution} ($\rm H_d$) due to the delta function source,
+    \item a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function solution at the source and satisfies $J=0$ at $r=R$,
+    \item the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied.
+\end{enumerate}
 
-The problem is as follows. Consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0 = (k/\sqrt{\pi}\Delta)R$. The transfer Equation \ref{eq:finaleqn} with no photon destruction terms, $p=\alpha_{\rm abs}=0$, and with a  photon emission term given by Equation \ref{eq:jem}), which gives the transfer equation
+\noindent The divergent solution is discussed for qualitative understanding, and the full solution is the sum of the $J=0$ solution and the bc solution. The problem is as follows. The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. Here the time-dependence of $I$ has been ignored, which assumes the fluid is changing on timescales long compared to a light-crossing time. The intensity $I=I(\vec{x},\vec{n}, \nu)$ will be considered a function of position $\vec{x}$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
+
+Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. 
+The transfer equation is \citep{1986rpa..book.....R}
+\be
+\frac{1}{c} \frac{\partial I}{\partial t} + \vec{n} \cdot \grad I & =& - \left( \alpha_{\rm sc} + \alpha_{\rm abs} \right) I + (1-p) j_{\rm sc} + j_{\rm em}.
+\label{eq:rteqn}
+\ee
+The scattering coefficient, or inverse mean free path to scattering, is 
+\be
+\alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{H(x,a)}{\sqrt{\pi} \Delta}
+= k \phi   
+\ee
+where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons.
+
+Now, consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0 = (k/\sqrt{\pi}\Delta)R$. Here, the Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. After changing the photon frequency variable in Eq. \ref{eq:rteqn} and performing all angular integrals, we obtain Eq. \ref{eq:finaleqn} (see Appendix \ref{app:rteqn_derivation}) and set $p=\alpha_{\rm abs}=0$ to eliminate photon destruction terms. With a photon emission term given by Eq. \ref{eq:jem}, this gives the transfer equation
 \be
 \nabla^2 J + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} & = & 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s})
 \label{eq:rt_no_destr}
 \ee
-where the form of the source term is in Equation \ref{eq:jem_v2}. The boundary condition is that there is no incoming flux at the surface, which can be written
+where the form of the source term is in Eq. \ref{eq:jem_v2}. The boundary condition is that there is no incoming flux at the surface, which can be written
 \citep{1986rpa..book.....R}
 \be
 J & = & \sqrt{3} H
@@ -147,8 +146,8 @@ J_{\rm d} & = &
 \frac{(\sqrt{6}k^2L)/(16\pi^3 \Delta^3)}{ (k/\Delta)^2\left[ (x-x_{\rm s})^2 + (y-y_{\rm s})^2 + (z-z_{\rm s})^2 \right] + (\sigma - \sigma_{\rm s})^2}.
 \label{eq:Jd}
 \ee
-While this solution does not satisfy the surface boundary condition (Equation \ref{eq:bc}), it is accurate near the delta-function source.
-This solution generalizes the particular solution for slab geometry found by \citet{1990ApJ...350..216N}. Henceforth we will focus on the source at the center of the sphere, although we will retain the emission frequency at $\sigma=\sigma_{\rm s}$. The radial flux corresponding to Equation \ref{eq:Jd} is
+While this solution does not satisfy the surface boundary condition (Eq. \ref{eq:bc}), it is accurate near the delta-function source.
+This solution generalizes the particular solution for slab geometry found by \citet{1990ApJ...350..216N}. Henceforth we will focus on the source at the center of the sphere, although we will retain the emission frequency at $\sigma=\sigma_{\rm s}$. The radial flux corresponding to Eq. \ref{eq:Jd} is
 \be
 H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 =  \left( \frac{1}{3k\phi} \right) 
@@ -156,7 +155,7 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \left( \frac{k r/\Delta}{ \left[ (kr/\Delta)^2 + (\sigma-\sigma_{\rm s})^2 \right]^2 } \right).
 \label{eq:Hd}
 \ee
-It will be shown that Equation \ref{eq:Hd} is a good approximation at $r=R$ near line center. However Equation \ref{eq:Jd} is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. 
+It will be shown that Eq. \ref{eq:Hd} is a good approximation at $r=R$ near line center. However Eq. \ref{eq:Jd} is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. 
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a closed-form solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result is
 \be
@@ -191,17 +190,17 @@ H_0(R,\nu) & = & \left( \frac{1}{3k\phi} \right)
 \right).
 \label{eq:H0surf}
 \ee
-Equation \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It will be shown that it is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to $H_{\rm d}$. 
+Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It will be shown that it is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to $H_{\rm d}$. 
 
-The question is how to satisfy the surface boundary condition in Equation \ref{eq:bc}. On this point, we note that the derivation in \citet{1973MNRAS.162...43H}, and numerous studies later studies, does not actually produce a valid solution of the transfer equation and boundary condition. The reason is as follows. In the notation of \citet{1973MNRAS.162...43H}, a separation of variables
+The question is how to satisfy the surface boundary condition in Eq. \ref{eq:bc}. On this point, we note that the derivation in \citet{1973MNRAS.162...43H}, and numerous studies later studies, does not actually produce a valid solution of the transfer equation and boundary condition. The reason is as follows. In the notation of \citet{1973MNRAS.162...43H}, a separation of variables
 $J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequency variable $\sigma$ is attempted (his Equations 16 and 23). The solutions for the eigenfunctions $\theta(\tau)$ and $j(\sigma)$ then depend explicitly on the separation constant $\lambda$. In order to satisfy the boundary conditions, the separation constant must satisfy an eigenvalue equation of the form
 \be
 \lambda \tan(\lambda B) & = & \frac{3}{2} \phi,
 \label{eq:evalue}
 \ee
-where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Equation \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
+where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Eq. \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Equation \ref{eq:J0} above. However, since this solution gives zero at the surface, their Equation 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from their Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
+In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Eq. \ref{eq:J0} above. However, since this solution gives zero at the surface, their Eq. 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from their Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. Under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
@@ -238,15 +237,15 @@ J_{\rm bc}(r,\nu) & = &
 \ee
 where $A(s)$ is the Fourier amplitude.
 
-Plugging Equation \ref{eq:Jbc} into Equation \ref{eq:bc2} leads to the following equation for the Fourier amplitudes
+Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes
 \be
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s)
 \left[ 1 + \left( \frac{s}{\sqrt{3} \Delta \phi} \right) \left( \frac{i_0^\prime(kRs/\Delta)}{i_0(kRs/\Delta)} \right) \right]
 & = & \sqrt{3} H_0(R,\nu)
 \label{eq:bc3}
 \ee
-where $H_0(R,\nu)$ is given by Equation \ref{eq:H0surf}. Discretization of Equation \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Equation \ref{eq:Jbc}, and the flux is given by
+where $H_0(R,\nu)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \frac{\partial J_{\rm bc}(r,\nu)}{\partial r}
@@ -257,26 +256,15 @@ H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \label{eq:Hbc}
 \ee
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
-%\fi
 
-In Section \ref{subsec:no_destruction:results}, each of these solutions are compared with Monte Carlo simulations for a limited range of physical parameters $\tau_0$ and $x_s$.
+We now compare each of these solutions for surface flux with Monte Carlo simulations for a limited range of physical parameters $\tau_0$ and $x_s$. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ overplotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\sigma_s = \sigma_0$. The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum, which was also noted in \citet{2015MNRAS.449.4336S}. The boundary term also resolves the slight deficit of $H_{\rm0}$ in the line wings, improving agreement with the numerical result.
 
-\subsection{Numerical Methods}
-\label{subsec:no_destruction:methods}
-
-\todo{
-TODO: Add Monte Carlo description
-}
-\subsection{Results}
-\label{subsec:no_destruction:results}
 \begin{figure}
     \centering
     \includegraphics{pdf_xinit0.0.pdf}
     \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$. Residuals of each solution to the Monte Carlo data points are shown in the third panel.} 
     \label{fig:sol_mc_residual_0}
 \end{figure}
-
- In Fig. \ref{fig:sol_mc_residual_0}, the fluxes derived in Section \ref{subsec:no_destruction:equations} are compared with the Monte Carlo at selected initial frequencies. The contribution of the flux from Eq. \ref{eq:Hbc} is examined alongside the solutions $H_{\rm d}$ and $H_{\rm 0}$. The corrected solution, $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the ``divergent'' solution $H_{\rm d}$ fails by a large margin in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum as well as the slight deficit in the line wings, improving the agreement of the analytic solution with the numerical result.
  
  \begin{figure}
     \centering
@@ -288,6 +276,7 @@ TODO: Add Monte Carlo description
  \todo{
  TODO: Add optical depth comparison figure, $x_s$ comparison figure
 }
+
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
@@ -335,7 +324,7 @@ Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we o
 
 %% FOURIER STUFF
 \ifx
-The coefficient of $\partial J/\partial t$ has explicit dependence on $\sigma$. Separation of variables may be achieved in Equation \ref{eq:diffusion_eqn} by assuming an expansion in terms of spherical Bessel functions in $r$ and a Fourier expansion in time to find the form
+The coefficient of $\partial J/\partial t$ has explicit dependence on $\sigma$. Separation of variables may be achieved in Eq. \ref{eq:diffusion_eqn} by assuming an expansion in terms of spherical Bessel functions in $r$ and a Fourier expansion in time to find the form
 \be
 J(r,\sigma,t) & = & \sum_{n=1}^\infty \int_{-\infty}^\infty \frac{d\omega}{2\pi} J(n,\sigma,\omega) j_0(\kappa_n r) e^{-i \omega t},
 \ee
@@ -458,7 +447,7 @@ Integrating $dE/dt d\nu$ over all times should give a distribution for the emitt
 \be \label{eq:spectrum}
 P(\nu) & = &  -\frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity if the sum rule in Equation \ref{eq:sumrule} is true.
+Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is true.
 
 \subsection{Results}
 \label{subsec:time_dependent:results}
@@ -489,24 +478,11 @@ Integrating over $\nu$ gives unity if the sum rule in Equation \ref{eq:sumrule} 
 
 \appendix
 
-\section{ derivation of the transfer equation }
+\section{ derivation of the transfer equation } \label{app:rteqn_derivation}
 
 \citet{1973MNRAS.162...43H} first showed that the transfer equation for the mean  intensity $J$ will satisfy a Poisson equation involving second derivatives of space and frequency variables. In this section we will briefly review the derivation of this equation including photon destruction terms and an emission term.
 
-The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. Here the time-dependence of $I$ has been ignored, which assumes the fluid is changing on timescales long compared to a light-crossing time. The intensity $I=I(\vec{x},\vec{n}, \nu)$ will be considered a function of position $\vec{x}$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
-
-Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. 
-The transfer equation is \citep{1986rpa..book.....R}
-\be
-\frac{1}{c} \frac{\partial I}{\partial t} + \vec{n} \cdot \grad I & =& - \left( \alpha_{\rm sc} + \alpha_{\rm abs} \right) I + (1-p) j_{\rm sc} + j_{\rm em}.
-\label{eq:rteqn}
-\ee
-The scattering coefficient, or inverse mean free path to scattering, is 
-\be
-\alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{H(x,a)}{\sqrt{\pi} \Delta}
-= k \phi   
-\ee
-where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ have their usual meaning, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. ``Hummer Case II-b"  \citep{1962MNRAS.125...21H} will be used for the redistribution function, for which the incoming photon is absorbed by the atom according to the natural broadening in the rest frame, re-emitted with a dipole phase function $g(\vec{n},\vec{n}^\prime)=(3/16\pi)(1+[\vec{n}\cdot \vec{n}^\prime]^2)$, which is appropriate for a 1s-2p transition \citep{1982qe}, and the result is averaged over a Maxwell-Boltzmann distribution of speeds for the atom. The result can be written
+ ``Hummer Case II-b"  \citep{1962MNRAS.125...21H} will be used for the redistribution function, for which the incoming photon is absorbed by the atom according to the natural broadening in the rest frame, re-emitted with a dipole phase function $g(\vec{n},\vec{n}^\prime)=(3/16\pi)(1+[\vec{n}\cdot \vec{n}^\prime]^2)$, which is appropriate for a 1s-2p transition \citep{1982qe}, and the result is averaged over a Maxwell-Boltzmann distribution of speeds for the atom. The result can be written
 \be
 j_{\rm sc}(\vec{x},\vec{n},\nu) & = & k \int \frac{ d^3v}{ \pi^{3/2} v_{\rm th}^3} e^{-v^2/v_{\rm th}^2}\, 
 \int d\Omega^\prime \int d\nu^\prime \,
@@ -601,7 +577,7 @@ k\phi J - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \
 \frac{\partial^2 J}{\partial \nu^2} .
 \label{eq:jsc}
 \ee
-The first term in Equation \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Equation \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involvingfrequency derivatives of $\vec{H}$, if carried through the calculation,end up giving terms smaller than then largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here on.
+The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involvingfrequency derivatives of $\vec{H}$, if carried through the calculation,end up giving terms smaller than then largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here on.
 
 If only scattering is included, the transfer equation becomes
 \be
@@ -692,7 +668,7 @@ For emission with luminosity $L$, with a delta function in space $\delta^3(\vec{
 j_{\rm em} & = & \frac{L}{4\pi} \delta^3(\vec{x} - \vec{x}_s) \delta(\nu-\nu_{\rm s}).
 \label{eq:jem}
 \ee
-Multiplying by a factor $-3k\phi$, as appears in Equation \ref{eq:finaleqn}, the delta function in $\nu$ becomes a delta function in $\sigma$ of the form
+Multiplying by a factor $-3k\phi$, as appears in Eq. \ref{eq:finaleqn}, the delta function in $\nu$ becomes a delta function in $\sigma$ of the form
 \be
 -3k\phi j_{\rm em}  &= & - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}),
 \label{eq:jem_v2}
