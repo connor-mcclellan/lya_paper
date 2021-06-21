@@ -1,6 +1,5 @@
-
 \documentclass{aastex63}
-
+\usepackage{amsmath}
 \newcommand{\be}{\begin{eqnarray}}
 \newcommand{\ee}{\end{eqnarray}}
 \def\la{\mathbin{\lower 3pt\hbox
@@ -209,7 +208,7 @@ A different solution method is attempted here: namely, a continuous Fourier expa
 J(r,\nu) & = & J_0(r,\nu) + J_{\rm bc}(r,\nu)
 \ee
 and
-\be
+\be \label{eq:totalflux}
 H(r,\nu) & = & H_0(r,\nu) + H_{\rm bc}(r,\nu).
 \ee
 Here $J_0$ and $H_0$ are the solutions of the inhomogeneous equation including the delta function source given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
@@ -246,12 +245,8 @@ Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation 
 & = & \sqrt{3} H_0(R,\nu)
 \label{eq:bc3}
 \ee
-where $H_0(R,\nu)$ is given by Eq. \ref{eq:H0surf}. \todo{Add in derivation of a tau 1/3 scaling for H0 and Hbc.}
-
-
-
-Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
+where $H_0(R,\nu)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. \todo{The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. (Is this still accurate?)} Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \frac{\partial J_{\rm bc}(r,\nu)}{\partial r}
@@ -262,6 +257,49 @@ H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
 \label{eq:Hbc}
 \ee
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
+
+To examine the relative size of this corrective term as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
+\be
+J_{\rm bc}(R,\sigma) & \approx & \sqrt{3} H_0(R,\sigma).
+\label{eq:bc4}
+\ee
+The Fourier transform for $J_{\rm bc}$ at the surface becomes
+\be
+J_{\rm bc}(R, \sigma) \equiv \int_{-\infty}^{\infty} \frac{ds}{2\pi} e^{is\sigma} A(s)
+\ee
+with Fourier amplitudes
+\be \label{eq:amps}
+A(s) = \sqrt{3} \int_{-\infty}^{\infty} d\sigma e^{-is\sigma} H_0(R, \sigma).
+\ee
+Plugging the expression for $H_0$ in Eq. \ref{eq:H0surf} into Eq. \ref{eq:amps} yields an expression for the Fourier amplitudes
+\be \label{eq:plugged_amps}
+A(s) = \sqrt{3}\frac{1}{3k}\frac{\sqrt{6}}{32\pi}\frac{L}{\Delta R^3} \int_{-\infty}^\infty d\sigma e^{-is\sigma}\frac{1}{\phi(\sigma)}\frac{1}{1+\cosh \left[\frac{\pi \Delta}{kR} |\sigma - \sigma_i|\right]}
+\ee
+with
+\be
+\phi(\sigma) = \left(\frac{2a}{27\pi}\right)^{1/3}\frac{1}{\Delta |\sigma|^{2/3}}.
+\ee
+With the line center optical depth defined as
+\be
+\tau_0 = \frac{kR}{\sqrt{\pi}\Delta}
+\ee
+we scale the variables $\sigma$ and $s$ by $\tau_0$, now using characteristic photon frequency $\bar \sigma = \sigma / \tau_0$ and characteristic wavenumber $\bar s = s \tau_0$. Eq. \ref{eq:plugged_amps} becomes
+\be
+A(\bar s) &=& \frac{\sqrt{2}}{32\pi}\frac{L}{kR^3}\int_{-\infty}^\infty d\bar\sigma \tau_0 e^{-i\bar s \bar\sigma} \left(\frac{27\pi}{2a}\right)^{1/3}\tau_0^{2/3}|\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}\\
+&=& \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}
+\ee
+These coefficients are used to evaluate Eq. \ref{eq:Hbc} at the surface of the sphere. Dividing this flux $H_{\rm bc}$ by the $H_0$ (Eq. \ref{eq:H0surf}) yields an overall proportionality
+\be
+\frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
+\ee
+Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. This is shown graphically in Fig. \ref{fig:taubc}, where the $H_{\rm bc}$ solution has been discretized in $s$ and $\sigma$ and solved via a matrix equation. 
+
+\begin{figure}
+    \centering
+    \includegraphics{taubc.pdf}
+    \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The $H_0$ solution minus the Monte Carlo data should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
+    \label{fig:taubc}
+\end{figure}
 
 \subsection{Comparison to Monte Carlo}
 
