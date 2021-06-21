@@ -205,11 +205,11 @@ In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approxima
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
-J(r,\nu) & = & J_0(r,\nu) + J_{\rm bc}(r,\nu)
+J(r,\sigma) & = & J_0(r,\sigma) + J_{\rm bc}(r,\sigma)
 \ee
 and
 \be \label{eq:totalflux}
-H(r,\nu) & = & H_0(r,\nu) + H_{\rm bc}(r,\nu).
+H(r,\sigma) & = & H_0(r,\sigma) + H_{\rm bc}(r,\sigma).
 \ee
 Here $J_0$ and $H_0$ are the solutions of the inhomogeneous equation including the delta function source given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
 \be
@@ -219,9 +219,9 @@ Here $J_0$ and $H_0$ are the solutions of the inhomogeneous equation including t
 with no delta function source term, and it must allow the boundary conditions to be satisfied at the surface. Since $J_0(R,
 \nu)=0$, the surface boundary condition becomes
 \be
-J_{\rm bc}(R,\nu) - \sqrt{3} H_{\rm bc}(R,\nu) & = & 
-J_{0}(R,\nu) + \frac{1}{\sqrt{3}k\phi} \frac{\partial J_{0}(R,\nu)}{\partial r} = 
-\sqrt{3} H_0(R,\nu).
+J_{\rm bc}(R,\sigma) - \sqrt{3} H_{\rm bc}(R,\sigma) & = & 
+J_{0}(R,\sigma) + \frac{1}{\sqrt{3}k\phi} \frac{\partial J_{0}(R,\sigma)}{\partial r} = 
+\sqrt{3} H_0(R,\sigma).
 \label{eq:bc2}
 \ee
 Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. 
@@ -231,7 +231,7 @@ Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $
 %\ifx
 The solution can then be represented as
 \be
-J_{\rm bc}(r,\nu) & = & 
+J_{\rm bc}(r,\sigma) & = & 
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
 \frac{i_0(krs/\Delta)}{i_0(kRs/\Delta)},
 \label{eq:Jbc}
@@ -242,14 +242,14 @@ Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation 
 \be
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s)
 \left[ 1 + \left( \frac{s}{\sqrt{3} \Delta \phi} \right) \left( \frac{i_0^\prime(kRs/\Delta)}{i_0(kRs/\Delta)} \right) \right]
-& = & \sqrt{3} H_0(R,\nu)
+& = & \sqrt{3} H_0(R,\sigma)
 \label{eq:bc3}
 \ee
-where $H_0(R,\nu)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
+where $H_0(R,\sigma)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
 leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. \todo{The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. (Is this still accurate?)} Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
-H_{\rm bc}(r,\nu) & = & \left( \frac{-1}{3k\phi} \right)
-\frac{\partial J_{\rm bc}(r,\nu)}{\partial r}
+H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
+\frac{\partial J_{\rm bc}(r,\sigma)}{\partial r}
 = \left( \frac{-1}{3k\phi} \right)
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
 \left( \frac{ks}{\Delta} \right) 
@@ -297,7 +297,7 @@ Thus, the fractional importance of the corrective frequency-dependent boundary c
 \begin{figure}
     \centering
     \includegraphics{taubc.pdf}
-    \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The $H_0$ solution minus the Monte Carlo data should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
+    \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The Monte Carlo data minus the $H_0$ solution should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
     \label{fig:taubc}
 \end{figure}
 
