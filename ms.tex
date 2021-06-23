@@ -45,14 +45,25 @@
 
 \begin{abstract}
 
-The solution of the radiative transfer equation for resonant scattering of Lyman $\alpha$ photons for a uniform sphere of constant gas density is found in the limit of large line center optical depth. A monochromatic source of photons is assumed at the center of the sphere, and the intensity within the sphere and at the surface is found with the Eddington approximation for the angular dependence. The solution can be represented a sum of three terms: a simple, analytic solution of the inhomogeneous equation which diverges at the center of the sphere and at the emission frequency; a semi-analytic solution of the homogeneous equation which is required for the mean intensity $J=0$ at the surface; and finally, a solution of the homogeneous equation which enforces the correct, zero-ingoing intensity boundary conditions at the surface. It is the compact, analytic form as well as the piece accounting for the correct, frequency dependent boundary condition that is novel in this study. The analytic solution is compared to numerical solutions with the Monte-Carlo method, which are valid at arbitrary optical depth, and the deviations from exact solution are investigated.
+The solution of the radiative transfer equation for resonant scattering of Lyman $\alpha$ photons for a uniform sphere of constant gas density is found in the limit of large line center optical depth. A monochromatic source of photons is assumed at the center of the sphere, and the intensity within the sphere and at the surface is found with the Eddington approximation for the angular dependence. The solution can be represented a sum of two terms: a semi-analytic solution of the homogeneous equation which is required for the mean intensity $J=0$ at the surface, and a solution of the homogeneous equation which enforces the correct, zero-ingoing intensity boundary conditions at the surface. It is the compact, analytic form as well as the piece accounting for the correct, frequency dependent boundary condition that is novel in this study. The analytic solution is compared to numerical solutions with the Monte-Carlo method, which are valid at arbitrary optical depth, and the deviations from exact solution are investigated.
 
 \end{abstract}
 
 
 \keywords{}
 
+\section{To Do List}
+$\square$ Change all plots to use just wing line profile, exclude Doppler core
 
+$\square$ Use larger n phot MC runs for tau=1e5
+
+$\blacksquare$ Remove details about $H_d$, change wording in abstract and derivations
+
+$\square$ Add eigenmodes plots
+
+$\square$ Add discussion of numerical solution of time-dependent equations
+
+$\square$ Add results, summary, conclusions, etc
 
 \section{Introduction} 
 \label{sec:intro}
@@ -91,15 +102,14 @@ Radiation forces due to \lya transfer have been calculated in \citet{1976ApJ...2
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Three solutions will be considered for this problem.
+Two solutions will be considered for this problem.
 
 \begin{enumerate}
-    \item a \textbf{divergent solution} ($\rm H_d$) due to the delta function source,
     \item a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function solution at the source and satisfies $J=0$ at $r=R$,
     \item the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied.
 \end{enumerate}
 
-\noindent The divergent solution is discussed for qualitative understanding, and the full solution is the sum of the $J=0$ solution and the bc solution. The problem is as follows. The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. Here the time-dependence of $I$ has been ignored, which assumes the fluid is changing on timescales long compared to a light-crossing time. The intensity $I=I(\vec{x},\vec{n}, \nu)$ will be considered a function of position $\vec{x}$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
+\noindent The full solution is the sum of the $J=0$ solution and the bc solution. The problem is as follows. The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. Here the time-dependence of $I$ has been ignored, which assumes the fluid is changing on timescales long compared to a light-crossing time. The intensity $I=I(\vec{x},\vec{n}, \nu)$ will be considered a function of position $\vec{x}$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
 
 Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. 
 The transfer equation is \citep{1986rpa..book.....R}
@@ -128,31 +138,7 @@ where the form of the source term is in Eq. \ref{eq:jem_v2}. The boundary condit
 J & = & \sqrt{3} H
 \label{eq:bc}
 \ee
-at $r=R$. First consider the divergent solution. In terms of the dimensionless variables $x_1 = k(x-x_{\rm s})/\Delta$, $x_2=k(y-y_{\rm s})/\Delta$, $x_3=k(z-z_{\rm s})/\Delta$ and $x_4=\sigma - \sigma_{\rm s}$, this equation can be written as a Laplacian in the 4-dimensional space as
-\be
-\nabla_4^2 J & = & - \frac{\sqrt{6} k^2 L}{4\pi \Delta^3} \delta^4(x).
-\ee
-In terms of the 4-dimensional radius $r_4 = \sqrt{ (k/\Delta)^2\left[ (x-x_{\rm s})^2 + (y-y_{\rm s})^2 + (z-z_{\rm s})^2 \right] + (\sigma - \sigma_{\rm s})^2 }$, and assuming spherical symmetry about the source point, the equation becomes
-\be
-\frac{1}{r_4^3} \frac{\partial}{\partial r_4} \left( r_4^3 \frac{\partial J}{\partial r_4} \right) & = & - \frac{\sqrt{6} k^2 L}{4\pi \Delta^3} 
-\frac{\delta(r_4)}{2\pi^2 r_4^3},
-\ee
-where the forms of the 4-dimensional Laplacian and delta function have been inserted. The ``divergent" solution due to the delta function is then
-\be
-J_{\rm d} & = & 
-\frac{(\sqrt{6}k^2L)/(16\pi^3 \Delta^3)}{ (k/\Delta)^2\left[ (x-x_{\rm s})^2 + (y-y_{\rm s})^2 + (z-z_{\rm s})^2 \right] + (\sigma - \sigma_{\rm s})^2}.
-\label{eq:Jd}
-\ee
-While this solution does not satisfy the surface boundary condition (Eq. \ref{eq:bc}), it is accurate near the delta-function source.
-This solution generalizes the particular solution for slab geometry found by \citet{1990ApJ...350..216N}. Henceforth we will focus on the source at the center of the sphere, although we will retain the emission frequency at $\sigma=\sigma_{\rm s}$. The radial flux corresponding to Eq. \ref{eq:Jd} is
-\be
-H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
-=  \left( \frac{1}{3k\phi} \right) 
-\left( \frac{ \sqrt{6}k^3L }{ 8\pi^3 \Delta^4} \right)
-\left( \frac{k r/\Delta}{ \left[ (kr/\Delta)^2 + (\sigma-\sigma_{\rm s})^2 \right]^2 } \right).
-\label{eq:Hd}
-\ee
-It will be shown that Eq. \ref{eq:Hd} is a good approximation at $r=R$ near line center. However Eq. \ref{eq:Jd} is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. 
+at $r=R$. An analytic solution $J_d$ which is divergent at the center of the sphere and at the emission frequency may be found. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for qualitative understanding, but will not be discussed further.
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a closed-form solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result is
 \be
@@ -187,17 +173,20 @@ H_0(R, \sigma) & = & \left( \frac{1}{3k\phi} \right)
 \right).
 \label{eq:H0surf}
 \ee
-Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It will be shown that it is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to $H_{\rm d}$. 
+Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to the divergent solution. 
 
 The question is how to satisfy the surface boundary condition in Eq. \ref{eq:bc}. On this point, we note that the derivation in \citet{1973MNRAS.162...43H}, and numerous studies later studies, does not actually produce a valid solution of the transfer equation and boundary condition. The reason is as follows. In the notation of \citet{1973MNRAS.162...43H}, a separation of variables
-$J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequency variable $\sigma$ is attempted (his Equations 16 and 23). The solutions for the eigenfunctions $\theta(\tau)$ and $j(\sigma)$ then depend explicitly on the separation constant $\lambda$. In order to satisfy the boundary conditions, the separation constant must satisfy an eigenvalue equation of the form
+$J(\tau,\sigma) = \theta(\tau) j(\sigma)$ in spatial variable $\tau$ and frequency variable $\sigma$ is attempted (their Equations 16 and 23). The solutions for the eigenfunctions $\theta(\tau)$ and $j(\sigma)$ then depend explicitly on the separation constant $\lambda$. In order to satisfy the boundary conditions, the separation constant must satisfy an eigenvalue equation of the form
 \be
 \lambda \tan(\lambda B) & = & \frac{3}{2} \phi,
 \label{eq:evalue}
 \ee
-where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Eq. \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
+where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile ($\Delta \phi(\nu)$ here). The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. But then the separation constant is not constant, and it does not satisfy Eq. \ref{eq:rt_no_destr} since the frequency derivatives will act on the separation ``constant", giving extra terms. To our knowledge the errors introduced by this ansatz have never been quantified. 
 
-In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Eq. \ref{eq:J0} above. However, since this solution gives zero at the surface, their Eq. 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Despite this treatment, a calculation of the surface flux from their Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. However, under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
+In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approximates the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$, which gives $J=0$ at the surface. This is essentially the result in Eq. \ref{eq:J0} above. However, since this solution gives zero at the surface, their Eq. 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. 
+
+% Dijkstra
+%Despite this treatment, a calculation of the surface flux from their Eq. 13 compared with the total emerging flux density at the surface of the sphere (Eq. C17) yields a $J=2H$ surface boundary condition. However, under the two-stream approximation, a surface boundary condition $J=\sqrt{3}H$ is necessary to properly normalize the radiation pressure.
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
@@ -207,7 +196,7 @@ and
 \be \label{eq:totalflux}
 H(r,\sigma) & = & H_0(r,\sigma) + H_{\rm bc}(r,\sigma).
 \ee
-Here $J_0$ and $H_0$ are the solutions of the inhomogeneous equation including the delta function source given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
+Here, $J_0$ and $H_0$ are the solutions of the homogeneous equation, given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
 \be
 \frac{\partial^2J}{\partial r^2} + \frac{2}{r} \frac{\partial J}{\partial r}
 + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} &= & 0
@@ -220,21 +209,14 @@ J_{0}(R,\sigma) + \frac{1}{\sqrt{3}k\phi} \frac{\partial J_{0}(R,\sigma)}{\parti
 \sqrt{3} H_0(R,\sigma).
 \label{eq:bc2}
 \ee
-Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. 
-
-
-% Fourier analysis stuff which we can take out
-%\ifx
-The solution can then be represented as
+Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
 \be
 J_{\rm bc}(r,\sigma) & = & 
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
 \frac{i_0(krs/\Delta)}{i_0(kRs/\Delta)},
 \label{eq:Jbc}
 \ee
-where $A(s)$ is the Fourier amplitude.
-
-Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes
+where $A(s)$ is the Fourier amplitude. Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes,
 \be
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s)
 \left[ 1 + \left( \frac{s}{\sqrt{3} \Delta \phi} \right) \left( \frac{i_0^\prime(kRs/\Delta)}{i_0(kRs/\Delta)} \right) \right]
@@ -242,7 +224,7 @@ Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation 
 \label{eq:bc3}
 \ee
 where $H_0(R,\sigma)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. \todo{The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. (Is this still accurate?)} Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid and solve the resulting matrix equation. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
 \frac{\partial J_{\rm bc}(r,\sigma)}{\partial r}
@@ -285,17 +267,10 @@ A(\bar s) &=& \frac{\sqrt{2}}{32\pi}\frac{L}{kR^3}\int_{-\infty}^\infty d\bar\si
 &=& \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}
 \ee
 These coefficients are used to evaluate Eq. \ref{eq:Hbc} at the surface of the sphere. Dividing this flux $H_{\rm bc}$ by the $H_0$ (Eq. \ref{eq:H0surf}) yields an overall proportionality
-\be
+\be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
-Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. This is shown graphically in Fig. \ref{fig:taubc}, where the $H_{\rm bc}$ solution has been discretized in $s$ and $\sigma$ and solved via a matrix equation. 
-
-\begin{figure}
-    \centering
-    \includegraphics{taubc.pdf}
-    \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The Monte Carlo data minus the $H_0$ solution should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
-    \label{fig:taubc}
-\end{figure}
+Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. 
 
 \subsection{Comparison to Monte Carlo}
 
@@ -305,14 +280,21 @@ The Monte Carlo method is used to solve the transfer equation numerically as a p
 
 \begin{figure}
     \centering
+    \includegraphics{taubc.pdf}
+    \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The Monte Carlo data minus the $H_0$ solution should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
+    \label{fig:taubc}
+\end{figure}
+
+The relative size of the boundary term $H_{\rm bc}$ with optical depth is shown graphically in Fig. \ref{fig:taubc}, where $H_{\rm bc}$ is shown for several optical depths along with Monte Carlo data. Since the Monte Carlo simulation represents the true solution, it can be compared directly against $H_{\rm bc}$ by subtracting off the homogeneous piece of the solution ($H_{\rm bc} = H - H_0$). From Eq. \ref{eq:hbc_scaling}, the size of the frequency-dependent boundary condition correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths should show close agreement on the figure if the relation holds. Indeed, agreement between $H_{\rm bc}$ and the Monte Carl points improves as the optical depth becomes larger. At lower optical depths, the scattering of photons within the Doppler core of the line becomes important, yet our solution is not constructed to model this behavior precisely. The effects of core scattering can be seen in the Monte Carlo data, however, as the peaks of the distribution shift outward in frequency from the line core around $\tau_0 = 10^5$. Thus, the $(a\tau)^{1/3}$ scaling holds only for larger optical depths where scattering in the core can be ignored.
+
+\begin{figure}
+    \centering
     \includegraphics{final_residual.pdf}
     \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0$. In the log-scale plot in the second panel, $|\rm H_{bc}|$ is shown instead of $\rm H_{bc}$. Residuals of each solution to the Monte Carlo data points are shown in the third panel.} 
     \label{fig:sol_mc_residual_0}
 \end{figure}
 
-We now compare each of the solutions for surface flux with Monte Carlo simulations for a limited range of physical parameters $\tau_0$ and $x_s$. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ overplotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\sigma_s = \sigma_0$.
-
-The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S}. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result.
+We now compare each of the solutions for surface flux with Monte Carlo simulations for a limited range of physical parameters $\tau_0$ and $x_s$. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ overplotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\sigma_s = \sigma_0$. The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S}. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result.
  
  \begin{figure}
     \centering
