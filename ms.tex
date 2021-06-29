@@ -197,7 +197,7 @@ and
 H(r,\sigma) & = & H_0(r,\sigma) + H_{\rm bc}(r,\sigma).
 \ee
 Here, $J_0$ and $H_0$ are the solutions of the homogeneous equation, given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
-\be
+\be \label{eq:diffeq}
 \frac{\partial^2J}{\partial r^2} + \frac{2}{r} \frac{\partial J}{\partial r}
 + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} &= & 0
 \ee
@@ -236,7 +236,8 @@ H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
 \ee
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
 
-To examine the relative size of this corrective term as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
+\subsection{Scaling with Line Center Optical Depth}
+To examine the relative size of the corrective term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
 \be
 J_{\rm bc}(R,\sigma) & \approx & \sqrt{3} H_0(R,\sigma).
 \label{eq:bc4}
@@ -258,25 +259,41 @@ with
 \phi(\sigma) = \left(\frac{2a}{27\pi}\right)^{1/3}\frac{1}{\Delta |\sigma|^{2/3}}.
 \ee
 With the line center optical depth defined as
-\be
+\be \label{eq:tau0}
 \tau_0 = \frac{kR}{\sqrt{\pi}\Delta}
 \ee
 we scale the variables $\sigma$ and $s$ by $\tau_0$, now using characteristic photon frequency $\bar \sigma = \sigma / \tau_0$ and characteristic wavenumber $\bar s = s \tau_0$. Eq. \ref{eq:plugged_amps} becomes
 \be
-A(\bar s) &=& \frac{\sqrt{2}}{32\pi}\frac{L}{kR^3}\int_{-\infty}^\infty d\bar\sigma \tau_0 e^{-i\bar s \bar\sigma} \left(\frac{27\pi}{2a}\right)^{1/3}\tau_0^{2/3}|\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}\\
-&=& \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}
+A(\bar s) = \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}.
 \ee
-These coefficients are used to evaluate Eq. \ref{eq:Hbc} at the surface of the sphere. Dividing this flux $H_{\rm bc}$ by the $H_0$ (Eq. \ref{eq:H0surf}) yields an overall proportionality
+These coefficients are used to evaluate Eq. \ref{eq:Hbc} at the surface of the sphere. Dividing $H_{\rm bc}$ by $H_0$ (Eq. \ref{eq:H0surf}) yields an overall proportionality
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
 Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. 
 
+By replacing the differential operators in Eq. \ref{eq:rt_no_destr} with characteristic scales $R$ and $\sigma_0$ and equating the terms on the left-hand side of this equation, a dimensionless scaling relation between frequency and space emerges.
+\be
+\frac{J}{R^2} &=& \left(\frac{k}{\Delta}\right)^2 \frac{J}{\sigma_0^2}
+\ee
+Now, using Eq. \ref{eq:tau0} and the approximation $\sigma(x)=x^3\sqrt{2\pi/27}/a$ introduced in \cite{1973MNRAS.162...43H} for large $x$, we have
+\be
+\frac{\sqrt{2\pi/27}}{a}x_0^3 = \frac{kR}{\Delta} = \sqrt{\pi} \tau_0.
+\ee
+Simplifying, we obtain the proportionality
+\be
+x_0 &\propto& \left(a\tau_0\right)^{1/3}.
+\ee
+This predicts that the characteristic photon frequency in Doppler widths should scale as the cube root of the Voigt parameter $a$ multiplied by the line center optical depth $\tau_0$, indicating the location of the spectral peaks on either side of line center --- the locations where the photons most readily escape. Since our derivations were performed assuming a Lorentzian line profile (see Appendix \ref{app:rteqn_derivation}), our solutions are technically only valid far out into the line wing, where the Doppler component of the line profile is small. Since our choice of the damping parameter $a$ is constant, the solutions of the transfer equation will perform best when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large optical depths. The boundary of the Doppler core is approximately where the Gaussian and Lorentzian pieces are equal:
+\be
+\frac{e^{-x^2}}{\sqrt{\pi}} = \frac{a}{\pi x^2}
+\ee
+
 \subsection{Comparison to Monte Carlo}
 
 %Brief description of MC code, citing Chenliang's paper. Discuss how MC works briefly, reference some papers, talk about problem setup specific to this work. Basically want to show that the MC approach in this paper is not new and doesn't need to be justified extensively.
 
-The Monte Carlo method is used to solve the transfer equation numerically as a point of reference for these analytic solutions. For each simulation, a total of $2^20 \approx 10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the medium until escaping, at which point their positions, outgoing angles, and frequencies are logged. A constant temperature of $T=10000\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil, to obtain the spectrum at the surface of the spherical simulation domain. Further details of the Monte Carlo simulation are discussed in \cite{2017ApJ...851..150H}.
+The Monte Carlo method is used to solve the transfer equation numerically as a point of reference for these analytic solutions. For each simulation, a total of $2^{20} \approx 10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the medium until escaping, at which point their positions, outgoing angles, and frequencies are logged. A constant temperature of $T=10000\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil, to obtain the spectrum at the surface of the spherical simulation domain. Further details of the Monte Carlo simulation are discussed in \cite{2017ApJ...851..150H}.
 
 \begin{figure}
     \centering
@@ -285,7 +302,7 @@ The Monte Carlo method is used to solve the transfer equation numerically as a p
     \label{fig:taubc}
 \end{figure}
 
-The relative size of the boundary term $H_{\rm bc}$ with optical depth is shown graphically in Fig. \ref{fig:taubc}, where $H_{\rm bc}$ is shown for several optical depths along with Monte Carlo data. Since the Monte Carlo simulation represents the true solution, it can be compared directly against $H_{\rm bc}$ by subtracting off the homogeneous piece of the solution ($H_{\rm bc} = H - H_0$). From Eq. \ref{eq:hbc_scaling}, the size of the frequency-dependent boundary condition correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths should show close agreement if the relation holds. Indeed, agreement between $H_{\rm bc}$ and the Monte Carl points improves as the optical depth becomes larger. At lower optical depths, the scattering of photons within the Doppler core of the line becomes important, yet our solution is not constructed to model this behavior precisely. The effects of core scattering can be seen in the Monte Carlo data, however, as the peaks of the distribution shift outward in frequency from the line core around $\tau_0 = 10^5$. Thus, the $(a\tau)^{1/3}$ scaling holds only for larger optical depths where scattering in the core can be ignored.
+The relative size of the boundary term $H_{\rm bc}$ with optical depth is shown graphically in Fig. \ref{fig:taubc}, where $H_{\rm bc}$ is shown for several optical depths along with Monte Carlo data. Since the Monte Carlo simulation represents the true solution, it can be compared directly against $H_{\rm bc}$ by subtracting off the homogeneous piece of the solution ($H_{\rm bc} = H - H_0$). From Eq. \ref{eq:hbc_scaling}, the size of the frequency-dependent boundary condition correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths should show close agreement if the relation holds. Indeed, agreement between $H_{\rm bc}$ and the Monte Carlo points improves as the optical depth becomes larger. At lower optical depths, the scattering of photons within the Doppler core of the line becomes important, yet our solution is not constructed to model this behavior precisely. The effects of core scattering can be seen in the Monte Carlo data, however, as the peaks of the distribution shift outward in frequency from the line core around $\tau_0 = 10^5$. Thus, the $(a\tau)^{1/3}$ scaling holds only for larger optical depths where scattering in the core can be ignored.
 
 \begin{figure}
     \centering
@@ -311,7 +328,9 @@ Since the solutions have been generalized to allow for a monochromatic source of
     \caption{Increasing the line center optical depth. Shown here are $\tau_0 = 10^5, 10^6, 10^7$ with the $x$ and $y$ axes scaled by the characteristic frequency diffusion scale $(a\tau_0)^{1/3}$. Photons are initialized with $\rm x = 0.0$.} 
     \label{fig:sol_mc_tau}
 \end{figure}
- 
+
+The line center optical depth dictates the position of the peak of
+
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
@@ -486,11 +505,6 @@ Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is tr
 
 \subsection{Results}
 \label{subsec:time_dependent:results}
-
-
-    
-\end{frame}
-
 
 %\begin{figure}
 %\plotone{KT_Eri.pdf}
