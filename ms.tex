@@ -281,14 +281,14 @@ Now, using Eq. \ref{eq:tau0} and the approximation $\sigma(x)=x^3\sqrt{2\pi/27}/
 \frac{\sqrt{2\pi/27}}{a}x_0^3 = \frac{kR}{\Delta} = \sqrt{\pi} \tau_0.
 \ee
 Simplifying, we obtain the proportionality
-\be
+\be \label{eq:tau_peak_scaling}
 x_0 &\propto& \left(a\tau_0\right)^{1/3}.
 \ee
 This predicts that the characteristic photon frequency in Doppler widths should scale as the cube root of the Voigt parameter $a$ multiplied by the line center optical depth $\tau_0$, indicating the location of the spectral peaks on either side of line center --- the locations where the photons most readily escape. Since our derivations were performed assuming a Lorentzian line profile (see Appendix \ref{app:rteqn_derivation}), our solutions are technically only valid far out into the line wing, where the Doppler component of the line profile is small. Since our choice of the damping parameter $a$ is constant, the solutions of the transfer equation will perform best when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large optical depths. The boundary of the Doppler core is approximately where the Gaussian and Lorentzian pieces are equal:
 \be
 \frac{e^{-x^2}}{\sqrt{\pi}} = \frac{a}{\pi x^2}
 \ee
-
+For \lya and a hydrogen gas of temperature $T=10^4$ K, the damping parameter $a = \Gamma / (4\pi\Delta)$ is equal to $4.72\times 10^{-4}$ in CGS units. The Doppler core is then significant over the range $-4.6 < x < 4.6$. Comparing with the locations of the spectral peaks at various optical depths using Eq. \ref{eq:tau_peak_scaling}, we find that $x_0=$3.6, 7.8, 16.8 for $\tau_0=10^5, 10^6,$ and $10^7$, respectively. Therefore, solutions derived assuming a Lorentzian line profile $\phi(x) \approx a/(\pi x^2)$ are expected to fail for lower line center optical depths where the peak of the spectrum lies near the core and improve for larger optical depths where the spectral peak is well outside of the line core.
 \subsection{Comparison to Monte Carlo}
 
 %Brief description of MC code, citing Chenliang's paper. Discuss how MC works briefly, reference some papers, talk about problem setup specific to this work. Basically want to show that the MC approach in this paper is not new and doesn't need to be justified extensively.
