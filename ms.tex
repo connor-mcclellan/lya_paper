@@ -122,7 +122,7 @@ The scattering coefficient, or inverse mean free path to scattering, is
 \alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{H(x,a)}{\sqrt{\pi} \Delta}
 = k \phi   
 \ee
-where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons.
+where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. Photon destruction will not be considered, so $p$ is set to 0.
 
 
 \subsection{Derivation of the Steady-State Solution}
@@ -140,7 +140,7 @@ J & = & \sqrt{3} H
 \ee
 at $r=R$. An analytic solution $J_d$ which is divergent at the center of the sphere and at the emission frequency may be found. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for qualitative understanding, but will not be discussed further.
 
-A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a closed-form solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result is
+A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result is
 \be
 J_0 & = & \left( \frac{\sqrt{6}L}{32\pi^2 \Delta} \right)
 \left( \frac{1}{Rr} \right)
@@ -295,14 +295,14 @@ For \lya and a hydrogen gas of temperature $T=10^4$ K, the damping parameter $a 
 
 The Monte Carlo method is used to solve the transfer equation numerically as a point of reference for these analytic solutions. For each simulation, a total of $2^{20} \approx 10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the medium until escaping, at which point their positions, outgoing angles, and frequencies are logged. A constant temperature of $T=10000\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil, to obtain the spectrum at the surface of the spherical simulation domain. Further details of the Monte Carlo simulation are discussed in \cite{2017ApJ...851..150H}.
 
+\ifx
 \begin{figure}
     \centering
     \includegraphics{taubc.pdf}
     \caption{Boundary condition term $H_{\rm bc}$ scaled by $(a\tau_0)^{1/3}$ shown for increasing line center optical depths. The Monte Carlo data minus the $H_0$ solution should be close to $H_{\rm bc}$ according to Eq. \ref{eq:totalflux}. As $\tau_0$ becomes larger, the agreement between these two improves, indicating that at large optical depths the relative size of the corrective boundary condition term scales as $(a\tau_0)^{-1/3}$}.
     \label{fig:taubc}
 \end{figure}
-
-The relative size of the boundary term $H_{\rm bc}$ with optical depth is shown graphically in Fig. \ref{fig:taubc}, where $H_{\rm bc}$ is shown for several optical depths along with Monte Carlo data. Since the Monte Carlo simulation represents the true solution, it can be compared directly against $H_{\rm bc}$ by subtracting off the homogeneous piece of the solution ($H_{\rm bc} = H - H_0$). From Eq. \ref{eq:hbc_scaling}, the size of the frequency-dependent boundary condition correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths should show close agreement if the relation holds. Indeed, agreement between $H_{\rm bc}$ and the Monte Carlo points improves as the optical depth becomes larger. At lower optical depths, the scattering of photons within the Doppler core of the line becomes important, yet our solution is not constructed to model this behavior precisely. The effects of core scattering can be seen in the Monte Carlo data, however, as the peaks of the distribution shift outward in frequency from the line core around $\tau_0 = 10^5$. Thus, the $(a\tau)^{1/3}$ scaling holds only for larger optical depths where scattering in the core can be ignored.
+\fi
 
 \begin{figure}
     \centering
@@ -311,16 +311,16 @@ The relative size of the boundary term $H_{\rm bc}$ with optical depth is shown 
     \label{fig:sol_mc_residual_0}
 \end{figure}
 
-We now compare each of the solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ over-plotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S}. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that as in Fig. \ref{fig:taubc} the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term.
+We now compare each of the solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ over-plotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S}. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$. 
  
  \begin{figure}
     \centering
     \includegraphics{xinit_threepanel.pdf}
-    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0, 6.0, 12.0$ to examine the solutions' accuracy with a changing source frequency. TODO: Remove blue line. We really don't care about the divergent solution anymore.} 
+    \caption{Analytic solution for the outgoing spectrum compared with Monte Carlo at a line center optical depth of $\tau_0 = 1 \times 10^7$. Photons are initialized with $\rm x = 0.0, 6.0, 12.0$ to examine the solutions' accuracy with a changing source frequency.} 
     \label{fig:sol_mc_xinit}
 \end{figure}
 
-Since the solutions have been generalized to allow for a monochromatic source of photons at a frequency $\sigma_s$ away from line center, their agreement with Monte Carlo as a function of source frequency can also be characterized. Photons initialized closer to the line wing may travel larger mean free paths as the opacity is sensitively dependent on the line profile. The larger spatial diffusion contributes to greater escape probability, biasing the frequency distribution of escaping photons. In the limit that $|\rm x_s|$ becomes large, the distribution becomes a delta function in frequency as all photons escape the gas without scattering. Fig. \ref{fig:sol_mc_xinit} shows calculations performed for three initial photon frequencies $\rm x_s = 0.0, 6.0$, and $12.0$ for a line center optical depth of $\tau_0=10^7$. The bias in frequency distribution is slight for $\rm x_s = 6.0$ where the line profile is still relatively large, but the increase in spatial diffusion is much more substantial when photons are initialized with $\rm x_s=12.0$, further away from the line core. On this point, we note that the discrepancy between the Monte Carlo data and $H_0$ (effectively the scale of the corrective $H_{\rm bc}$ term) becomes larger as $\rm x_s$ increases. Thus, for sufficiently large optical depths and emission away from line center, the importance of enforcing frequency-dependent boundary conditions at the surface of the sphere grows. %Note: should we characterize this scaling quantitatively?
+Since the solutions have been generalized to allow for a monochromatic source of photons at a frequency $\sigma_s$ away from line center, their agreement with Monte Carlo as a function of source frequency can also be characterized. Photons initialized closer to the line wing may travel larger mean free paths as the opacity is sensitively dependent on the line profile. The larger spatial diffusion contributes to greater escape probability, biasing the frequency distribution of escaping photons. In the limit that $|\rm x_s|$ becomes large, the distribution becomes a delta function in frequency as all photons escape the gas without scattering. Fig. \ref{fig:sol_mc_xinit} shows calculations performed for three initial photon frequencies $\rm x_s = 0.0, 6.0$, and $12.0$ for a line center optical depth of $\tau_0=10^7$. The bias in frequency distribution is slight for $\rm x_s = 6.0$ where the line profile is still relatively large and emitted photons remain trapped in the core, but the increase in spatial diffusion is much more substantial when photons are initialized with $\rm x_s=12.0$, further away from the line core. On this point, we note that the discrepancy between the Monte Carlo data and $H_0$ (effectively the scale of the corrective $H_{\rm bc}$ term) becomes larger as $\rm x_s$ increases. Thus, for sufficiently large optical depths and emission away from line center, the importance of enforcing frequency-dependent boundary conditions at the surface of the sphere grows. %Note: should we characterize this scaling quantitatively?
 
  \begin{figure}
     \centering
@@ -329,18 +329,19 @@ Since the solutions have been generalized to allow for a monochromatic source of
     \label{fig:sol_mc_tau}
 \end{figure}
 
-The line center optical depth dictates the position of the peak of
+Additionally, the size of the frequency-dependent boundary condition correction is dependent on the line center optical depth, which also dictates the x-position of the peak of spectrum according to Eq. \ref{eq:tau_peak_scaling}. One factor of $(a\tau_0)^{1/3}$ has been scaled out of the x-axis of Fig. \ref{fig:sol_mc_tau} such that the peaks of the distributions are vertically aligned. This scaling has also been applied to the y-axis to preserve normalization of the escape probability. From Eq. \ref{eq:hbc_scaling}, the size of the term $H_{\rm bc}$ should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. Indeed, agreement between $H_{0 + \rm bc}$ and the Monte Carlo points in Fig. \ref{fig:sol_mc_tau} improves as the optical depth becomes larger. At lower optical depths, the scattering of photons within the Doppler core of the line becomes important, yet our solution is not constructed to model this behavior precisely. The effects of core scattering can be seen in the Monte Carlo data, however, as the peaks of the distribution shift substantially outward in frequency from the line core for $\tau_0 = 10^5$.
+
+\subsection{Summary}
+
+The solution for mean intensity ($J$) and flux ($H = F/4\pi$) of photons near line-center frequency $\nu_0$ in a uniform sphere originally derived by \cite{2006ApJ...649...14D} has been generalized to allow a monochromatic source of photons with frequencies away from line center. However, this solution satisfies $J=0$ at the surface of the sphere, which is clearly unphysical as there could be no spectrum. A correction which allows the proper boundary condition $J=\sqrt{3}H$ to be satisfied comes from the introduction of the terms $J_{\rm bc}$ and $H_{\rm bc}$, which are solved using a continuous Fourier expansion in frequency. Enforcement of the correct boundary term leads naturally to expansion of the spatial dependence in terms of spherical Bessel functions. In practice, the continuous expansions are discretized and the Fourier coefficients solved for via a matrix equation. The resulting flux correction, $H_{\rm bc}$, scales as $(a\tau_0)^{-1/3}$ where $a$ is the damping parameter and $\tau_0$ is the line-center optical depth. Thus, for very large optical depths, only a small correction to $H_0$ is needed, while larger errors are present in calculations performed at lower optical depths. Additionally, since the Laplacian form of the differential equation is only attainable by approximating the line profile as $\phi \approx a/(\pi x^2)$, these solutions are invalid in areas where the Doppler core of the \lya line has a significant effect on the scattering of photons. Since the peak of the spectral energy distribution of escaping photons is $x_0 = (a\tau_0)^{1/3}$, calculations performed at lower optical depths are likely to be inaccurate due to the close proximity of the spectral peak and the Doppler core. By comparison with Monte Carlo simulations, it is seen that the enforcement of the correct frequency-dependent boundary conditions improves the accuracy of these analytic solutions and correctly tracks changes in the spectrum of escaping photons as the monochromatic source frequency is altered, provided a sufficiently large optical depth.
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
-\subsection{Background}
+The diffusion equation for photons escaping a uniform sphere of gas is a function of time, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a fluid that is dynamic on timescales shorter than the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to an impulse is found. For simplicity a $J=0$ boundary condition will be used, which is expected to be a decent approximation for $\tau_0 \gg 1$. 
+
+\subsection{Derivation of the time-dependent solution}
 \label{subsec:time_dependent:background}
-
-In order to understand the wait time distribution, the time-dependent response to an impulse is found. For simplicity a $J=0$ boundary condition will be used. This is expected to be a good approximation for $\tau_0 \gg 1$. 
-
-\subsection{Equations}
-\label{subsec:time_dependent:equations}
 
 The source is changed to the form
 \be
@@ -354,115 +355,53 @@ The resulting equation for $J(r,\sigma,t)$ is
 & = & - \frac{\sqrt{6} kE}{4\pi \Delta^2} \delta(\vec{x}) \delta (\sigma - \sigma_s ) \delta (t).
 \label{eq:diffusion_eqn}
 \ee
-
 We employ an expansion in terms of spherical Bessel functions in $r$ and transform the time dependence into an imaginary frequency variable $\omega$. The eigenvalues $i\omega$ are real and positive for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
-
 \be
 \label{eq:jrsigmat_expansion}
 J(r, \sigma, t) = -\sum_{n=1}^{\infty} \int \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega).
 \ee
-
 with
-
 \be
 J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
-
 Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we obtain
-
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
-
-
-
-%% FOURIER STUFF
-\ifx
-The coefficient of $\partial J/\partial t$ has explicit dependence on $\sigma$. Separation of variables may be achieved in Eq. \ref{eq:diffusion_eqn} by assuming an expansion in terms of spherical Bessel functions in $r$ and a Fourier expansion in time to find the form
-\be
-J(r,\sigma,t) & = & \sum_{n=1}^\infty \int_{-\infty}^\infty \frac{d\omega}{2\pi} J(n,\sigma,\omega) j_0(\kappa_n r) e^{-i \omega t},
-\ee
-where $\kappa_n = n\pi/R$ enforces the $J(R,\sigma,t)=0$ boundary condition and the spherical Bessel function is $j_0(x)=\sin(x)/x$. For the solution to be real requires that $J(n,\sigma,-\omega) = J^*(n,\sigma,\omega)$. The equation for $J(n,\sigma,\omega)$ becomes
-\be
-\frac{\partial^2 J}{\partial \sigma^2} & = & \left( \frac{\Delta \kappa_n}{k} \right)^2 J
-- 3i\omega \frac{\Delta^2 \phi}{ck} J
-- \sqrt{ \frac{3}{32} } \frac{E}{kR^3} n^2 \delta(\sigma - \sigma_s).
-\label{eq:response}
-\ee
-The $\delta(\sigma - \sigma_s)$ enforces a discontinuity
-\be
-\frac{\partial J(n,\sigma_s^{(+)},\omega)}{\partial \sigma} - \frac{\partial J(n,\sigma_s^{(-)},\omega)}{\partial \sigma} & = & 
-- \sqrt{ \frac{3}{32} } \frac{E}{kR^3} n^2
-\label{eq:discontinuity}
-\ee
-and the boundary conditions are $J(n,\pm \infty,\omega)=0$. Since $\phi \propto \sigma^{-2/3}$, the solution at large $\sigma$ is 
-\be
-J(n,\sigma,\omega) & \propto & e^{-\kappa_n \Delta |\sigma| /k}
-= e^{-\sqrt{\pi} n |\sigma | / \tau_0}.
-\label{eq:finite_bc}
-\ee
-\fi
-
-%%% TODO: NOTES
-% Can't solve this exactly, need a numerical scheme to solve. Now going to turn to solving this equation (without subsec). We start with a treatment of the boundary conditions. Continuity in J at the source, the discontinuity needs to be (Eq. 24)
-
-% Solving the sigma dependence
-% Solving the time dependence
-% Solving the frequency dependence
-
-% Get different pieces of the solution and build it up.
-
-% Make sure that all variables that are introduced in the text are defined beforehand. Especially those that are defined only in the appendix. 
-
-At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
-
+This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions, after which we solve spatial dependence $n$, photon frequency dependence $\sigma$, and imaginary frequency dependence $\omega$ separately. At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
 \be \label{eq:matching_condition_1}
 J_+ = J_-
 \ee
-
 and the discontinuity in $dJ/d\sigma$  must be
-
 \be \label{matching_condition_2}
 \frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}
 \ee
-
 according to the differential equation. At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
-
 \be \label{eq:diffusion_at_large_sigma}
-\frac{\partial^2J(n, \sigma, \omega)}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J.
+\frac{\partial^2J}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J.
 \ee
-
 which has solutions 
-
 \be
 J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}
 \ee
-
 and thus
-
 \be \label{eq:single_j_derivative}
 \frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J
 \ee
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained for all photon frequencies $\sigma$. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
-
-where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained everywhere in the range of photon frequencies. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
-
-Let us define the damping time to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $m$ is an index that represents individual temporal eigenmodes, as opposed to $n$ which represents the spatial mode number. Near these frequencies, the solution will have the form 
-
+Let us define the damping time to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $m$ is an index that represents individual frequency eigenmodes, as opposed to $n$ which represents the spatial mode number. Near these frequencies, the solution will have the form 
 \be
 J(n,\sigma,\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
-
 Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration. 
-
 \be
 J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-\gamma t}J(n,\sigma,\gamma)
 \nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
 \nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-
-\todo{(TODO: Rewrite) Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result}
+Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
 \be
 J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
@@ -495,16 +434,22 @@ where the contribution of each eigenfunction is
 \be
 P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-These coefficients can have either sign depending on the value of $n$. 
-
-Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:spectrum}). Dividing by the energy $E$, we find the probability distribution
+These coefficients can have either sign depending on the value of $n$. Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
 P(\nu) & = &  -\frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is true.
+Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is true. The distribution of the times it takes each photon to escape the sphere (hereafter called the ``wait time distribution'') is calculated from Eq. \ref{eq:dEdtdnu} by integrating over all frequencies. We obtain
+\be
+P(t)  & = & - \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^n  e^{s_{nm}t} \int d\sigma J_{nm}(\sigma) 
+\nonumber \\ & = &  - \sum_{nm} P_{nm} s_{nm} e^{s_{nm}t},
+\label{eq:waittime}
+\ee
+which is also normalized to unity.
+
+
+
 
 \subsection{Results}
-\label{subsec:time_dependent:results}
 
 %\begin{figure}
 %\plotone{KT_Eri.pdf}
