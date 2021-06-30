@@ -368,7 +368,7 @@ Plugging this in to Eq. \ref{eq:diffusion_eqn} and evaluating the integral, we o
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
-This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions, after which we solve spatial dependence $n$, photon frequency dependence $\sigma$, and imaginary frequency dependence $\omega$ separately. At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
+This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions. At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
 \be \label{eq:matching_condition_1}
 J_+ = J_-
 \ee
@@ -402,16 +402,16 @@ J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-\gamma t}J(n
 \nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
-\be
+\be \label{eq:Jrsigmat}
 J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-Using the derivative
+Beginning with Eq. \ref{eq:Jrsigmat}, we use the derivative
 \be
 \frac{dj_0(\kappa_n r)}{dr} \rfloor_R & =& \frac{d}{dr}  \rfloor_R \left( \frac{\sin(\kappa_n r)}{\kappa_n r} \right)
 =  \left( \frac{\cos(\kappa_n R)}{R} - \frac{\sin(\kappa_n R)}{\kappa_n R^2} \right)\rfloor_R
 \nonumber \\ & = & \frac{(-1)^n}{R},
 \ee
-the flux at the surface is
+to obtain the flux at the surface, which is
 \be
 F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
 = - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
@@ -434,19 +434,59 @@ where the contribution of each eigenfunction is
 \be
 P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-These coefficients can have either sign depending on the value of $n$. Integrating $dE/dt d\nu$ over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
+These coefficients can have either sign depending on the value of $n$. 
+
+\subsection{Numerical calculation}
+
+We seek now to tabulate all eigenmodes $J_{nm}(\sigma)$ and eigenfrequencies $\omega_{nm}$ for all spatial $n$ and for all eigenmodes $m$ at that given $n$. To do this, we generalize the equations for eigenfunctions $J(n,\sigma,\omega)$ to allow $\omega = \omega_r + i \omega_i$, where previously we were using the real frequency $\omega_r$ and now we use the imaginary part $\omega_i$ (hereafter referred to as simply $\chi$). A resonant response in $J(n,\sigma,\omega)$ is produced for $\omega_r=0$ and special values of $\chi<0$.
+
+To measure the size of the response to detect where resonances occur, we sum the absolute value of $J(n,\sigma,\omega)$ over $\sigma$ in array form. Call this response $f$, and use the index $j$ to represent the value of the response at discrete points over a range of $\chi$. In places where $f_j > f_{j-1}$ and $f_j>f_{j+1}$, we have bounded a resonance that occurs in the interval $(\chi_{j-1},\chi_{j+1})$. We then call the ``solve'' step to hone in on the eigenvalue before continuing the sweep in imaginary frequency $\omega_i$.
+
+In the solve step, we evaluate the eigenfunctions at the points $(\chi_{j-1},\chi_{j},\chi_{j+1})$ to obtain the responses $f_{j-1}$, $f_j$, and $f_{j+1}$. A ``guess'' at the correct eigenvalue $\chi_{nm}$ can be calculated from
+\be
+\chi_{\rm guess} &=& \frac{a\chi_{j-1} - \chi_{j+1}}{a - 1}
+\ee
+where
+\be
+a &=& \left(\frac{f_{j} - f_{j-1}}{f_{j} - f_{j+1}}\right)\left(\frac{\chi_{j+1}-\chi_{j}}{\chi_{j-1}-\chi_{j}}\right).
+\ee
+This is repeated, replacing former points $(\chi_{j-1},\chi_{j},\chi_{j+1})$ with closer estimates while the size of the response grows as we approach the resonance. Given a sufficiently accurate eigenvalue $\chi_{nm}$, we now find the corresponding eigenfunction $J_{nm}(\sigma)$. We can write down an approximate expression for the response near the resonances as
+\be
+J(n,\sigma,\chi) & \simeq & \frac{J_{nm}(\sigma)}{\chi-\chi_{nm}} + C(\sigma),
+\ee
+where $C(\sigma)$ is weakly dependent on $\chi$, and so we treat it as a constant. We can now solve for $J_{nm}(\sigma)$ by comparing two points near the resonance:
+\be
+J(n,\sigma,\chi_1)  - J(n,\sigma,\chi_2)& = &  \frac{J_{nm}(\sigma)}{\chi_1-\chi_{nm}} -  \frac{J_{nm}(\sigma)}{\chi_2-\chi_{nm}}
+\ee
+where $C(\sigma)$ has cancelled out in the difference. We can immediately solve as
+\be
+J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\chi_1)  - J(n,\sigma,\chi_2) }{ 1/(\chi_1-\chi_{nm}) - 1/(\chi_2-\chi_{nm})}.
+\ee
+A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms.
+\begin{figure}
+    \centering
+    \includegraphics{Jsoln_n1_m100.pdf}
+    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction.}
+    \label{fig:jsoln}
+\end{figure}
+
+\subsection{Frequency dependence}
+
+Integrating $dE/dt d\nu$ from Eq. \ref{eq:dEdtdnu} over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
 P(\nu) & = &  -\frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is true. The distribution of the times it takes each photon to escape the sphere (hereafter called the ``wait time distribution'') is calculated from Eq. \ref{eq:dEdtdnu} by integrating over all frequencies. We obtain
+Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is true.
+
+\subsection{Wait time distribution}
+
+The distribution of the times it takes each photon to escape the sphere (hereafter called the ``wait time distribution'') is calculated from Eq. \ref{eq:dEdtdnu} by integrating over all frequencies. We obtain
 \be
 P(t)  & = & - \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^n  e^{s_{nm}t} \int d\sigma J_{nm}(\sigma) 
 \nonumber \\ & = &  - \sum_{nm} P_{nm} s_{nm} e^{s_{nm}t},
 \label{eq:waittime}
 \ee
 which is also normalized to unity.
-
-
 
 
 \subsection{Results}
