@@ -59,11 +59,17 @@ $\blacksquare$ Use larger n phot MC runs for tau=1e5
 
 $\blacksquare$ Remove details about $H_d$, change wording in abstract and derivations
 
-$\square$ Add eigenmodes plots
+$\blacksquare$ Add eigenmodes plots
 
-$\square$ Add discussion of numerical solution of time-dependent equations
+$\blacksquare$ Add discussion of numerical solution of time-dependent equations
 
-$\square$ Add results, summary, conclusions, etc
+$\square$ Add discussion of frequency dependence in time dependent section (spectrum plots?)
+
+$\square$ Add discussion of wait times in time dependent section --- escape time plots, fitting function, etc
+
+$\square$ Add summary to time dependent section
+
+$\square$ Conclusions
 
 \section{Introduction} 
 \label{sec:intro}
@@ -462,13 +468,14 @@ where $C(\sigma)$ has cancelled out in the difference. We can immediately solve 
 \be
 J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\chi_1)  - J(n,\sigma,\chi_2) }{ 1/(\chi_1-\chi_{nm}) - 1/(\chi_2-\chi_{nm})}.
 \ee
-A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms.
 \begin{figure}
     \centering
     \includegraphics{Jsoln_n1_m100.pdf}
     \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction.}
     \label{fig:jsoln}
 \end{figure}
+A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms.
+
 
 \subsection{Frequency dependence}
 
