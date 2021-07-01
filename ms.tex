@@ -399,12 +399,12 @@ where a negative sign is taken for large $+\sigma$ and a positive sign is taken 
 
 Let us define the damping time to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $m$ is an index that represents individual frequency eigenmodes, as opposed to $n$ which represents the spatial mode number. Near these frequencies, the solution will have the form 
 \be
-J(n,\sigma,\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
+J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
 Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration. 
 \be
-J(r,\sigma,t) & = &  j_0(\kappa_n r)  \int \frac{d\omega}{2\pi} e^{-\gamma t}J(n,\sigma,\gamma)
-\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
+J(r,\sigma,t) & = &  -j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t}J(n,\sigma,-i\gamma)
+\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
 \nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 Here we have closed the integral along the $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
