@@ -319,7 +319,7 @@ Since the solutions have been generalized to allow for a monochromatic source of
 \begin{figure}
     \centering
     \includegraphics{xinit.pdf}
-    \caption{$H_{\rm bc}$ solutions shown at three line center optical depths, $\tau_0=10^5, 10^7,$ and $10^9$, for $\sigma_s=0.0, \tau_0, 2\tau_0,$ etc. The axes are scaled to show that the size of the corrective factor agrees with the predicted $(a\tau_0)^{-1/3}$. scaling}
+    \caption{$H_{\rm bc}$ solutions shown at three line center optical depths, $\tau_0=10^5, 10^7,$ and $10^9$, for photon source frequencies $\sigma_s=0.0, \tau_0, 2\tau_0,$ etc. Thicker lines indicate larger optical depth, and darker lines indicate a photon source frequency further from line center. The axes are scaled to show that the size of the corrective factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
     \label{fig:xinit}
 \end{figure}
 
@@ -460,7 +460,7 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\gamma_1)  - J(n,\sigma,\gamma_2) }{
 \begin{figure}
     \centering
     \includegraphics{Jsoln_n1_m100.pdf}
-    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction.}
+    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction. \todo{Show dimensional factor out front of the eigenfunctions to explain why they are so small. Dimensional analysis of the mean intensity itself. Radius, energy (set to 1), delta, and dimensionless parameters a and tau0.}}
     \label{fig:jsoln}
 \end{figure}
 A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for sufficient numerical precision in the final result. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
@@ -486,7 +486,7 @@ Integrating over $\nu$ gives unity if the sum rule in Eq. \ref{eq:sumrule} is tr
 \begin{figure}
     \centering
     \includegraphics{steadystate.pdf}
-    \caption{Comparison of steady-state and time-integrated spectra for 20 spatial eigenmodes and 500 frequency eigenmodes. The accuracy of the red scatter points is limited by the number of frequency eigenmodes summed. The accuracy of the core behavior for the orange solid curve and red scatter points is limited by the number of spatial eigenmodes summed, which is why both solutions fail in the core.}
+    \caption{Comparison of steady-state and time-integrated spectra for 20 spatial eigenmodes and 500 frequency eigenmodes. The accuracy of the red scatter points is limited by the number of frequency eigenmodes summed. The accuracy of the core behavior for the orange solid curve and red scatter points is limited by the number of spatial eigenmodes summed, which is why both solutions fail in the core. \todo{Steady state, Steady state (partial sum), Fluence of time-dependent solution, start at 8 and go to 30. Make the red line thinner and plot it in the background.}}
     \label{fig:my_label}
 \end{figure}
 
@@ -505,7 +505,7 @@ The eigenfunction expansion method is an effective characterization of the time-
 \begin{figure}
     \centering
     \includegraphics{waittime.pdf}
-    \caption{A wait time distribution of escaping photons, which is fit using the lowest order eigenfrequency as a decay timescale for the exponential falloff. The solid blue curve is a full solution using a sum over $n$ and $m$ modes. A gamma function can also be found that characterizes the early time behavior well, but underestimates photons escaping at late times.}
+    \caption{A wait time distribution of escaping photons, which is fit using the lowest order eigenfrequency as a decay timescale for the exponential falloff. The solid blue curve is a full solution using a sum over $n$ and $m$ modes. A gamma function can also be found that characterizes the early time behavior well, but underestimates photons escaping at late times. \todo{Add optical depth and xinit info. Quantify what the error in the slope is as compared with the Monte Carlo. Redo the plot for the lower optical depths and do a comparison of the MC data for tau=$10^5$ and $10^6$ to see if the agreement is getting better. Could be that we're getting the wrong decay time because the photon is spending a long time in the doppler core and that's not represented in our solution. However, it could be a better and better approximation for larger tau. So if we see a worse disagreement for $10^5$ then we know it's actually converging. Could plot as a cumulative probability distribution --- the tail shouldn't be very important in the flux calculation. Do CDF for theory line as well --- integrate time dependence in exponent.}}
     \label{fig:escape_time}
 \end{figure}
 
