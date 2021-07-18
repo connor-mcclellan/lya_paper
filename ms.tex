@@ -464,21 +464,19 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\gamma_1)  - J(n,\sigma,\gamma_2) }{
     \label{fig:jsoln}
 \end{figure}
 A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1, $k = \tau_0 \sqrt{\pi} \Delta / R$, and $R = 10^{11}$ cm. With this normalization, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for sufficient numerical precision in the final result. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
-
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{gamma_nm.pdf}
     \caption{The scaling of numerically-obtained resonant frequencies as compared with the analytic expression in Eq. \ref{eq:gamma_nm}.}
     \label{fig:gamma_nm}
 \end{figure}
-
-TODO: The values of the $\gamma_{nm}$ resonant frequencies are calculable analytically. Their scale depends on $m$, $n$, and the factor $(a\tau_0)^{1/3}$ according to 
+The values of the $\gamma_{nm}$ resonant frequencies are calculable analytically. Their scale depends on $m$, $n$, and the factor $(a\tau_0)^{1/3}$ according to 
 \be \label{eq:gamma_nm}
-2**(-1/3) * np.pi**(13/6)*n**(4/3)*(m-7/8)**(2/3)*fc.clight/p.radius/(p.a * p.tau0)**(1/3.) 
+\gamma_{nm} = 2^{-1/3} \pi^{13/6} n^{4/3}\left(m-\frac{7}{8}\right)^{2/3}\frac{c}{R}(a\tau_0)^{-1/3} 
 \ee
-The size of additional eigenfrequencies scales as a powerlaw in $m$, yet as is seen in Fig. \ref{fig:gamma_nm} the scaling is weak, requiring up to 500 $m$ to reduce the scale of $\gamma_{nm}^{\ \ -1}$ by two orders of magnitude.
+The size of additional eigenfrequencies scales as a powerlaw in $m$, yet as is seen in Fig. \ref{fig:gamma_nm} the scaling is weak, requiring up to 500 $m$ to reduce the scale of $\gamma_{nm}^{\ \ -1}$ by two orders of magnitude. When sweeping through the imaginary frequency domain to find resonances, this expression is used to set the scale of the sweep points to ensure no $\gamma_{nm}$ are missed. The continuity and close agreement with the analytic expression shown in Fig. \ref{fig:gamma_nm} indicate that the sweep routine accurately brackets and refines the locations of resonances.
 
-A single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Eq. \ref{eq:diffusion_plugged_in} and re-examining the resulting homogeneous differential equation. We obtain
+The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Eq. \ref{eq:diffusion_plugged_in} and re-examining the resulting homogeneous differential equation. We obtain
 \be
 \frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J
 \ee
