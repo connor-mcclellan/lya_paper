@@ -224,7 +224,11 @@ H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
 
 \subsection{Scaling with Line Center Optical Depth}
-To examine the relative size of the corrective term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
+To examine the relative size of the corrective term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. We obtain the proportionality
+
+%%%% DERIVATION EDITED OUT
+\ifx
+Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
 \be
 J_{\rm bc}(R,\sigma) & \approx & \sqrt{3} H_0(R,\sigma).
 \label{eq:bc4}
@@ -254,11 +258,14 @@ we scale the variables $\sigma$ and $s$ by $\tau_0$, now using characteristic ph
 A(\bar s) = \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}.
 \ee
 These coefficients are used to evaluate the boundary condition's contribution to the flux (Eq. \ref{eq:Hbc}) at the surface of the sphere. Dividing this additional flux $H_{\rm bc}$ by the contribution from the $J=0$ solution, $H_0$ (Eq. \ref{eq:H0surf}), yields an overall proportionality
+\fi
+
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
 Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. 
 
+\ifx
 By replacing the differential operators in Eq. \ref{eq:rt_no_destr} with characteristic scales $R$ and $\sigma_0$ and equating the terms on the left-hand side of this equation, a dimensionless scaling relation between frequency and space emerges.
 \be
 \frac{J}{R^2} &=& \left(\frac{k}{\Delta}\right)^2 \frac{J}{\sigma_0^2}
@@ -267,15 +274,13 @@ Now, using the line center optical depth (Eq. \ref{eq:tau0}) and the approximati
 \be
 \frac{\sqrt{2\pi/27}}{a}x_0^3 = \frac{kR}{\Delta} = \sqrt{\pi} \tau_0.
 \ee
-Simplifying, we obtain the proportionality
+\fi
+
+The location of the spectral peak of the distribution is
 \be \label{eq:tau_peak_scaling}
 x_0 &\propto& \left(a\tau_0\right)^{1/3}.
 \ee
-This predicts that the characteristic photon frequency in Doppler widths should scale as the cube root of the parameter $a$ multiplied by the line center optical depth $\tau_0$, indicating the location of the spectral peaks on either side of line center --- the locations where the photons most readily escape. Since our derivations were performed assuming a Lorentzian line profile (see Appendix \ref{app:rteqn_derivation}), our solutions are technically only valid in the line wing, where the Doppler component of the line profile is small. Since our choice of the damping parameter $a$ is constant, the solutions of the transfer equation will perform best when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large optical depths. The boundary of the Doppler core is approximately where the Gaussian and Lorentzian pieces are equal:
-\be
-\frac{e^{-x^2}}{\sqrt{\pi}} = \frac{a}{\pi x^2}
-\ee
-For \lya and a hydrogen gas of temperature $T=10^4$ K, the damping parameter $a = \Gamma / (4\pi\Delta)$ is equal to $4.72\times 10^{-4}$ in CGS units. The Doppler core is then significant over the range $-3.3 < x < 3.3$. Comparing with the locations of the spectral peaks at various optical depths using Eq. \ref{eq:tau_peak_scaling}, we find that $x_0=$3.6, 7.8, 16.8 for $\tau_0=10^5, 10^6,$ and $10^7$, respectively. Therefore, solutions derived assuming a Lorentzian line profile $\phi(x) \approx a/(\pi x^2)$ are expected to fail for lower line center optical depths where the peak of the spectrum lies near the core and improve for larger optical depths where the spectral peak is well outside of the line core.
+This predicts that the characteristic photon frequency in Doppler widths should scale as the cube root of the parameter $a$ multiplied by the line center optical depth $\tau_0$, indicating the location of the spectral peaks on either side of line center --- the locations where the photons most readily escape. Since our derivations were performed assuming a Lorentzian line profile (see Appendix \ref{app:rteqn_derivation}), our solutions are technically only valid in the line wing, where the Doppler component of the line profile is small. Since our choice of the damping parameter $a$ is constant, the solutions of the transfer equation will perform best when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large optical depths. For \lya and a hydrogen gas of temperature $T=10^4$ K, the damping parameter $a = \Gamma / (4\pi\Delta)$ is equal to $4.72\times 10^{-4}$ in CGS units. Thus, the value of $\tau_0$ at which the Doppler and Lorentzian components of the line wing are equal is $\tau_0=7.3\times10^5$. Solutions derived assuming a Lorentzian line profile $\phi(x) \approx a/(\pi x^2)$ are expected to fail for lower line center optical depths where the peak of the spectrum lies near the core and improve for larger optical depths where the spectral peak is well outside of the line core.
 \subsection{Comparison to Monte Carlo}
 
 %Brief description of MC code, citing Chenliang's paper. Discuss how MC works briefly, reference some papers, talk about problem setup specific to this work. Basically want to show that the MC approach in this paper is not new and doesn't need to be justified extensively.
