@@ -58,21 +58,9 @@ The solution of the radiative transfer equation for resonant scattering of Lyman
 
 The outer layers of planetary atmospheres are central to a planet's evolution, since they can shelter the lower atmosphere from high energy radiation and regulate the escape of gas into space. In atmospheres with thick layers of atomic hydrogen, stellar Lyman Alpha (Ly$\alpha$) radiation is especially important in this process as the optical depth at line center is large. Ionization and subsequent recombination can generate \lya within the planet's atmosphere, dissociating molecules in lower layers and causing heating by collisional de-excitation. \lya can also excite H atoms to the 2p state, creating a population of Balmer-line absorbers that can be observed via transmission spectroscopy.
 
-%There's a much thicker layer of atomic hydrogen
-%It's a very optically thick region
-% Care about lya going into the planet's atmosphere and dissociating molecules
-% Observational: observe the transits in lyman alpha
-%Chen liang's paper - focus on the section where he shows the results of the lya transfer - can cause heating deeper in the atmosphere, collisional de-excitation. Summarize some of the things that lya does to the atmosphere. Ionize low ionization-potential atoms (<10.2 eV)
-%Large Lya line intensity, lots of H atoms, then lya is constantly exciting and de-exciting. Then, n=2 is populated so Balmer lines can also be absorbed. This explains why strong balmer absorption is observed in transits to begin with. Otherwise, you would need very high temperatures to populate the n=2 state.
-% Focus on later sections, especially balmer absorption near the end of the paper.
-
-% Put emphasis on the fact that Lya is generated within the atmosphere --- ionization balanced by recombination, rate equilibrium. Recombination gives you lyman alpha again. Collisions decrease the density in the 2s states. The efficiency of producing lya is quite high, and that's immediately at high optical depth.
-
 Hubble Space Telescope (HST) observations with STIS have found large \lya transit depths around a handful of exoplanets, indicating an extended distribution of hydrogen: \citet{2003Natur.422..143V, 2012A&A...543L...4L, 2012A&A...547A..18E, 2015Natur.522..459E,  2017A&A...597A..26B, 2017A&A...599L...3B, 2017A&A...602A.106B, 2018A&A...620A.147B, 2019AJ....158...50W, 2019EPSC...13.1928L, 2020ApJ...888L..21G,2021arXiv210309864B}. These observations have revealed a population of atoms extending out to distances of order the planetary radius for several planets around bright, nearby stars, motivating a study of the physics of \lya interactions with H atoms surrounding a planet. The importance of the \lya line in the atmospheric dynamics of these systems necessitates a careful treatment of resonant scattering in order to construct accurate models of atmospheric heating and escape. However, the extreme optical depths at \lya line center introduce a computational barrier to simulating radiative transfer via Monte Carlo methods.
 
 The main impediment to performing magnetohydrodynamic simulations with fully a coupled radiative transfer solution via Monte Carlo methods is the prohibitive computational cost. A primary factor in the cost of Monte Carlo is that the number of scatterings a photon undergoes is proportional to the line center optical depth.  Near the base of the atmosphere, individual simulation cells can have optical depths of more than a million, so most of the time is spent integrating photons in these cells. This means that any method that can treat these zone via an analytic solution has the potential to greatly accelerate the calculation. A complete, general analytic solution for the resonance scattering has never been derived but approximate solutions exist in certain limits.
-
-{\color{red} Moved text on Harrington into the introduction since it is a primary driver of the calculation.}
 
 \citet{1973MNRAS.162...43H, 1974MNRAS.166..373H} demonstrated that resonance-line radiation transfer in low-density, optically-thick media can be described by the Poisson equation. However, the accuracy of their solution is limited by the treatment of the boundary conditions. In their eigenfunction expansion, the spatial and frequency components of the differential equation are separated, yet the spatial eigenvalues are defined as being explicitly frequency-dependent. The resulting solution is therefore invalid on the basis that the differential equation and boundary conditions cannot simultaneously be satisfied. A more detailed discussion of the boundary condition is included in Section \ref{sec:steadystate}. \citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. This produces a divergent, inhomogeneous solution to the problem in 1D slab geometry. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.
 
@@ -96,9 +84,6 @@ Two solutions will be considered for this problem.
     \item a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function solution at the source and satisfies $J=0$ at $r=R$,
     \item the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied.
 \end{enumerate}
-
-
-
 
 \subsection{Derivation of the Steady-State Solution}
 
