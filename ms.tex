@@ -113,7 +113,11 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \label{eq:Hd}
 \ee
 
-A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result is
+A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
+\be
+J_0 = \frac{\sqrt{6}}{16\pi} \frac{L}{R^2}\sum_{n=1}^{\infty}n\frac{\sin{\kappa_n r}}{\kappa_n r}\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
+\ee
+which evaluates to
 \be
 J_0 & = & \left( \frac{\sqrt{6}L}{32\pi^2 \Delta} \right)
 \left( \frac{1}{Rr} \right)
