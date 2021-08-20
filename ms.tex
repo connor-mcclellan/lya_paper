@@ -76,13 +76,14 @@ In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approxima
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Two solutions will be considered for this problem.
+Two ~solutions~ will be considered for this problem. % Add the fact that J=J0 + Jbc. Don't refer to them as two different solutions --- they're two parts / pieces of the true solution.
 
-\begin{enumerate}
-    \item a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function source and satisfies $J=0$ at $r=R$,
-    \item the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied. %TODO: Shane wants def here? Where?
-\end{enumerate}
+a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function source and satisfies $J=0$ at $r=R$,
 
+the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied. 
+% Incorporate into paragraph instead
+
+%TODO: Change the voigt H to be a script H
 Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$.
 
 Now, consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0 = (k/\sqrt{\pi}\Delta)R$. Starting with the full transfer equation, Eq. \ref{app:rteqn_derivation}\ref{eq:finaleqn}, with no photon destruction and a photon emission term given by Eq. \ref{app:rteqn_derivation}\ref{eq:jem}, the steady-state transfer equation is
@@ -282,9 +283,12 @@ The Monte Carlo method is used to solve the transfer equation numerically. This 
 \end{figure}
 
 We now compare each of the previously-discussed solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown with that of the solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The escape probability $P(x)$ is defined as the total luminosity at the surface divided by the source luminosity, or
+%When you integrate over d\nu
 \be
-P(x) = \frac{16\pi^2R^2H(x)}{L}
+P(x) = \frac{16\pi^2R^2H(R, x)\Delta}{L}
 \ee
+% We have defined this such that Integral of P(x)dx = 1
+% Mention that H is written per dnu (see appendix for exact details)
 The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S} where the discrepancy is particularly noticeable for line center optical depths of $\tau_0=10^5$ and $10^6$. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$.
 
  \begin{figure}
@@ -319,6 +323,10 @@ Since the solutions have been generalized to allow for a monochromatic source of
     \label{fig:xinit}
 \end{figure}
 
+% Go through and tell them why you're shifting by integer multiples of tau0. Little abrupt here
+% Motivate why we're doing the plot the way we are in the first few lines. Build it up for a first time reader. Add more motivation!
+% Introduce this by saying the previous figures show that as we go to larger optical depth, the solution appears to get more and more accurate. To more quantitatively explore this, fig 5 shows...
+% Write a thesis statement at the start of your paragraph and tell the reader what this is all about. It's good if the first line describes what the paragraph is about.
 Fig. \ref{fig:xinit} shows how the boundary term scales with both $\tau_0$ and $\sigma_s$. The photon initialization frequency (in units of $\sigma$, as in the differential equation) is shifted in integer multiples of $\tau_0$. For clarity, only the positive side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, the size of the correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths and the same source frequency $\sigma_s$ should show close agreement in scale on the figure if the relation holds. Indeed, the scaled solutions converge as the optical depth becomes larger, indicating general agreement with the $(a\tau_0)^{1/3}$ scaling. The remaining discrepancy present is due to the width of the Doppler core with respect to the peak of the spectrum; at lower depths, this causes the assumptions about the functional form of the line profile to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are proportional to $(a\tau_0)^{1/3}$, where $a$ is the ratio of natural to Doppler broadening and $\tau_0$ is the optical depth at line center. An additional amount of error of order $(a\tau_0)^{1/3}$ is introduced as the photon frequency $\sigma_s$ from line center is increased by a factor of $\tau_0$.
 
 \section{Time-Dependent Diffusion}
