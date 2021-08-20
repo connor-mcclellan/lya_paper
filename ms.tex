@@ -101,7 +101,7 @@ at $r=R$. An analytic solution $J_d$ which is divergent at the center of the sph
 
 \be
 J_{\rm d} & = & 
-\frac{(\sqrt{6}k^2L)/(16\pi^3 \Delta^3)}{ (k/\Delta)^2\left[ (x-x_{\rm s})^2 + (y-y_{\rm s})^2 + (z-z_{\rm s})^2 \right] + (\sigma - \sigma_{\rm s})^2}.
+\frac{(\sqrt{6}k^2L)/(16\pi^3 \Delta^3)}{ (kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}.
 \label{eq:Jd}
 \ee
 
@@ -281,7 +281,11 @@ The Monte Carlo method is used to solve the transfer equation numerically. This 
     \label{fig:sol_mc_residual_0}
 \end{figure}
 
-We now compare each of the previously-discussed solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo is shown with solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ over-plotted for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S} where the discrepancy is particularly noticeable for line center optical depths of $\tau_0=10^5$ and $10^6$. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$.
+We now compare each of the previously-discussed solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown with that of the solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The escape probability $P(x)$ is defined as the total luminosity at the surface divided by the source luminosity, or
+\be
+P(x) = \frac{16\pi^2R^2H(x)}{L}
+\ee
+The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S} where the discrepancy is particularly noticeable for line center optical depths of $\tau_0=10^5$ and $10^6$. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$.
 
  \begin{figure}
     \centering
