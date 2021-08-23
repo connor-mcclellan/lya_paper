@@ -76,15 +76,9 @@ In the limit of large optical depth $B$, \citealt{1973MNRAS.162...43H} approxima
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Two ~solutions~ will be considered for this problem. % Add the fact that J=J0 + Jbc. Don't refer to them as two different solutions --- they're two parts / pieces of the true solution.
+The solution of this problem is split into two pieces: $\rm J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $\rm J_{bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The total solution is $J = J_0 + J_{\rm bc}$.
 
-a \textbf{J=0 solution} ($\rm H_0$) which includes the delta function source and satisfies $J=0$ at $r=R$,
-
-the \textbf{bc solution} ($\rm H_{bc}$) that allows the boundary condition $J=\sqrt{3}H$ to be satisfied. 
-% Incorporate into paragraph instead
-
-%TODO: Change the voigt H to be a script H
-Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$.
+Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$.
 
 Now, consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0 = (k/\sqrt{\pi}\Delta)R$. Starting with the full transfer equation, Eq. \ref{app:rteqn_derivation}\ref{eq:finaleqn}, with no photon destruction and a photon emission term given by Eq. \ref{app:rteqn_derivation}\ref{eq:jem}, the steady-state transfer equation is
 \be
@@ -204,66 +198,18 @@ The Bessel functions are finite at the center and rise steeply toward the surfac
 
 \subsection{Scaling with Line Center Optical Depth}
 To examine the relative size of the corrective term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. We obtain the proportionality
-
-%%%% DERIVATION EDITED OUT
-\ifx
-Starting from Eq. \ref{eq:bc2}, we assume $H_{\rm bc} \ll J_{\rm bc}$ such that
-\be
-J_{\rm bc}(R,\sigma) & \approx & \sqrt{3} H_0(R,\sigma).
-\label{eq:bc4}
-\ee
-The Fourier transform for $J_{\rm bc}$ at the surface becomes
-\be
-J_{\rm bc}(R, \sigma) \equiv \int_{-\infty}^{\infty} \frac{ds}{2\pi} e^{is\sigma} A(s)
-\ee
-with Fourier amplitudes
-\be \label{eq:amps}
-A(s) = \sqrt{3} \int_{-\infty}^{\infty} d\sigma e^{-is\sigma} H_0(R, \sigma).
-\ee
-Plugging the expression for $H_0$ in Eq. \ref{eq:H0surf} into Eq. \ref{eq:amps} yields an expression for the Fourier amplitudes
-\be \label{eq:plugged_amps}
-A(s) = \sqrt{3} \int_{-\infty}^\infty d\sigma e^{-is\sigma}\left(\frac{1}{3k\phi(\sigma)}\frac{\sqrt{6}}{32\pi}\frac{L}{\Delta R^3}\frac{1}{1+\cosh \left[\frac{\pi \Delta}{kR} |\sigma - \sigma_i|\right]}\right)
-\ee
-with
-\be
-\phi(\sigma) = \left(\frac{2a}{27\pi}\right)^{1/3}\frac{1}{\Delta |\sigma|^{2/3}}.
-\ee
-With the line center optical depth defined as
-\be \label{eq:tau0}
-\tau_0 = \frac{kR}{\sqrt{\pi}\Delta}
-\ee
-we scale the variables $\sigma$ and $s$ by $\tau_0$, now using characteristic photon frequency $\bar \sigma = \sigma / \tau_0$ and characteristic wavenumber $\bar s = s \tau_0$. Eq. \ref{eq:plugged_amps} becomes
-\be
-A(\bar s) = \frac{\sqrt{2}}{32\pi}\left(\frac{27\pi}{2}\right)^{1/3}\frac{L}{kR^3}\frac{\tau_0^{5/3}}{a^{1/3}}\int_{-\infty}^\infty d\bar\sigma e^{-i\bar s \bar\sigma} |\bar\sigma^{2/3}|\frac{1}{1+\cosh \left[\sqrt{\pi}|\bar\sigma - \bar\sigma_i|\right]}.
-\ee
-These coefficients are used to evaluate the boundary condition's contribution to the flux (Eq. \ref{eq:Hbc}) at the surface of the sphere. Dividing this additional flux $H_{\rm bc}$ by the contribution from the $J=0$ solution, $H_0$ (Eq. \ref{eq:H0surf}), yields an overall proportionality
-\fi
-
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
 Thus, the fractional importance of the corrective frequency-dependent boundary condition term scales as the inverse cube root of the damping parameter $a$ times the line-center optical depth $\tau_0$. At very large optical depths, it is expected that the corrective term will be small, but will become increasingly important in less optically thick media. 
-
-\ifx
-By replacing the differential operators in Eq. \ref{eq:rt_no_destr} with characteristic scales $R$ and $\sigma_0$ and equating the terms on the left-hand side of this equation, a dimensionless scaling relation between frequency and space emerges.
-\be
-\frac{J}{R^2} &=& \left(\frac{k}{\Delta}\right)^2 \frac{J}{\sigma_0^2}
-\ee
-Now, using the line center optical depth (Eq. \ref{eq:tau0}) and the approximation $\sigma(x)=x^3\sqrt{2\pi/27}/a$ introduced in \cite{1973MNRAS.162...43H} for large $x$, we have
-\be
-\frac{\sqrt{2\pi/27}}{a}x_0^3 = \frac{kR}{\Delta} = \sqrt{\pi} \tau_0.
-\ee
-\fi
 
 The location of the spectral peak of the distribution is
 \be \label{eq:tau_peak_scaling}
 x_0 &\propto& \left(a\tau_0\right)^{1/3}.
 \ee
 This predicts that the characteristic photon frequency in Doppler widths should scale as the cube root of the parameter $a$ multiplied by the line center optical depth $\tau_0$, indicating the location of the spectral peaks on either side of line center --- the locations where the photons most readily escape. Since our derivations were performed assuming a Lorentzian line profile (see Appendix \ref{app:rteqn_derivation}), our solutions are technically only valid in the line wing, where the Doppler component of the line profile is small. Since our choice of the damping parameter $a$ is constant, the solutions of the transfer equation will perform best when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large optical depths. For \lya and a hydrogen gas of temperature $T=10^4$ K, the damping parameter $a = \Gamma / (4\pi\Delta)$ is equal to $4.72\times 10^{-4}$ in CGS units. Thus, the value of $\tau$ at which the Doppler and Lorentzian components of the line wing are equal is $\tau_{\rm cw}=7.3\times10^4$. Solutions derived assuming a Lorentzian line profile $\phi(x) \approx a/(\pi x^2)$ are expected to fail for lower line center optical depths where the peak of the spectrum lies near the core and improve for larger optical depths where the spectral peak is well outside of the line core.
+
 \subsection{Comparison to Monte Carlo}
-
-%Brief description of MC code, citing Chenliang's paper. Discuss how MC works briefly, reference some papers, talk about problem setup specific to this work. Basically want to show that the MC approach in this paper is not new and doesn't need to be justified extensively.
-
 The Monte Carlo method is used to solve the transfer equation numerically. This method is valid at arbitrarily large optical depths, being restricted only by its computational demand which grows in proportion to the number of photons used. For each simulation, a total of $2^{20} \approx 10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the medium until escaping, at which point their positions, outgoing angles, and escape frequencies are stored. A constant temperature of $T=10000\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil, to obtain the spectrum at the surface of the spherical simulation domain. In the comparisons shown in this section, the raw photon data is binned in frequency to obtain spectra. 64 bins are used to ensure good statistics and minimal noise in each bin. Further details of the Monte Carlo implementation are discussed in \cite{2017ApJ...851..150H}.
 
 \ifx
@@ -282,14 +228,11 @@ The Monte Carlo method is used to solve the transfer equation numerically. This 
     \label{fig:sol_mc_residual_0}
 \end{figure}
 
-We now compare each of the previously-discussed solutions for surface flux with Monte Carlo simulations. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown with that of the solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$. The escape probability $P(x)$ is defined as the total luminosity at the surface divided by the source luminosity, or
-%When you integrate over d\nu
+We now compare each of the previously-discussed solutions for surface flux with Monte Carlo simulations. The escape probability $P(x)$ is defined as the total luminosity at the surface divided by the source luminosity, or
 \be
 P(x) = \frac{16\pi^2R^2H(R, x)\Delta}{L}
 \ee
-% We have defined this such that Integral of P(x)dx = 1
-% Mention that H is written per dnu (see appendix for exact details)
-The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S} where the discrepancy is particularly noticeable for line center optical depths of $\tau_0=10^5$ and $10^6$. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$.
+This is defined such that $\int P(x)dx = 1$. Since $H(r, \nu)$ is implicitly written per $d\nu$, a factor of $\Delta$ gives the expression the correct units. In Fig. \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown with that of the solutions $H_{\rm d}$, $H_{\rm 0}$, and $H_{\rm 0 + bc} = H_{\rm 0} + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$.  The solution with the correct frequency-dependent boundary condition enforced, $H_{\rm 0 + bc}$, has considerably lower residuals to Monte Carlo than the other solutions, especially in the line wing. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings. The $H_{\rm bc}$ term, when added to the solution $H_0$ derived by \citet{2006ApJ...649...14D}, adequately corrects for the apparent excess of flux in the peaks of the spectrum. This peak excess is also present in previous work that used the \citet{1990ApJ...350..216N} solution, such as \citet{2015MNRAS.449.4336S} where the discrepancy is particularly noticeable for line center optical depths of $\tau_0=10^5$ and $10^6$. The boundary term resolves the slight deficit of $H_{\rm0}$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$.
 
  \begin{figure}
     \centering
@@ -323,7 +266,7 @@ Since the solutions have been generalized to allow for a monochromatic source of
     \label{fig:xinit}
 \end{figure}
 
-% Go through and tell them why you're shifting by integer multiples of tau0. Little abrupt here
+% TODO: Go through and tell them why you're shifting by integer multiples of tau0. Little abrupt here
 % Motivate why we're doing the plot the way we are in the first few lines. Build it up for a first time reader. Add more motivation!
 % Introduce this by saying the previous figures show that as we go to larger optical depth, the solution appears to get more and more accurate. To more quantitatively explore this, fig 5 shows...
 % Write a thesis statement at the start of your paragraph and tell the reader what this is all about. It's good if the first line describes what the paragraph is about.
@@ -526,6 +469,21 @@ The effect of many scatterings in the Doppler core affects the tail of the escap
     \label{fig:tau_scaling}
 \end{figure}
 
+
+\subsection{Dependence on Source Frequency}
+
+\section{Acceleration Schemes}
+
+There are several methods that are commonly used to accelerate Monte Carlo radiation transfer calculations.  The simplest class of methods that is specific to resonance line transfer are core skipping methods \citep{1968ApJ...153..783A,2002ApJ...567..922A}.  These methods focus on Monte Carlo transfer in the wings of the line and avoid scatterings in the core. Line core photons are pushed to the wings by biasing the atomic velocity distribution to high velocities so the opacity is lower and escape is more rapid.
+
+A second class of methods are hybrid diffusion methods \citep{2001JCoPh.172..543G}, such as discrete diffusion Monte Carlo \citep{2007JCoPh.222..485D}. This involves designating sufficiently optically thick simulations cells for computation via a finite difference representation of the radiation transfer equation. This method is particularly attractive for gray opacity applications where a single diffusion equation can be computed.  For the resonant scattering problem, where the opacity is a strong function of frequency, implementation of this method is more complex and computationally demanding as it requires the solution of many frequency groups, but can lead to a considerable speed up \citep{2018MNRAS.479.2065S}.
+
+A third class of methods are modified random walk methods \citep{1984JCoPh..54..508F,2009A&A...497..155M, 2010A&A...520A..70R}. In this case a spherical volume (usually the largest within a simulation cell) is chosen when the scattering mean-free-path is small compared with the zone size.  An outgoing photon is then randomly sampled on the surface of this outgoing sphere by drawing its properties from distributions in outgoing frequencies, directions and escape times, based on solutions to the diffusion equation within a uniform sphere. A method similar to this has been applied by \citet{2006ApJ...645..792T} to Lyman $\alpha$ transfer using the \cite{1990ApJ...350..216N} solution.
+
+%The need for accurate distributions from which to draw outgoing photons' properties motivates this work; namely, an analytic solution to the steady-state problem of \lya resonant scattering in spherical geometry. In addition, a semi-analytic solution to time-dependent \lya diffusion through the same medium is explored to quantify how long the photons are expected to spend in the domain before escaping. These solutions will be shown to accurately represent the photon distributions in frequency and time-to-escape at the surface of a spherical volume of gas, highlighting their potential for use as a Monte Carlo accelerant in magnetohydrodynamic calculations of phenomena involving \lya resonance-line radiation.
+
+Radiation forces due to \lya transfer have been calculated in \citet{1976ApJ...208..286W} in plane-parallel geometry. However, these solutions are limited to optical depths below $2.5 \times 10^3$. In the grid cells of a radiation hydrodynamic simulation, it would be necessary to calculate the radiation force on each cell face due to \lya at line center optical depths of up to 1 million or more. A discussion of Monte Carlo code acceleration for optical depths as large as these in a uniform, plane-parallel medium with no absorption is presented in  \citet{2002ApJ...567..922A,2015MNRAS.449.4336S}. In terms of the time dependence, \citet{1994ApJ...427..603R} introduce an ansatz for the Fokker-Planck diffusion equation in order to quantify the relaxation timescale necessary to reach a quasi-static solution. Notably, the full Voigt function is used for the line profile rather than restricting scattering to the damping wing only.
+
 \section{Summary and Conclusions}
 
 The solution for mean intensity ($J$) and flux ($H = F/4\pi$) of photons near line-center frequency $\nu_0$ in a uniform sphere originally derived by \cite{2006ApJ...649...14D} has been generalized to allow a monochromatic source of photons with frequencies away from line center. A correction to the $J=0$ surface boundary condition which allows the proper condition $J=\sqrt{3}H$ to be satisfied comes from the introduction of the terms $J_{\rm bc}$ and $H_{\rm bc}$, which are solved using a continuous Fourier expansion in frequency. Enforcement of the correct boundary term leads naturally to expansion of the spatial dependence in terms of spherical Bessel functions. In practice, the continuous expansions are discretized and the Fourier coefficients solved for via a matrix equation. The resulting flux correction, $H_{\rm bc}$, scales as $(a\tau_0)^{-1/3}$ where $a$ is the damping parameter and $\tau_0$ is the line-center optical depth. Thus, for very large optical depths, only a small correction to $H_0$ is needed, while larger errors are present in calculations performed at lower optical depths. Additionally, since the Laplacian form of the differential equation is only attainable by approximating the line profile as $\phi \approx a/(\pi x^2)$, these solutions are invalid in areas where the Doppler core of the \lya line has a significant effect on the scattering of photons. Since the peak of the spectral energy distribution of escaping photons is $x_0 = (a\tau_0)^{1/3}$, calculations performed at lower optical depths are likely to be inaccurate due to the close proximity of the spectral peak and the Doppler core. By comparison with Monte Carlo simulations, it is seen that the enforcement of the correct frequency-dependent boundary conditions improves the accuracy of these analytic solutions and correctly tracks changes in the spectrum of escaping photons as the monochromatic source frequency $x_s$ is altered, provided a sufficiently large optical depth $\tau_0$.
@@ -548,10 +506,10 @@ The transfer equation is \citep{1986rpa..book.....R}
 \ee
 The scattering coefficient, or inverse mean free path to scattering, is 
 \be
-\alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{H(x,a)}{\sqrt{\pi} \Delta}
+\alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{\mathcal{H}(x,a)}{\sqrt{\pi} \Delta}
 = k \phi   
 \ee
-where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $H(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = H(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. Photon destruction will not be considered, so $p$ is set to 0 in this work.
+where $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. Photon destruction will not be considered, so $p$ is set to 0 in this work.
 
 \citet{1973MNRAS.162...43H} first showed that the transfer equation for the mean  intensity $J$ will satisfy a Poisson equation involving second derivatives of space and frequency variables. In this section we will briefly review the derivation of this equation including photon destruction terms and an emission term.
 
@@ -598,7 +556,7 @@ This probability distribution can be used to define the moments of the frequency
 \ee
 which are functions of $\nu$, $\vec{n}$ and $\vec{n}^\prime$. These integrals can be evaluated in terms of the dimensionless moments of the parallel velocity distribution, defined as
 \be
-\langle u_\parallel^n \rangle(x,a) & = & \frac{a/\pi }{H(x,a)} \int 
+\langle u_\parallel^n \rangle(x,a) & = & \frac{a/\pi }{\mathcal{H}(x,a)} \int 
 \frac{du_\parallel u_\parallel^n e^{-u_\parallel^2}  }{(x-u_\parallel)^2 + a^2}.
 \ee
 The end results for the first and second moments are
@@ -650,7 +608,7 @@ k\phi J - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \
 \frac{\partial^2 J}{\partial \nu^2} .
 \label{eq:jsc}
 \ee
-The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involvingfrequency derivatives of $\vec{H}$, if carried through the calculation,end up giving terms smaller than then largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here on.
+The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involving frequency derivatives of $\vec{H}$, if carried through the calculation,end up giving terms smaller than then largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here on.
 
 If only scattering is included, the transfer equation becomes
 \be
