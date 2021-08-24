@@ -470,10 +470,17 @@ The effect of many scatterings in the Doppler core affects the tail of the escap
 \end{figure}
 
 
-\subsection{Dependence on Source Frequency}
+\subsection{Emission Away From Line Center}
 
-\section{Acceleration Schemes}
-
+\section{Discussion}
+% How can you apply the solution? Talk about it as an application of the problem that justifies going through the effort of implementing it. It reads like an introduction right now, but we can modify it to include less detail.
+% Don't explain exactly what hybrid diffusion models are. Remove that paragraph. Put a ref in for Smith and Densmore - lot of applications to speed up lya, including core skipping & hybrid diffusion methods. Another method that's been widely applied is modified random walk methods, but htose require a solution of transfer in a sphere. So, the primary application of this calcuation is to develop that random walk model that will be used in future applicaitons. Keep reference to Ahn et al, since they did basically this but not in spherical symmetry.
+% Discussion section: tlak about the differences between what we find and the other results from other papers. Add this as well. 
+% First part of discussion - compare to previous work and summarize differences. Move some of the comparison with Dijkstra to the discussion.
+% Second part - application of solution
+% Move summary to discussion - currently written more like a discussion. 
+% Write summary like it's a complement to the abstract. Cliffnotes version for people who don't want to read it.
+% We re-examined previous solutions, noting that they use this incorrect boundary conditoin. We re-examined the problem with an appropriate bc, examine spectral and time dpeendence, key results are these, plan to use in a MC acceleration scheme in the future. Comment on comparison with MC. One, maybe two paragraphs.
 There are several methods that are commonly used to accelerate Monte Carlo radiation transfer calculations.  The simplest class of methods that is specific to resonance line transfer are core skipping methods \citep{1968ApJ...153..783A,2002ApJ...567..922A}.  These methods focus on Monte Carlo transfer in the wings of the line and avoid scatterings in the core. Line core photons are pushed to the wings by biasing the atomic velocity distribution to high velocities so the opacity is lower and escape is more rapid.
 
 A second class of methods are hybrid diffusion methods \citep{2001JCoPh.172..543G}, such as discrete diffusion Monte Carlo \citep{2007JCoPh.222..485D}. This involves designating sufficiently optically thick simulations cells for computation via a finite difference representation of the radiation transfer equation. This method is particularly attractive for gray opacity applications where a single diffusion equation can be computed.  For the resonant scattering problem, where the opacity is a strong function of frequency, implementation of this method is more complex and computationally demanding as it requires the solution of many frequency groups, but can lead to a considerable speed up \citep{2018MNRAS.479.2065S}.
