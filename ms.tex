@@ -110,12 +110,15 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
 \be \label{eq:J0_sum}
-J_0 = \frac{\sqrt{6}}{16\pi} \frac{L}{R^2}\sum_{n=1}^{\infty}n\frac{\sin{\kappa_n r}}{\kappa_n r}\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
+J_0 = \frac{\sqrt{6}L}{16\pi \Delta} \frac{1}{R^2}\sum_{n=1}^{\infty}n\frac{\sin{\kappa_n r}}{\kappa_n r}\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
 \ee
-which evaluates to
+\be \label{eq:H0_sum}
+H_0 = - \frac{1}{3k\phi} \frac{\partial J_0}{\partial r} = -\frac{1}{3k\phi}\frac{\sqrt{6}L}{16\pi\Delta} \frac{1}{R^2}\sum_{n=1}^{\infty}n\left(\frac{\cos{\kappa_n r}}{r} - \frac{\sin{\kappa_n r}}{\kappa_n r^2}\right)\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
+\ee
+which evaluate to
 \be
-J_0 & = & \left( \frac{\sqrt{6}L}{32\pi^2 \Delta} \right)
-\left( \frac{1}{Rr} \right)
+J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
+\frac{1}{Rr}
 \left( 
 \frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R)}
 \right)
@@ -123,9 +126,9 @@ J_0 & = & \left( \frac{\sqrt{6}L}{32\pi^2 \Delta} \right)
 \ee
 
 \be
-H_0 & = & \left( \frac{1}{3k\phi} \right)
-\left( \frac{\sqrt{6}L}{32\pi^2 \Delta} \right)
-\left( \frac{1}{Rr^2} \right)
+H_0 & = &\frac{1}{3k\phi}
+\frac{\sqrt{6}L}{32\pi^2 \Delta}
+\frac{1}{Rr^2}
 \left( 
 \frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R)}
 \right. \nonumber \\ & & \left. - \left( \frac{\pi r}{R} \right)
@@ -137,9 +140,19 @@ H_0 & = & \left( \frac{1}{3k\phi} \right)
 \ee
 Again $J_0 \gg H_0$, except very near the $r=R$, where it goes to zero. The flux at $r=R$ can be written
 \be
-H_0(R, \sigma) & = & \left( \frac{1}{3k\phi} \right)
-\left( \frac{\sqrt{6}L}{32\pi \Delta} \right)
-\left( \frac{1}{R^3} \right)
+H_0(R, \sigma) & = & - \frac{1}{3k\phi}
+\frac{\sqrt{6}L}{16\pi \Delta}
+\frac{1}{R^3}
+\sum_{n=1}^{\infty} 
+n (-1)^n \exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}
+,
+\label{eq:H0surf_sum}
+\ee
+or
+\be
+H_0(R, \sigma) & = &  \frac{1}{3k\phi}
+\frac{\sqrt{6}L}{32\pi \Delta}
+\frac{1}{R^3}
 \left( 
 \frac{ 1 }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] +1 }
 \right).
