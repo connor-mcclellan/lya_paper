@@ -96,7 +96,7 @@ at $r=R$. An analytic solution $J_d$ which is divergent at the center of the sph
 
 \be
 J_{\rm d} & = & 
-\frac{(\sqrt{6}k^2L)/(16\pi^3 \Delta^3)}{ (kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}.
+\left(\frac{\sqrt{6}k^2L}{16\pi^3 \Delta^3}\right)\left(\frac{1}{(kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}\right).
 \label{eq:Jd}
 \ee
 
@@ -109,7 +109,7 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \ee
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
-\be
+\be \label{eq:J0_sum}
 J_0 = \frac{\sqrt{6}}{16\pi} \frac{L}{R^2}\sum_{n=1}^{\infty}n\frac{\sin{\kappa_n r}}{\kappa_n r}\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
 \ee
 which evaluates to
@@ -270,7 +270,7 @@ Since the solutions have been generalized to allow for a monochromatic source of
 % Motivate why we're doing the plot the way we are in the first few lines. Build it up for a first time reader. Add more motivation!
 % Introduce this by saying the previous figures show that as we go to larger optical depth, the solution appears to get more and more accurate. To more quantitatively explore this, fig 5 shows...
 % Write a thesis statement at the start of your paragraph and tell the reader what this is all about. It's good if the first line describes what the paragraph is about.
-Fig. \ref{fig:xinit} shows how the boundary term scales with both $\tau_0$ and $\sigma_s$. The photon initialization frequency (in units of $\sigma$, as in the differential equation) is shifted in integer multiples of $\tau_0$. For clarity, only the positive side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, the size of the correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths and the same source frequency $\sigma_s$ should show close agreement in scale on the figure if the relation holds. Indeed, the scaled solutions converge as the optical depth becomes larger, indicating general agreement with the $(a\tau_0)^{1/3}$ scaling. The remaining discrepancy present is due to the width of the Doppler core with respect to the peak of the spectrum; at lower depths, this causes the assumptions about the functional form of the line profile to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are proportional to $(a\tau_0)^{1/3}$, where $a$ is the ratio of natural to Doppler broadening and $\tau_0$ is the optical depth at line center. An additional amount of error of order $(a\tau_0)^{1/3}$ is introduced as the photon frequency $\sigma_s$ from line center is increased by a factor of $\tau_0$.
+Fig. \ref{fig:xinit} shows how the boundary term scales with both $\tau_0$ and $\sigma_s$. The photon initialization frequency $\sigma_s$ is shifted in integer multiples of $\tau_0$. For clarity, only the $\sigma > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, the size of the correction should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. This factor has been scaled out of the figure such that solutions for different optical depths and the same source frequency $\sigma_s$ should show close agreement in scale on the figure if the relation holds. Indeed, the scaled solutions converge as the optical depth becomes larger, indicating general agreement with the $(a\tau_0)^{1/3}$ scaling. The remaining discrepancy present is due to the width of the Doppler core with respect to the peak of the spectrum; at lower depths, this causes the assumptions about the functional form of the line profile to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are proportional to $(a\tau_0)^{1/3}$, where $a$ is the ratio of natural to Doppler broadening and $\tau_0$ is the optical depth at line center. An additional amount of error of order $(a\tau_0)^{1/3}$ is introduced as the photon frequency $\sigma_s$ from line center is increased by a factor of $\tau_0$.
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
@@ -334,9 +334,9 @@ J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\
 \ee
 Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration. 
 \be
-J(r,\sigma,t) & = &  -j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t}J(n,\sigma,-i\gamma)
-\nonumber \\ & \simeq & j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
-\nonumber \\ & \simeq & j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
+J(r,\sigma,t) & = &  -\sum_{n=1}^{\infty}j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t}J(n,\sigma,-i\gamma)
+\nonumber \\ & \simeq & \sum_{n=1}^{\infty}j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
+\nonumber \\ & \simeq & \sum_{n=1}^{\infty}j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
 Here we have closed the integral along the imaginary $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
 \be \label{eq:Jrsigmat}
@@ -344,8 +344,8 @@ J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{
 \ee
 Beginning with Eq. \ref{eq:Jrsigmat}, we use the derivative
 \be
-\frac{dj_0(\kappa_n r)}{dr} \rfloor_R & =& \frac{d}{dr}  \rfloor_R \left( \frac{\sin(\kappa_n r)}{\kappa_n r} \right)
-=  \left( \frac{\cos(\kappa_n R)}{R} - \frac{\sin(\kappa_n R)}{\kappa_n R^2} \right)\rfloor_R
+\frac{dj_0(\kappa_n r)}{dr} \bigg\rvert_R & =& \frac{d}{dr} \left( \frac{\sin(\kappa_n r)}{\kappa_n r} \right)\bigg\rvert_R
+=  \left( \frac{\cos(\kappa_n R)}{R} - \frac{\sin(\kappa_n R)}{\kappa_n R^2} \right)
 \nonumber \\ & = & \frac{(-1)^n}{R},
 \ee
 to obtain the flux at the surface, which is
@@ -430,7 +430,7 @@ Integrating $dE/dt d\nu$ from Eq. \ref{eq:dEdtdnu} over all times should give a 
 \be \label{eq:spectrum}
 P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity according to the sum rule in Eq. \ref{eq:sumrule}. In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady-state $J=0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''). This graphic illustrates the physics modeled by each variable in the expansion. For example, the spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes were calculated, the agreement between the lines extends further into the core. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over the imaginary frequency variable $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since core photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
+Integrating over $\nu$ gives unity according to the sum rule in Eq. \ref{eq:sumrule}. In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady-state $J=0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Eq. \ref{eq:J0_sum}. This graphic illustrates the physics modeled by each variable in the expansion. For example, the spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes were calculated, the agreement between the lines extends further into the core. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over the imaginary frequency variable $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since core photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
 
 \begin{figure}
     \centering
