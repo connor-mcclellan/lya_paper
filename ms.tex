@@ -371,7 +371,7 @@ where the contribution of each eigenfunction is
 \be \label{eq:pnmsoln}
 P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-These coefficients can have either sign depending on the value of $n$. The size of each contribution scales roughly as $0.5/(m+1/8)^{2/3}$, with a very weak dependence on $n$. This indicates the need for a large number of $n$ and $m$ to converge, i.e., it takes roughly ten times as many $m$ modes to reduce the size of $P_{nm}$ by a factor of ${\sim}$5. Numerical convergence would be obtained only when the size of additional $P_{nm}$ are negligible in the sum.
+These coefficients are negative for odd values of $n$ and positive for even $n$. The size of each contribution scales roughly as $0.5/(m+1/8)^{2/3}$, with a very weak dependence on $n$. This indicates the need for a large number of $n$ and $m$ to converge, i.e., it takes roughly ten times as many $m$ modes to reduce the size of $P_{nm}$ by a factor of ${\sim}$5, so convergence is slow.
 
 \subsection{Numerical calculation}
 
@@ -393,7 +393,7 @@ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2)& = &  \frac{J_{nm}(\sigma)}{\ga
 \ee
 where $C(\sigma)$ has cancelled out in the difference. We can immediately solve as
 \be
-J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\gamma_1)  - J(n,\sigma,\gamma_2) }{ 1/(\gamma_{nm}-\gamma_1) - 1/(\gamma_{nm}-\gamma_2)}.
+J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2) }{ 1/(\gamma_{nm}-\gamma_1) - 1/(\gamma_{nm}-\gamma_2)}.
 \ee
 \begin{figure}
     \centering
@@ -401,7 +401,7 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,\gamma_1)  - J(n,\sigma,\gamma_2) }{
     \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction.}
     \label{fig:jsoln}
 \end{figure}
-A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1, $k = \tau_0 \sqrt{\pi} \Delta / R$, and $R = 10^{11}$ cm. With this normalization, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for sufficient numerical precision in the final result. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
+A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1, $k = \tau_0 \sqrt{\pi} \Delta / R$, and $R = 10^{11}$ cm. With this normalization, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for convergence to the correct solution. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{gamma_nm.pdf}
@@ -418,7 +418,7 @@ The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turni
 \be
 \frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J
 \ee
-where the line profile is approximated as in Eq. \ref{app:rteqn_derivation}\ref{eq:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decay solutions are found (evanescence). This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs in the line core. The boundary between propagation and evanescence occurs at the turning point, given by
+where the line profile is approximated as in Eq. \ref{app:rteqn_derivation}\ref{eq:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decay solutions are found (evanescence). This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
 \be
 \sigma_{tp} & = & \sqrt{\frac{2a}{\pi}}\left( \frac{k \gamma}{ \kappa_n^2 c \Delta} \right)^{3/2}
 \ee
@@ -426,11 +426,11 @@ Thus, to ensure accuracy in the final sum of Eq. \ref{eq:Jrsigmat}, the bounds o
 
 \subsection{Comparison with Steady State and Monte Carlo}
 
-Integrating $dE/dt d\nu$ from Eq. \ref{eq:dEdtdnu} over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the $J=0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
+Integrating $dE/dt d\nu$ from Eq. \ref{eq:dEdtdnu} over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the $H_0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
 P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity according to the sum rule in Eq. \ref{eq:sumrule}. In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady-state $J=0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Eq. \ref{eq:J0_sum}. This graphic illustrates the physics modeled by each variable in the expansion. For example, the spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes were calculated, the agreement between the lines extends further into the core. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over the imaginary frequency variable $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since core photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
+Integrating over $\nu$ gives unity according to the sum rule in Eq. \ref{eq:sumrule}. In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady-state $J=0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as TODO: in Eq. \ref{eq:J0_sum}. This graphic illustrates the physics modeled by each variable in the expansion. For example, the spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes were calculated, the agreement between the lines extends further into the core. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over the imaginary frequency variable $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since core photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
 
 \begin{figure}
     \centering
