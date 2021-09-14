@@ -99,16 +99,17 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \left( \frac{k r/\Delta}{ \left[ (kr/\Delta)^2 + (\sigma-\sigma_{\rm s})^2 \right]^2 } \right).
 \label{eq:Hd}
 \ee
-This solution is useful as a very simple analytic formula. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration, but will not be discussed further.
+This solution is useful as a very simple analytic formula. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$ and does not adhere to the correct boundary condition. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration, but will not be discussed further.
 
-A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
+A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. Again, we generalize their solution to allow emission at frequency $\sigma_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
 \be \label{eq:J0_sum}
 J_0 = \frac{\sqrt{6}L}{16\pi \Delta} \frac{1}{R^2}\sum_{n=1}^{\infty}n\frac{\sin{\kappa_n r}}{\kappa_n r}\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
 \ee
+and
 \be \label{eq:H0_sum}
 H_0 = - \frac{1}{3k\phi} \frac{\partial J_0}{\partial r} = -\frac{1}{3k\phi}\frac{\sqrt{6}L}{16\pi\Delta} \frac{1}{R^2}\sum_{n=1}^{\infty}n\left(\frac{\cos{\kappa_n r}}{r} - \frac{\sin{\kappa_n r}}{\kappa_n r^2}\right)\exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
 \ee
-which evaluate to
+which can be summed to give the closed form expressions
 \be
 J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr}
@@ -117,7 +118,7 @@ J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \right)
 \label{eq:J0}
 \ee
-
+and
 \be
 H_0 & = &\frac{1}{3k\phi}
 \frac{\sqrt{6}L}{32\pi^2 \Delta}
@@ -133,17 +134,13 @@ H_0 & = &\frac{1}{3k\phi}
 \ee
 Again $J_0 \gg H_0$, except very near the $r=R$, where it goes to zero. The flux at $r=R$ can be written
 \be
+\nonumber
 H_0(R, \sigma) & = & - \frac{1}{3k\phi}
 \frac{\sqrt{6}L}{16\pi \Delta}
 \frac{1}{R^3}
 \sum_{n=1}^{\infty} 
-n (-1)^n \exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}
-,
-\label{eq:H0surf_sum}
-\ee
-or
-\be
-H_0(R, \sigma) & = &  \frac{1}{3k\phi}
+n (-1)^n \exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}\\
+& = &  \frac{1}{3k\phi}
 \frac{\sqrt{6}L}{32\pi \Delta}
 \frac{1}{R^3}
 \left( 
@@ -151,11 +148,11 @@ H_0(R, \sigma) & = &  \frac{1}{3k\phi}
 \right).
 \label{eq:H0surf}
 \ee
-Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to the divergent solution. 
+Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution than Eq. \ref{eq:Hd}. It is still valid near the delta function at $r=0$, but is also a much better approximation at $r=R$. $J_0$ decreases exponentially rather than as a power-law in frequency as for $J_d$, giving a much smaller flux on the line wings as compared to the divergent solution. 
 
-The solution of this problem is split into two pieces: $\rm J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $\rm J_{bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The total solution is $J = J_0 + J_{\rm bc}$. %TODO
+ %TODO
 
-A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
+A different solution method is attempted here, namely, a continuous Fourier expansion in the frequency variable $\sigma$. The solution of this problem is split into two pieces: $J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $\rm J_{bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The total solution is
 \be
 J(r,\sigma) & = & J_0(r,\sigma) + J_{\rm bc}(r,\sigma)
 \ee
@@ -165,8 +162,8 @@ H(r,\sigma) & = & H_0(r,\sigma) + H_{\rm bc}(r,\sigma).
 \ee
 Here, $J_0$ and $H_0$ are the solutions of the homogeneous equation, given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
 \be \label{eq:diffeq}
-\frac{\partial^2J}{\partial r^2} + \frac{2}{r} \frac{\partial J}{\partial r}
-+ \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} &= & 0
+\frac{\partial^2J_{\rm bc}}{\partial r^2} + \frac{2}{r} \frac{\partial J_{\rm bc}}{\partial r}
++ \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J_{\rm bc}}{\partial \sigma^2} &= & 0
 \ee
 with no delta function source term, and it must allow the boundary conditions to be satisfied at the surface. Since $J_0(R,
 \sigma)=0$, the surface boundary condition becomes
@@ -175,7 +172,7 @@ J_{\rm bc}(R,\sigma) - \sqrt{3} H_{\rm bc}(R,\sigma) & =
 \sqrt{3} H_0(R,\sigma).
 \label{eq:bc2}
 \ee
-Plugging in a frequency dependence $J \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
+Plugging in a frequency dependence $J_{\rm bc} \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
 \be
 J_{\rm bc}(r,\sigma) & = & 
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
@@ -190,7 +187,7 @@ where $A(s)$ is the Fourier amplitude. Plugging Eq. \ref{eq:Jbc} into Eq. \ref{e
 \label{eq:bc3}
 \ee
 where $H_0(R,\sigma)$ is given by Eq. \ref{eq:H0surf}. Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid and solve the resulting matrix equation. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The result is a linear system to solve for the $A(s)$. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that  the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate very near the boundaries. Given the Fourier amplitudes, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
 \frac{\partial J_{\rm bc}(r,\sigma)}{\partial r}
@@ -203,7 +200,7 @@ H_{\rm bc}(r,\sigma) & = & \left( \frac{-1}{3k\phi} \right)
 The Bessel functions are finite at the center and rise steeply toward the surface when $kRs/\Delta \gg 1$. 
 
 \subsection{Scaling with Line Center Optical Depth}
-To examine the relative size of the corrective term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the optical depth is large and thus the mean intensity will be considerably larger than the surface flux. We obtain the proportionality
+To examine the relative size of the correction term $H_{\rm bc}$ as compared to $H_0$, we consider the case where the $\tau_0$ is large and thus $J_{\rm bc}$ will be considerably larger than $H_{\rm bc}$. We obtain the proportionality
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
