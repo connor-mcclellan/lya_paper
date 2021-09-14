@@ -64,38 +64,31 @@ Numerical simulations can be used to understand the complex layers of these irra
 \ee
 where $2B$ is the slab optical depth at line center, and $\phi$ is the line profile. The key point is that the line profile depends on one of the coordinates, frequency, and this causes the eigenvalues of the separation constant to depend on frequency. Thus, the separation constant is not constant, and it does not satisfy the Poisson equation since the frequency derivatives will act on the separation ``constant", giving extra terms. In the limit of large optical depth $B$, they approximate the eigenvalues as $\lambda_n B \simeq \pi (n-1/2)$. However, this solution gives zero mean intensity at the surface. Their Eq. 34 subsequently allowed the separation constant to have a small deviation from the above expression, which was explicitly frequency dependent. This allowed a nonzero intensity at the surface, but at the cost of rendering the separation of variables assumption invalid. Our treatment, using the correct boundary condition, quantifies the errors in their ansatz.
 
-
-
-
-
-\citet{1990ApJ...350..216N} follows this approach in an attempt to extend the result to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. This produces a divergent, inhomogeneous solution to the problem in 1D slab geometry. \citet{2006ApJ...649...14D} generalize the problem to spherical geometry, which is the same physical set up used here. Following this, \citet{2020arXiv200509692L} presents closed-form solutions for the radiation field in spherical geometry, utilizing the ``core skipping'' method discussed in \citet{2015MNRAS.449.4336S} to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. However, it is not clear whether this prescription is fully independent of the choice of velocity distribution.
-
-
+Several other works have followed \citet{1973MNRAS.162...43H}, building upon their result without addressing the incorrect boundary condition. \citet{1990ApJ...350..216N} attempts to extend the solution to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line, but again does not use the correct boundary condition. \citet{2006ApJ...649...14D} generalize the same problem to spherical geometry, as is used here. Following this, \citet{2015MNRAS.449.4336S} employ a ``core skipping'' method to handle photon frequency redistribution within the Doppler core. This technique involves drawing the atom's velocity from a truncated Gaussian distribution, forcing photons back into the wing when they scatter into the core. % This is motivated by the assumption that all core scattering results in zero spatial diffusion until the photon is redistributed back out into the wing where the mean free path becomes much larger and it can diffuse in space again. However, it is not clear whether this prescription is fully independent of the choice of velocity distribution. 
 
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-The solution of this problem is split into two pieces: $\rm J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $\rm J_{bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The total solution is $J = J_0 + J_{\rm bc}$.
+Consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0$. We aim to find the intensity within the sphere as a function of radius and photon frequency. Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = (k/\sqrt{\pi}\Delta)R$. 
 
-Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$.
-
-Now, consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0 = (k/\sqrt{\pi}\Delta)R$. Starting with the full transfer equation, Eq. \ref{app:rteqn_derivation}\ref{eq:finaleqn}, with no photon destruction and a photon emission term given by Eq. \ref{app:rteqn_derivation}\ref{eq:jem}, the steady-state transfer equation is
+Starting with the full transfer equation, Eq. \ref{app:rteqn_derivation}\ref{eq:finaleqn}, with no photon destruction and a photon emission term given by Eq. \ref{app:rteqn_derivation}\ref{eq:jem}, the steady-state transfer equation is
 \be
 \nabla^2 J + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} & = & 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-The boundary condition is that there is no incoming intensity at the surface, which can be written
+where $\sigma$ comes from a change of variables in photon frequency (Eq. \ref{app:rteqn_derivation}\ref{eq:change_of_variables}) and $\sigma_s$ is the photon frequency of the source. The boundary condition is that there is no incoming intensity at the surface, which can be written
 \citep{1986rpa..book.....R}
 \be
 J & = & \sqrt{3} H
 \label{eq:bc}
 \ee
-at $r=R$. An analytic solution $J_d$ which is divergent at the center of the sphere and at the emission frequency may be found. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration, but will not be discussed further.
+at $r=R$. 
 
+A solution for the mean intensity $J_d$ which is divergent at the center of the coordinate system and at the emission frequency is presented in \citet{1990ApJ...350..216N}. Here it is extended to spherical geometry and generalized to allow emission frequencies away from line center: 
 \be
 J_{\rm d} & = & 
-\left(\frac{\sqrt{6}k^2L}{16\pi^3 \Delta^3}\right)\left(\frac{1}{(kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}\right).
+\left(\frac{\sqrt{6}k^2L}{16\pi^3 \Delta^3}\right)\left(\frac{1}{(kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}\right)
 \label{eq:Jd}
 \ee
 
@@ -106,6 +99,7 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \left( \frac{k r/\Delta}{ \left[ (kr/\Delta)^2 + (\sigma-\sigma_{\rm s})^2 \right]^2 } \right).
 \label{eq:Hd}
 \ee
+This solution is useful as a very simple analytic formula. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration, but will not be discussed further.
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. We generalize their solution to allow emission at frequency $\nu_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
 \be \label{eq:J0_sum}
@@ -159,6 +153,7 @@ H_0(R, \sigma) & = &  \frac{1}{3k\phi}
 \ee
 Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution, which is valid near the delta function at the center, and is a much better approximation at the surface. It is still only a good approximation near line center at the surface. It decreases exponentially rather than as a power-law in frequency, giving a much smaller flux on the line wings as compared to the divergent solution. 
 
+The solution of this problem is split into two pieces: $\rm J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $\rm J_{bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied. The total solution is $J = J_0 + J_{\rm bc}$. %TODO
 
 A different solution method is attempted here: namely, a continuous Fourier expansion in the frequency variable $\sigma$. The full solution is written
 \be
