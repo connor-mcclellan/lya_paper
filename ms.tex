@@ -325,29 +325,29 @@ and the discontinuity in $dJ/d\sigma$  must be
 \ee
 At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
 \be \label{eq:diffusion_at_large_sigma}
-\frac{\partial^2J}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J.
+\frac{\partial^2J}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J,
 \ee
 which has solutions 
 \be
-J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}
+J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}.
 \ee
-and thus
+We then have
 \be \label{eq:single_j_derivative}
-\frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J
+\frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J,
 \ee
-where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to the source $\sigma_s$ to isolate the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J_\pm$ and $J'_\pm$ on either side of the source, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained for all photon frequencies $\sigma$. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to $\sigma_s$, isolating the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions, Eqs. \ref{eq:matching_condition_1} and \ref{matching_condition_2}, the solution for $J(n, \sigma, \omega)$ is obtained for all photon frequencies $\sigma$. Since the solution is linear in the starting conditions, only two integrations with different starting values are necessary.
 
-Let us define the damping frequency to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $m$ is an index that represents individual frequency eigenmodes, as opposed to $n$ which represents the spatial mode number. Near these frequencies, the solution will have the form 
+Let us define the damping frequency to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Here, $n$ and $m$ are indices that represent individual spatial and frequency modes, respectively. Near these $\gamma_{nm}$, the solution will have the form 
 \be
 J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
-Obtaining the values of these eigenfrequencies and their corresponding eigenfunctions $J_{nm}(\sigma)$ allows us to obtain the contribution of this mode to the total solution via contour integration. 
+The contribution of the $J_{nm}(\sigma)$ eigenmode to the total solution is obtained by the residue theorem:
 \be
 J(r,\sigma,t) & = &  -\sum_{n=1}^{\infty}j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t}J(n,\sigma,-i\gamma)
 \nonumber \\ & \simeq & \sum_{n=1}^{\infty}j_0(\kappa_n r)  \int \frac{d\gamma}{2\pi i} e^{-\gamma t} \frac{ J_{nm}(\sigma) }{\gamma - \gamma_{nm}} 
-\nonumber \\ & \simeq & \sum_{n=1}^{\infty}j_0(\kappa_n r)  J_{nm}(\sigma) e^{-\gamma_{nm}t}.
+\nonumber \\ & \simeq & \sum_{n=1}^{\infty}j_0(\kappa_n r)  \sum_{m=1}^{\infty}J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-Here we have closed the integral along the imaginary $\gamma$ axis by a semi-circle at infinity, using the residue theorem to obtain the answer. The contribution from the semi-circle at infinity is zero. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
+Here we have closed the integral along the imaginary $\gamma$-axis  with a semi-circle at infinity. The contribution from the semi-circle at infinity is zero, so we then obtain the residue of the $(n, m)$ pole. Summing over all spatial eigenmodes $n$ and over all temporal eigenmodes $m$ for a given $n$, we get the final form of the result
 \be \label{eq:Jrsigmat}
 J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
