@@ -283,7 +283,7 @@ Figure \ref{fig:xinit} shows quantitative examination of how the boundary term $
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
-In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a fluid that is dynamic on timescales shorter than the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to an impulse is found, i.e., a delta function in time. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized and fit for efficient sampling. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is expected to be a decent approximation for $\tau_0 \gg 1$. 
+In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a fluid that is dynamic on timescales shorter than the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to an impulse is found, i.e., a delta function in time. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized and fit for efficient sampling. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is a decent approximation for $\tau_0 \gg 1$. 
 
 \subsection{Derivation of the time-dependent solution}
 \label{subsec:time_dependent:background}
@@ -303,26 +303,27 @@ The resulting equation for $J(r,\sigma,t)$ is
 We employ an expansion in terms of spherical Bessel functions in $r$ and transform the time dependence into an imaginary frequency variable $\omega$. The eigenvalues $i\omega$ are real and positive for damped solutions to the time-dependent equation. The expansion for $J(r, \sigma, t)$ is
 \be
 \label{eq:jrsigmat_expansion}
-J(r, \sigma, t) = -\sum_{n=1}^{\infty} \int \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega).
+J(r, \sigma, t) = -\sum_{n=1}^{\infty} \int \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega),
 \ee
 with
 \be \label{eq:jnsigmaomega}
 J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
-Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity in units of energy per unit area per unit time per Hertz, expressed here in CGS units. Though the frequency variable used here is $\sigma$, the specific mean intensity is to be integrated with respect to $\nu$. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of time in the numerator as a result of the expansion. Plugging the expression for the eigenfunctions $J(n, \sigma, \omega)$ into the differential equation Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
+Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$ in CGS units. %energy per unit area per unit time per Hertz, expressed here in CGS units.
+Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Plugging in Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
-This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions. At $\sigma=\sigma_s$ continuity must be enforced in $J$ 
+This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions. At $\sigma=\sigma_s$ continuity must be enforced,
 \be \label{eq:matching_condition_1}
-J_+ = J_-
+J_+ = J_-,
 \ee
 and the discontinuity in $dJ/d\sigma$  must be
 \be \label{matching_condition_2}
 \frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
-- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}
+- \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
 \ee
-according to the differential equation. At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
+At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
 \be \label{eq:diffusion_at_large_sigma}
 \frac{\partial^2J}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J.
 \ee
