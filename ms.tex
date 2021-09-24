@@ -309,8 +309,7 @@ with
 \be \label{eq:jnsigmaomega}
 J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
-Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$ in CGS units. %energy per unit area per unit time per Hertz, expressed here in CGS units.
-Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Plugging in Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
+Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$. Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Plugging in Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
@@ -350,17 +349,38 @@ We close the integral along the imaginary $\gamma$-axis  with a semi-circle at i
 \be
 J_{nm}(r,\sigma,t) & \simeq & j_0(\kappa_n r) J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-Summing over all spatial modes $n$ and over all eigenmodes $m$ for a given $n$, we get the final form of the result:
+Summing over all spatial modes $n$ and over all eigenmodes $m$ for a given $n$, we obtain
 \be \label{eq:Jrsigmat}
-J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_m^{\infty} J_{nm}(\sigma) e^{-\gamma_{nm}t}.
+J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_{m=1}^{\infty} J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-Beginning with Eq. \ref{eq:Jrsigmat}, we use the derivative
+
+% State that this works for some of the poles, but others are missing. Can't capture asymmetry in spectrum. There is some other term that's missing from this analysis.
+
+%The divergent pieces don't contain the piece that can be asymmetric --- the poles we're finding don't allow asymmetry in the specturm.
+
+% Missing something in our contour? Residue theorem doesn't apply in this case? Missing a pole or poles that are not present?
+
+% We're losing some poles due to the boundary but we think that the sum of the decaying solutions is converging fast enough to cut it off somewhere.
+
+% We try this ansatz for the symmetric case and it basically seems to work. We show this by numerical calculation. We have to point out that we've shown it doesn't work for an off-center source. But then what do we say? We don't really have an explanation for how it doens't work. WKB gives info about it, but we don't discuss thta in the paper either.
+
+% Put a little wkb in the appendix? We could show the dispersion relation, for instnace. d^2Jdsigma^2, equation for discontinuity... here is the solution far from LC, here is the solution near LC, by requiring these two solutions to match in the raea where they're both valid, here are the matching conditions. 4-5 lines. Here's the presence of simple poles, gives us dispersion relation, but also here's the piece that is not divergent and containts the discontinuity. This term is not included in the sum over simple poles. Don't go through the derivation in a lot of detail. 
+
+% After we do the symmetric case, note that due to what we found in the WKB, this does not capture the asymmetry in the source function. Leave it there and just. Don't say it's left for future work. Just leave it. Note that there's an issue and say "this suggests that our ansatz is incomplete in the asymmetric case."
+
+% WKB Approximation - could cite (Bender & Norzog)? Arfken might have it too?
+
+% Change ordering of figures. Have current fig 8 and 9 be the last thing since they contain a sum over modes. Put solid results first.
+
+% Go through derivation of dispersion relation, then say "the denominator being zero leads to the dispersion relation (cite eq 47 in time dependent section)".
+
+Taking a derivative with respect to $r$ and evaluating at the surface $r=R$, we use
 \be
 \frac{dj_0(\kappa_n r)}{dr} \bigg\rvert_R & =& \frac{d}{dr} \left( \frac{\sin(\kappa_n r)}{\kappa_n r} \right)\bigg\rvert_R
 =  \left( \frac{\cos(\kappa_n R)}{R} - \frac{\sin(\kappa_n R)}{\kappa_n R^2} \right)
-\nonumber \\ & = & \frac{(-1)^n}{R},
+\nonumber \\ & = & \frac{(-1)^n}{R}
 \ee
-to obtain the flux at the surface, which is
+to obtain the flux, which is
 \be
 F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
 = - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
@@ -370,38 +390,38 @@ Multiplying by $4\pi R^2$ gives the energy per time per frequency
 \frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \label{eq:dEdtdnu}
 \ee
-Integrating this over time yields a factor $-1/\gamma_{nm}$, and over $d\nu = \sqrt{3/2} \Delta^2 \phi d\sigma$, a ``sum rule" results
-\be
+Integrating over time yields a factor $-1/\gamma_{nm}$, and by integrating over $d\nu$ we find
+\be \label{eq:sum_rule}
 1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-This non-trivial expression provides a check on the values of $\gamma_{nm}$ and the functions $J_{nm}(\sigma)$. This expression can also be written as
+This non-trivial ``sum rule'' provides a check on the values of $\gamma_{nm}$ and $J_{nm}(\sigma)$. This expression can also be written as
 \be
 1 & =& \sum_{nm} P_{nm},
 \label{eq:sumrule}
 \ee
-where the contribution of each eigenfunction is
+where the contribution of each mode is
 \be \label{eq:pnmsoln}
 P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
-These coefficients are negative for odd values of $n$ and positive for even $n$. The size of each contribution scales roughly as $0.5/(m+1/8)^{2/3}$, with a very weak dependence on $n$. This indicates the need for a large number of $n$ and $m$ to converge, i.e., it takes roughly ten times as many $m$ modes to reduce the size of $P_{nm}$ by a factor of ${\sim}$5, so convergence is slow.
+These coefficients are negative for odd values of $n$ and positive for even $n$. The size of each contribution scales roughly as $0.5/(m-7/8)^{2/3}$, with a very weak dependence on $n$. This indicates the need for a large number of $n$ and $m$ to converge, in that it takes roughly ten times as many $m$ modes to reduce the size of $P_{nm}$ by a factor of ${\sim}$5. 
 
 \subsection{Numerical calculation}
 
-We seek now to calculate all eigenmodes $J_{nm}(\sigma)$ and eigenfrequencies $\gamma_{nm}$ for all spatial $n$ and for all eigenmodes $m$ at that given $n$. A resonant response in $J(n,\sigma,-i\gamma)$ is produced for special values of $\gamma \equiv \gamma_{nm}$. To measure the size of the response to detect where resonances occur, we sum the absolute value of $J(n,\sigma,-i\gamma)$ over $\sigma$ in array form. Call this response $f$, and use the index $j$ to represent the value of the response at discrete points over a range of $\gamma$. In places where $f_j > f_{j-1}$ and $f_j>f_{j+1}$, we have bounded a resonance that occurs in the interval $(\gamma_{j-1},\gamma_{j+1})$. We then call the ``solve'' step to hone in on the eigenvalue before continuing the sweep in $\gamma$. In the solve step, we evaluate the eigenfunctions at the points $(\gamma_{j-1},\gamma_{j},\gamma_{j+1})$ to obtain the responses $f_{j-1}$, $f_j$, and $f_{j+1}$. A ``guess'' at the correct eigenvalue $\gamma_{nm}$ can be calculated from
+We seek now to calculate all eigenmodes $J_{nm}(\sigma)$ and eigenfrequencies $\gamma_{nm}$ for all spatial $n$ and for all eigenmodes $m$ at that given $n$. To measure the size of the response to detect where resonances occur, we sum the absolute value of $J(n,\sigma,-i\gamma)$ over $\sigma$ in array form. We call this response $f$, and use the index $j$ to represent the value of the response at discrete points over a range of $\gamma$. In places where $f_j > f_{j-1}$ and $f_j>f_{j+1}$, we have bounded a resonance that occurs in the interval $(\gamma_{j-1},\gamma_{j+1})$. We then call the ``solve'' step to hone in on the eigenvalue before continuing the sweep in $\gamma$. In the solve step, we evaluate the eigenfunctions at the points $(\gamma_{j-1},\gamma_{j},\gamma_{j+1})$ to obtain the responses $f_{j-1}$, $f_j$, and $f_{j+1}$. A ``guess'' at the correct eigenvalue $\gamma_{nm}$ can be calculated from
 \be
-\gamma_{\rm guess} &=& \frac{b\gamma_{j-1} - \gamma_{j+1}}{b - 1}
+\gamma_{\rm guess} &=& \frac{b\gamma_{j-1} - \gamma_{j+1}}{b - 1},
 \ee
 where
 \be
 b &=& \left(\frac{f_{j} - f_{j-1}}{f_{j} - f_{j+1}}\right)\left(\frac{\gamma_{j+1}-\gamma_{j}}{\gamma_{j-1}-\gamma_{j}}\right).
 \ee
-This is repeated by replacing former points $(\gamma_{j-1},\gamma_{j},\gamma_{j+1})$ with closer estimates while the size of the response grows as the resonance is approached. Given a sufficiently accurate eigenvalue $\gamma_{nm}$, we now find the corresponding eigenfunction $J_{nm}(\sigma)$. We can write down an approximate expression for the response near the resonances as
+This is repeated by replacing initial points $(\gamma_{j-1},\gamma_{j},\gamma_{j+1})$ with closer estimates while the size of the response grows as the resonance is approached. After iterating until an eigenvalue $\gamma_{nm}$ is accurately determined, we now find the corresponding eigenfunction $J_{nm}(\sigma)$. We can write down an approximate expression for the response near the resonances as
 \be
 J(n,\sigma,-i\gamma) & \simeq & \frac{J_{nm}(\sigma)}{\gamma_{nm}-\gamma} + C(\sigma),
 \ee
-where $C(\sigma)$ is weakly dependent on $\gamma$, and so we treat it as a constant. We can now solve for $J_{nm}(\sigma)$ by comparing two points near the resonance:
+where $C(\sigma)$ is weakly dependent on $\gamma$, and so we treat it as a constant. We can now solve for $J_{nm}(\sigma)$ by comparing two points near the resonance
 \be
-J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2)& = &  \frac{J_{nm}(\sigma)}{\gamma_{nm}-\gamma_1} -  \frac{J_{nm}(\sigma)}{\gamma_{nm}-\gamma_2}
+J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2)& = &  \frac{J_{nm}(\sigma)}{\gamma_{nm}-\gamma_1} -  \frac{J_{nm}(\sigma)}{\gamma_{nm}-\gamma_2},
 \ee
 where $C(\sigma)$ has cancelled out in the difference. We can immediately solve as
 \be
@@ -413,22 +433,22 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2
     \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and a range of frequency eigenmodes up to $m=100$. Their oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution always comes from the ($n=1, m=1$) lowest-order eigenfunction.}
     \label{fig:jsoln}
 \end{figure}
-A set of eigenfunctions $J_{nm}(\sigma)$ are plotted in Fig. \ref{fig:jsoln} to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1, $k = \tau_0 \sqrt{\pi} \Delta / R$, and $R = 10^{11}$ cm. With this normalization, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$. Additional terms add smaller, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for convergence to the correct solution. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
+Fig. \ref{fig:jsoln} shows a set of eigenfunctions $J_{nm}(\sigma)$ to illustrate their relative scales for different frequency eigenmodes $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1, $k = \tau_0 \sqrt{\pi} \Delta / R$, and $R = 10^{11}$ cm. With this normalization, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$. Additional terms add smaller-magnitude, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel perfectly to recreate the form of the solution in Eq. \ref{eq:Jrsigmat}, so many modes $m$ and $n$ are required for convergence to the correct solution. Too few (or imprecisely-calculated) modes creates ``ringing'' in the function that indicates the presence of imperfect cancellations in the positive and negative contributions of individual poles. 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{gamma_nm.pdf}
     \caption{The scaling of numerically-obtained resonant frequencies as compared with the analytic expression in Eq. \ref{eq:gamma_nm}. The data shown is for $\tau_0=10^7$ and $x_s=0.0$.}
     \label{fig:gamma_nm}
 \end{figure}
-The values of the $\gamma_{nm}$ resonant frequencies can be described approximately with Eq. \ref{eq:gamma_nm}. Their scale depends on $m$, $n$, and the factor $(a\tau_0)^{1/3}$ according to 
+The values of the $\gamma_{nm}$ resonant frequencies can be described approximately with Eq. \ref{eq:gamma_nm}. Their scale depends on $m$, $n$, and other physical parameters according to 
 \be \label{eq:gamma_nm}
 \gamma_{nm} = 2^{-1/3} \pi^{13/6} n^{4/3}\left(m-\frac{7}{8}\right)^{2/3}\frac{c}{R}(a\tau_0)^{-1/3} 
 \ee
-The size of additional eigenfrequencies scales as a powerlaw in $m$, yet as is seen in Fig. \ref{fig:gamma_nm} the scaling is weak, requiring up to 500 $m$ to reduce the scale of $\gamma_{nm}^{\ \ -1}$ by two orders of magnitude. When sweeping through the imaginary frequency domain to find resonances, this expression is used to set the scale of the sweep points to ensure no $\gamma_{nm}$ are missed. The continuity and close agreement with the analytic expression shown in Fig. \ref{fig:gamma_nm} indicate that the sweep routine accurately brackets and refines the locations of resonances.
+The size of additional eigenfrequencies scales as a power law in $m$, yet as is seen in Fig. \ref{fig:gamma_nm} the power is weak, requiring up to 500 $m$ to reduce the scale of $\gamma_{nm}^{\ \ -1}$ by two orders of magnitude. When sweeping through the imaginary frequency domain to find resonances, this expression is used to set the scale of the sweep points to ensure no $\gamma_{nm}$ are missed. The continuity and close agreement with the analytic expression shown in Fig. \ref{fig:gamma_nm} indicate that the sweep routine accurately brackets and refines the locations of resonances.
 
 The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Eq. \ref{eq:diffusion_plugged_in} and re-examining the resulting homogeneous differential equation. We obtain
 \be
-\frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J
+\frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J,
 \ee
 where the line profile is approximated as in Eq. \ref{app:rteqn_derivation}\ref{eq:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decay solutions are found (evanescence). This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
 \be
@@ -438,13 +458,36 @@ Thus, to ensure accuracy in the final sum of Eq. \ref{eq:Jrsigmat}, the bounds o
 
 \subsection{Comparison with Steady State and Monte Carlo}
 
-Integrating $dE/dt d\nu$ from Eq. \ref{eq:dEdtdnu} over all times should give a distribution for the emitted frequencies. It is expected that this time-integrated spectrum of the response to an impulse will agree well with the solution for the $H_0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Dividing by the energy $E$, we find the probability distribution
+We now calculate the distribution of the times it takes each photon to escape the sphere. This is obtained by integrating Eq. \ref{eq:dEdtdnu} over all frequencies. We find
+\be
+P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^n  e^{-\gamma_{nm}t} \int d\sigma J_{nm}(\sigma) 
+\nonumber \\ & = &  \sum_{nm} P_{nm} \gamma_{nm} e^{-\gamma_{nm}t},
+\label{eq:waittime}
+\ee
+which is normalized to unity. For a sufficiently large number of spatial modes $n$ and frequency modes $m$, the result of this sum agrees with Monte Carlo escape time distributions. % Not sure if we want to say this yet? Maybe save for the escape time figure.
+
+The eigenfunction expansion method is an effective characterization of the escape time distribution, yet not a fast enough computational method to use as a distribution for sampling. However, the behavior of the solution is well-understood since the late-time distribution is simply an exponential falloff. The rate constant is the lowest-order eigenfrequency, $\gamma_{00}$, and its scale is determined by the coefficient $P_{00}$ as in Eq. \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
+\be \label{eq:fitting_function}
+P(t) = \exp{\left[-\left(\frac{t_{\rm diff}}{t}\right)^2\right]} \times \gamma_{00} P_{00} e^{-\gamma_{00}t}.
+\ee
+The first term represents the early-time distribution, which then transitions to an exponential falloff past a point $ct/R = ct_{\rm diff}/R = (a\tau_0)^{1/3}$, where $t_{\rm diff}$ is a characteristic diffusion timescale.
+
+In Fig. \ref{fig:tau_scaling}, it is shown that the rate constant of exponential decay $\gamma_00^{-1}$converges with the lowest-order eigenfrequency $\gamma_{00}$ at sufficiently high optical depths, following a $t\propto(a\tau_0)^{1/3}$ scaling. At lower optical depths $\tau_0$, the effects of core scattering are most important, leading to a larger discrepancy in the characteristic escape timescale. Here, the Monte Carlo accurately characterizes the photons which scatter in the core many times before escaping, while the semi-analytic solution does not capture this behavior as it uses only the Lorentzian piece of the line profile and does not use enough spatial modes to accurately model the frequency regime near line center. However, as the optical depth grows, the effect of core scattering becomes smaller and the approximations hold much better, agreeing well with the expected analytic scaling for the rate constant.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{tau_scaling.pdf}
+    \caption{Characteristic timescales as a function of optical depth. $\gamma_{00}^{-1}$ and a fit of the exponential falloff for the Monte Carlo escape time distribution are shown to converge to a $t \propto (a\tau_0)^{1/3}$ scaling at large optical depths. The Monte Carlo points on this figure are obtained by fitting only the exponential piece of the escape time distribution to obtain the rate constant.}
+    \label{fig:tau_scaling}
+\end{figure}
+
+We now evaluate the time-integrated spectrum of the response to an impulse and compare it with the solution for the $H_0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Integrating Eq. \ref{eq:dEdtdnu} over all times gives a distribution for the emitted frequencies. Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
 P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ gives unity according to the sum rule in Eq. \ref{eq:sumrule}. 
+Integrating over $\nu$ then gives unity as required by the sum rule in Eq. \ref{eq:sumrule}. 
 
-In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady state $H_0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Eq. \ref{eq:H0surf_sum}. Additional spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes are calculated, the agreement with the steady state spectrum extends further toward the line core, with an infinite number of modes required for convergence at $x_s$. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. %TODO: Include? As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
+In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady state $H_0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Eq. \ref{eq:H0surf_sum}. Additional spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes are calculated, the agreement with the steady state spectrum extends further toward the line core, with an infinite number of modes required for convergence at $x_s$. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over $\gamma$ which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would only affect the distribution at late times since photons are trapped for a longer duration before escaping. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated. %TODO: Include? As a result of this choice, we expect that our semianalytic approach will underestimate the number of escaping photon at late times as compared with the Monte Carlo.
 
 \begin{figure}
     \centering
@@ -453,19 +496,8 @@ In Fig. \ref{fig:steadystate}, the resulting spectrum is shown for a sum up to $
     \label{fig:steadystate}
 \end{figure}
 
-The distribution of the times it takes each photon to escape the sphere is calculated from Eq. \ref{eq:dEdtdnu} by integrating over all frequencies. We obtain
-\be
-P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^n  e^{-\gamma_{nm}t} \int d\sigma J_{nm}(\sigma) 
-\nonumber \\ & = &  \sum_{nm} P_{nm} \gamma_{nm} e^{-\gamma_{nm}t},
-\label{eq:waittime}
-\ee
-which is also normalized to unity. For a sufficient number of spatial modes $n$ and frequency modes $m$, this sum approaches the ``true'' distribution of photon escape times as modeled by Monte Carlo simulations.
 
-The eigenfunction expansion method is an effective characterization of the time-to-escape, yet not a fast enough computational method to use as a distribution for sampling. However, the behavior of the solution is well-understood since the late-time distribution is simply an exponential falloff in photon escape probability. The rate constant of the function is the lowest-order eigenfrequency, $\gamma_{00}$, and its scale is determined by the coefficient $P_{00}$ as in Eq. \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
-\be \label{eq:fitting_function}
-P(t) = \exp{\left[-\left(\frac{t_{\rm diff}}{t}\right)^2\right]} \times \gamma_{00} P_{00} e^{-\gamma_{00}t}.
-\ee
-The first term represents the early-time distribution, which then transitions to an exponential falloff past a point $ct/R = ct_{\rm diff}/R = (a\tau_0)^{1/3}$, where $t_{\rm diff}$ is a characteristic diffusion timescale. This is shown in Fig. \ref{fig:escape_time} for two different line center optical depths. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining discrepancy between the tail of the distribution and the Monte Carlo data is due to core scattering, which is not accurately modeled by the eigenfunction solution. A cumulative distribution function can be created from Eq. \ref{eq:fitting_function} using a simple rejection method, which allows the function to be sampled rapidly.
+In Fig. \ref{fig:escape_time} escape time distributions are shown for $tau_0=10^6, 10^7$ with $x_s=0$.  approaches the Monte Carlo escape time distributions. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining discrepancy between the tail of the distribution and the Monte Carlo data is due to core scattering, which is not accurately modeled by the eigenfunction solution. A cumulative distribution function can be created from Eq. \ref{eq:fitting_function} using a simple rejection method, which allows the function to be sampled rapidly.
 
 \begin{figure}
     \centering
@@ -474,17 +506,7 @@ The first term represents the early-time distribution, which then transitions to
     \label{fig:escape_time}
 \end{figure}
 
-The effect of many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons that become trapped here will take much longer to escape on average. This explains the deficit of photons in the semi-analytic escape time distributions at late times, i.e., the rate constant for the exponential falloff is overestimated slightly as compared with the Monte Carlo. The error in this rate constant is a function of line center optical depth, since the effect from the Doppler core is greatest when it extends into the area of the spectrum where photons most readily escape. In Fig. \ref{fig:tau_scaling}, it is shown that the rate constant of exponential decay converges with the lowest-order eigenfrequency $\gamma_{00}$ at sufficiently high optical depths, following a $t\propto(a\tau_0)^{1/3}$ scaling. At lower optical depths $\tau_0$, the effects of core scattering are most important, leading to a larger discrepancy in the characteristic escape timescale. Here, the Monte Carlo accurately characterizes the photons which scatter in the core many times before escaping, while the semi-analytic solution does not capture this behavior as it uses only the Lorentzian piece of the line profile and does not use enough spatial modes to accurately model the frequency regime near line center. However, as the optical depth grows, the effect of core scattering becomes smaller and the approximations hold much better, agreeing well with the expected analytic scaling for the rate constant.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{tau_scaling.pdf}
-    \caption{Characteristic timescales as a function of optical depth. The reciprocal of the lowest-order eigenfrequency, $\gamma_{00}$, and a fit of the exponential falloff for the Monte Carlo data are shown to converge to a $t \propto (a\tau_0)^{1/3}$ scaling at large optical depths. The Monte Carlo points on this figure are obtained by fitting only the exponential piece of the escape time distribution to obtain the rate constant.}
-    \label{fig:tau_scaling}
-\end{figure}
-
-
-\subsection{Emission Away From Line Center}
+The effect of many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons that become trapped here will take much longer to escape on average. This explains the deficit of photons in the semi-analytic escape time distributions at late times, i.e., the rate constant for the exponential falloff is overestimated slightly as compared with the Monte Carlo. The error in this rate constant is a function of line center optical depth, since the effect from the Doppler core is greatest when it extends into the area of the spectrum where photons most readily escape.
 
 \section{Discussion}
 % How can you apply the solution? Talk about it as an application of the problem that justifies going through the effort of implementing it. It reads like an introduction right now, but we can modify it to include less detail.
@@ -493,8 +515,8 @@ The effect of many scatterings in the Doppler core affects the tail of the escap
 % First part of discussion - compare to previous work and summarize differences. Move some of the comparison with Dijkstra to the discussion.
 % Second part - application of solution
 
-Models of heating and escape of hydrogen gas in exoplanet atmospheres can be constructed with an accurate treatment of resonant scattering of \lya in spherical geometry. The Monte Carlo method can be used for this problem, but requires a solution of radiative transfer in a sphere and is limited by its high computational demand for large optical depths where there are many photon scatterings before escape. The primary goal of this work is to present a solution for mean intensity ($J$) and flux ($H = F/4\pi$) of photons near line-center frequency $\nu_0$ in a uniform sphere. We have generalized a solution derived by \cite{2006ApJ...649...14D} (called $H_0$ here) to allow a monochromatic source of photons with frequencies away from line center, and we have made a correction to the incorrect $J=0$ surface boundary condition. This correction allows the proper condition $J=\sqrt{3}H$ to be satisfied, and comes from the introduction of the terms $J_{\rm bc}$ and $H_{\rm bc}$ which are solved using a continuous Fourier expansion in frequency. Enforcement of the correct boundary term leads naturally to expansion of the spatial dependence in terms of spherical Bessel functions. In practice, the continuous expansions are discretized and the Fourier coefficients solved for via a matrix equation. The resulting flux correction, $H_{\rm bc}$, scales as $(a\tau_0)^{-1/3}$ where $a$ is the damping parameter and $\tau_0$ is the line-center optical depth. Thus, for very large optical depths, only a small correction to $H_0$ is needed, while larger errors are present in calculations performed at lower optical depths. Since the Laplacian form of the differential equation is only attainable by approximating the line profile as $\phi \approx a/(\pi x^2)$, these solutions are invalid in areas where the Doppler core of the \lya line has a significant effect on the scattering of photons. The peak of the spectral energy distribution of escaping photons is $x_0 = (a\tau_0)^{1/3}$; as such, calculations performed at low optical depths are likely to be inaccurate due to the close proximity of the spectral peak and the Doppler core of the line profile. By comparison with Monte Carlo simulations, we have shown that the enforcement of the correct frequency-dependent boundary conditions improves the accuracy of these analytic solutions %and correctly tracks changes in the spectrum of escaping photons as the monochromatic source frequency $x_s$ is altered, 
-provided a sufficiently large optical depth $\tau_0$. Specifically, this solution shows improvement over previous solutions that utilized a $J=0$ surface boundary condition, such as \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others. The surface boundary condition correction $H_{\rm bc}$ is positive in the line wing and negative at the peak of the spectrum, which suggests the previously cited solutions are too large at the spectral peaks and too small further out in the wing, where the error scales approximately as $(a\tau_0)^{-1/3}$. This appears to be the consequence of not enforcing the correct frequency-dependent boundary conditions at the surface of the medium.
+Models of heating and escape of hydrogen gas in exoplanet atmospheres can be constructed with an accurate treatment of resonant scattering of \lya in spherical geometry. The Monte Carlo method can be used for this problem, but requires a solution of radiative transfer in a sphere and is limited by its high computational demand for large optical depths where there are many photon scatterings before escape. The primary goal of this work is to present a solution for mean intensity ($J$) and flux ($H = F/4\pi$) of photons near line-center frequency $\nu_0$ in a uniform sphere. We have generalized a solution derived by \cite{2006ApJ...649...14D} (called $H_0$ here) to allow a monochromatic source of photons with frequencies away from line center, and we have made a correction to their incorrect $J=0$ surface boundary condition. This correction allows the proper condition $J=\sqrt{3}H$ to be satisfied at the surface of the sphere, and comes from the introduction of the terms $J_{\rm bc}$ and $H_{\rm bc}$ which are solved using a continuous Fourier expansion in frequency. Enforcement of the correct boundary term leads naturally to expansion of the spatial dependence in terms of spherical Bessel functions. In practice, the continuous expansions are discretized and the Fourier coefficients solved for via a matrix equation. The resulting flux correction, $H_{\rm bc}$, scales as $(a\tau_0)^{-1/3}$. Thus, for very large $\tau_0$, only a small correction to $H_0$ is needed, while larger errors are present in calculations performed at lower $\tau_0$. Since the Laplacian form of the differential equation is only attainable by approximating the line profile as $\phi \approx a/(\pi x^2)$, these solutions are invalid in areas where the Doppler core of the \lya line has a significant effect on the scattering of photons. The peak of the spectral energy distribution of escaping photons is $x_0 = (a\tau_0)^{1/3}$; as such, calculations performed at low optical depths are likely to be inaccurate due to the close proximity of the spectral peak and the Doppler core of the line. By comparison with Monte Carlo simulations, we have shown that the enforcement of the correct frequency-dependent boundary conditions improves the accuracy of these analytic solutions %and correctly tracks changes in the spectrum of escaping photons as the monochromatic source frequency $x_s$ is altered, 
+provided a sufficiently large $\tau_0$. Specifically, this solution shows improvement over previous solutions that utilized a $J=0$ surface boundary condition, such as \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others. TODO: Give details. The surface boundary condition correction $H_{\rm bc}$ is positive in the line wing and negative at the peak of the spectrum, which suggests the previously cited solutions are too large at the spectral peaks and too small further out in the wing, where the error scales approximately as $(a\tau_0)^{-1/3}$. This appears to be the consequence of not enforcing the correct frequency-dependent boundary conditions at the surface of the medium.
 
 Additionally, the time-dependence of the problem is solved under a $J=0$ boundary condition to characterize the distribution of photon escape times. The differential equation cannot be solved except with a semi-analytic approach, utilizing an expansion in both space and photon frequency. By matching boundary conditions on either side of the photon source frequency $x_s$, the flux at the surface of the sphere is found as a function of $t$ and $\nu$, expressed as a sum over many eigenmodes $n$ and $m$---spatial and frequency modes, respectively. Calculating additional spatial eigenmodes provides a more accurate model of the physics nearer to line center, but convergence is slow due to each eigenmode's weak dependence on $n$. Additional frequency eigenmodes introduce fast-oscillating terms that improve the accuracy of the sum, as their contributions cancel with components of lower-order terms to better represent the true solution. Integrating the solution over time produces a spectrum that is shown to agree well with the steady-state calculations in Section \ref{sec:steadystate}, provided a sufficient number of terms in the sum. Integrating the solution over frequency leads to a distribution of photon escape times, which can be compared directly with Monte Carlo simulations. The sum over eigenmodes produces an escape-time distribution that broadly captures the behavior shown by Monte Carlo data---a rise at early times, transitioning to exponential decay in the tail of the distribution. It is expected that the accuracy of the rate constant for the tail of the distribution is limited by the number of spatial terms included in the sum over eigenmodes, as the Doppler core can trap photons at high optical depths until they diffuse outward in frequency, biasing the distribution toward later times. This physics is not modeled by our solution for two reasons: 1) our calculations ignored the Gaussian component of the Voigt line profile, leaving the Lorentzian piece which is accurate only in the line wing, and 2) knowing the core is not modeled accurately, we do not include a large enough number of spatial eigenmodes in the sum to resolve it. However, a fitting function dependent on parameters $a$ and $\tau_0$ is found that adequately represents the escape time distribution within these constraints. The cumulative distribution function could be calculated using a rejection method, which would then be used to sample photon escape times directly rather than computing their travel times by the Monte Carlo method.
 
