@@ -68,7 +68,7 @@ Several other works have followed \citet{1973MNRAS.162...43H}, building upon the
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0$. We aim to find the intensity within the sphere as a function of radius and photon frequency. Photons of frequency $\nu$ near line center frequency $\nu_0$ are considered. The Doppler width will be written $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units will be written $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} (\pi e^2/m_e c) f$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = (k/\sqrt{\pi}\Delta)R$. 
+Consider a sphere of radius $R$ and uniform density, with line-center optical depth $\tau_0$. We aim to find the intensity within the sphere as a function of radius and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units is $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. $n_{\rm sc}$ is the number density of scatterers, $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} \pi e^2 f/(m_e c)$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = kR/(\sqrt{\pi}\Delta)$. 
 
 Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, with no photon destruction and a photon emission term given by Eq. \ref{eq:jem}, the steady-state transfer equation is
 \be
@@ -76,8 +76,7 @@ Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, with no photon 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-where $\sigma$ comes from a change of variables in photon frequency (Eq. \ref{eq:change_of_variables}) and $\sigma_s$ is the photon frequency of the source. The boundary condition is that there is no incoming intensity at the surface, which can be written
-\citep{1986rpa..book.....R}
+where $J$ is the mean intensity, $\sigma$ represents a change of variables in photon frequency (Eq. \ref{eq:change_of_variables}) and $\sigma_s$ is is the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler units or Hz, respectively. The boundary condition that there is no incoming intensity at the surface \citep{1986rpa..book.....R} can be written as
 \be
 J & = & \sqrt{3} H
 \label{eq:bc}
@@ -98,7 +97,7 @@ H_{\rm d} & = & - \frac{1}{3k\phi} \frac{\partial J_d}{\partial r}
 \left( \frac{k r/\Delta}{ \left[ (kr/\Delta)^2 + (\sigma-\sigma_{\rm s})^2 \right]^2 } \right).
 \label{eq:Hd}
 \ee
-This solution is useful as a simple analytic formula. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$ and does not adhere to the correct boundary condition. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration, but will not be discussed further.
+This solution is useful as a simple analytic formula. However, it is not a good approximation to the true solution, as it is too large at $r=R$ by a factor of $J_{\rm d}(R,\sigma)/ H_{\rm d}(R,\sigma) \sim a\tau_0/x^2 \sim (a\tau_0)^{1/3} \gg 1$ and does not adhere to the correct boundary condition. This solution is included in Fig. \ref{fig:sol_mc_residual_0} for illustration.
 
 A better approximation to the true solution has been derived by \citet{2006ApJ...649...14D}, who generalized the closed-form solution in slab geometry found in \citet{1990ApJ...350..216N}. They found a solution which satisfies a $J=0$ boundary condition at $r=R$. Again, we generalize their solution to allow emission at frequency $\sigma_{\rm s}$ away from line center. The result can be written as a sum over spatial modes,
 \be \label{eq:J0_sum}
@@ -147,7 +146,7 @@ n (-1)^n \exp{\left(\frac{\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}\\
 \right).
 \label{eq:H0surf}
 \ee
-Eq. \ref{eq:H0surf} will be shown to be a much better approximation to the solution than Eq. \ref{eq:Hd}. It is still valid near the delta function at $r=0$, but is also a much better approximation at $r=R$. $J_0$ decreases exponentially rather than as a power-law in frequency as for $J_d$, giving a much smaller flux on the line wings as compared to the divergent solution. 
+Eq. \ref{eq:H0surf} will be shown to be a better approximation to the solution than Eq. \ref{eq:Hd}. It is still valid near the delta function at $r=0$, but is also a better approximation at $r=R$. $J_0$ decreases exponentially rather than as a power-law in frequency as it does for $J_d$, giving a much smaller flux on the line wings as compared to the divergent solution. 
 
  %TODO
 
@@ -159,7 +158,7 @@ and
 \be \label{eq:totalflux}
 H(r,\sigma) & = & H_0(r,\sigma) + H_{\rm bc}(r,\sigma).
 \ee
-Here, $J_0$ and $H_0$ are the solutions of the homogeneous equation, given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
+Here, $J_0$ and $H_0$ are given in Equations \ref{eq:J0} and \ref{eq:H0}. The additional term $J_{\rm bc}$ must then be a solution of the homogeneous equation
 \be \label{eq:diffeq}
 \frac{\partial^2J_{\rm bc}}{\partial r^2} + \frac{2}{r} \frac{\partial J_{\rm bc}}{\partial r}
 + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J_{\rm bc}}{\partial \sigma^2} &= & 0
@@ -171,14 +170,14 @@ J_{\rm bc}(R,\sigma) - \sqrt{3} H_{\rm bc}(R,\sigma) & =
 \sqrt{3} H_0(R,\sigma).
 \label{eq:bc2}
 \ee
-Plugging in a frequency dependence $J_{\rm bc} \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
+Inserting a frequency dependence $J_{\rm bc} \propto e^{is\sigma}$, for ``wavenumber" $s$, gives the equation for modified spherical Bessel functions of the first kind, $i_0(z)=\sinh(z)/z$. The solution can then be represented as
 \be
 J_{\rm bc}(r,\sigma) & = & 
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s) 
 \frac{i_0(krs/\Delta)}{i_0(kRs/\Delta)},
 \label{eq:Jbc}
 \ee
-where $A(s)$ is the Fourier amplitude. Plugging Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes,
+where $A(s)$ is the Fourier amplitude. Inserting Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes,
 \be
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s)
 \left[ 1 + \left( \frac{s}{\sqrt{3} \Delta \phi} \right) \left( \frac{i_0^\prime(kRs/\Delta)}{i_0(kRs/\Delta)} \right) \right]
@@ -307,7 +306,7 @@ with
 \be \label{eq:jnsigmaomega}
 J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
-Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$. Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Plugging in Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
+Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$. Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Inserting Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
