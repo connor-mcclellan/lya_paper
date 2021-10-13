@@ -281,17 +281,16 @@ In this figure, $x_s$ is shifted by integer multiples of $\tau_0$ in $\sigma$ fr
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
-In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a fluid that is dynamic on timescales shorter than the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to an impulse is found, i.e., a delta function in time. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized and fit for efficient sampling. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is a decent approximation for $\tau_0 \gg 1$. 
+In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a radiation field that is dynamic on timescales comparable to the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to a delta function impulse is found. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized and fit. The wait time distribution can then be sampled to tabulate escape times instead of waiting for each photon to move outside the sphere. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is a decent approximation for $a\tau_0 \gg 1$. 
 
 \subsection{Derivation of the time-dependent solution}
 \label{subsec:time_dependent:background}
 
-The source is changed to the form
+The emissivity for an impulsive source with energy E, source position $\vec{x}_s$, and frequency $\nu_s$ is 
 \be
 j_{\rm em} & = & \frac{E}{4\pi} \delta^3(\vec{x} - \vec{x}_s) \delta(\nu-\nu_{\rm s})\delta (t) ,
 \label{eq:jem2}
-\ee
-which is a standard expression for emissivity in CGS units where $E$ is the energy emitted in the impulse at time $t=0$. 
+\ee % TODO: Phil said to cite an equation from the appendix here?
 The resulting equation for $J(r,\sigma,t)$ is
 \be
 -3 \frac{k\phi}{c} \frac{\partial J}{\partial t} + \nabla^2 J + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2}
@@ -301,40 +300,41 @@ The resulting equation for $J(r,\sigma,t)$ is
 We employ an expansion in terms of spherical Bessel functions in $r$ and transform the time dependence into an imaginary frequency variable $\omega$. The expansion for $J(r, \sigma, t)$ is
 \be
 \label{eq:jrsigmat_expansion}
-J(r, \sigma, t) = -\sum_{n=1}^{\infty} \int \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega),
+J(r, \sigma, t) = \sum_{n=1}^{\infty} \int_{-\infty}^\infty \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega),
 \ee
 with
 \be \label{eq:jnsigmaomega}
-J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_0^\infty dt\ e^{i\omega t} J(r, \sigma, t).
+J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_{-\infty}^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
-Eq. \ref{eq:jrsigmat_expansion} is the standard specific mean intensity $dE/dA dt d\nu$. Though $J(r, \sigma, t)$ is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. Eq. \ref{eq:jnsigmaomega} is in the same units, but with an additional unit of $t$ in the numerator as a result of the expansion. Inserting Eq. \ref{eq:jnsigmaomega} for the eigenfunctions in Eq. \ref{eq:diffusion_eqn} and evaluating the integrals, we obtain
+%TODO: Put J after "specific mean intensity" from Phil's edits? What does that mean?
+Here $J(r, \sigma t)$ is the formula for specific mean intensity $dE/(dA dt d\nu)$. Though it is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. $J(n, \sigma, \omega)$ has units $dE/(dA d\nu)$. Inserting the expansion in Eq. \ref{eq:jrsigmat_expansion} in to Eq. \ref{eq:diffusion_eqn} and integrating against $\omega$, we obtain
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
-This cannot be solved analytically, so we turn now to a semi-analytic scheme to solve this equation for $J$. We start with a treatment of the boundary conditions. At $\sigma=\sigma_s$ continuity must be enforced,
+At $\sigma=\sigma_s$, continuity must be enforced,
 \be \label{eq:matching_condition_1}
 J_+ = J_-,
 \ee
-and the discontinuity in $dJ/d\sigma$  must be
+and the discontinuity in $dJ/d\sigma$ due to the source is
 \be \label{eq:matching_condition_2}
 \frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
 \ee
-At large values of $\sigma$ the line profile is small such that Eq. \ref{eq:diffusion_plugged_in} becomes
+At large values of $\sigma$ the line profile $\phi$ is small and Eq. \ref{eq:diffusion_plugged_in} becomes
 \be \label{eq:diffusion_at_large_sigma}
-\frac{\partial^2J}{\partial\sigma^2} = \frac{\Delta^2\kappa_n^2}{k^2} J,
+\frac{\partial^2J}{\partial\sigma^2} \approx \frac{\Delta^2\kappa_n^2}{k^2} J,
 \ee
 which has solutions 
 \be
 J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}.
 \ee
-We then have
+This approximate solution implies a boundary condition at large $|\sigma|$
 \be \label{eq:single_j_derivative}
 \frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J,
 \ee
-where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$. Two numerical integrations are performed inward from large $\pm \sigma$ to $\sigma_s$, isolating the solution that increases exponentially toward the line center. Initial values for integration are obtained by setting $J=1$ in Eq. \ref{eq:single_j_derivative}. This gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions, Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained for all photon frequencies $\sigma$. Since the eigenfunctions are linear in the starting conditions, only two integrations with different starting values are necessary.
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to chose the finite solution as $|\sigma|\to 0$. Two numerical integrations are performed inward from large $|\sigma|$ to $\sigma_s$. Initial values for integration are obtained by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative}. Integration gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions, Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
 
-Let us define the damping frequency to be $\gamma \equiv i\omega$, which is real-valued and positive for damped solutions to the time-dependent equation. There are certain values of $\gamma$ for which a resonant response is produced which we will call $\gamma_{nm}$. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
+Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
 \be \label{eq:jnsigmaomega_approx}
 J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
