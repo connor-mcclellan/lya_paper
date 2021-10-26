@@ -197,7 +197,11 @@ The Bessel functions are finite at the center and rise steeply toward the surfac
 
 \subsection{Scaling with Line Center Optical Depth $\tau_0$}
 
-To examine the relative size of the correction term $H_{\rm bc}$ as compared to $H_0$, we consider the case where $\tau_0$ is large and thus $J_{\rm bc} \gg H_{\rm bc}$. In this limit, $J_{\rm bc} \approx \sqrt{3} H_0$. We evaluate Eq. \ref{eq:Jbc} at $r=R$ and solve for the Fourier coefficients, $A(s)$. These are then used in Eq. \ref{eq:Hbc} to find $H_{\rm bc}(R, \sigma)$. Dividing by the contribution from $H_0$, we obtain the proportionality
+% Phil's edit:
+To estimate the scaling of $H_{\rm bc}$ with $\tau_0$, a change of variables to $\bar{\sigma} =  \sigma/\tau_0$ and $\bar{s}=s \tau_0$ is used in Equations 16 and 17. In the limit $J_{\rm bc} \gg H_{\rm bc}$, we find
+
+%% TODO: Exclude this entirely or incorporate with Phil's edit?
+%To examine the relative size of the correction term $H_{\rm bc}$ as compared to $H_0$, we consider the case where $\tau_0$ is large and thus $J_{\rm bc} \gg H_{\rm bc}$. In this limit, $J_{\rm bc} \approx \sqrt{3} H_0$ from Eq. \ref{eq:bc2}. We evaluate Eq. \ref{eq:Jbc} at $r=R$ and solve for the Fourier coefficients, $A(s)$. These are then used in Eq. \ref{eq:Hbc} to find $H_{\rm bc}(R, \sigma)$. Dividing by the contribution from $H_0$, we obtain the proportionality
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto \frac{1}{(a\tau_0)^{1/3}}.
 \ee
@@ -334,7 +338,7 @@ This approximate solution implies a boundary condition at large $|\sigma|$
 \ee
 where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to chose the finite solution as $|\sigma|\to 0$. Two numerical integrations are performed inward from large $|\sigma|$ to $\sigma_s$. Initial values for integration are obtained by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative}. Integration gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions, Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
 
-Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
+We now employ an ansatz that agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. However, the analysis presented in Appendix \ref{app:wkb} suggests the ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
 \be \label{eq:jnsigmaomega_approx}
 J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
 \ee
@@ -346,7 +350,7 @@ Summing over all spatial modes $n$ and over all eigenmodes $m$ for a given $n$, 
 \be \label{eq:Jrsigmat}
 J(r,\sigma,t) & = & \sum_{n=1}^\infty j_0(\kappa_n r)  \sum_{m=1}^{\infty} J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-This ansatz captures the contributions from $n \times m$ simple poles, which seems to agree with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. However, the analysis presented in Appendix \ref{app:wkb} suggests the ansatz is incomplete in the case where $x_s \neq 0$ and the spectrum is asymmetric.
+This ansatz captures only the contributions from $n \times m$ simple poles, and does not contain the asymmetric piece of the solution for $\sigma_s \neq 0$.
 
 Taking a derivative with respect to $r$ and evaluating at the surface $r=R$, we use
 \be
