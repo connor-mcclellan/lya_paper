@@ -285,7 +285,7 @@ In this figure, $x_s$ is shifted by integer multiples of $\tau_0$ in $\sigma$ fr
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
 
-In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a radiation field that is dynamic on timescales comparable to the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to a delta function impulse is found. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized and fit. The wait time distribution can then be sampled to tabulate escape times instead of waiting for each photon to move outside the sphere. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is a decent approximation for $a\tau_0 \gg 1$. 
+In order to understand how long it takes for the photons to escape the uniform sphere of gas we must reintroduce the time dependence of the diffusion equation, which was ignored in the steady-state calculations in Section \ref{sec:steadystate}. To obtain the radiative intensity $I=dE/(dAdtd\Omega d\nu)$ of a radiation field that is dynamic on timescales comparable to the light-crossing time $t_{\rm lc} = R/c$, the time-dependent response to a delta function impulse is found. This allows the distribution of photon escape times (the ``wait time distribution'') to be characterized. For simplicity a $J=0$ boundary condition will be used in the following derivations, which is a rough approximation for $a\tau_0 \gg 1$. 
 
 \subsection{Derivation of the time-dependent solution}
 \label{subsec:time_dependent:background}
@@ -301,7 +301,7 @@ The resulting equation for $J(r,\sigma,t)$ is
 & = & - \frac{\sqrt{6} kE}{4\pi \Delta^2} \delta^3(\vec{x}) \delta (\sigma - \sigma_s ) \delta (t).
 \label{eq:diffusion_eqn}
 \ee
-We employ an expansion in terms of spherical Bessel functions in $r$ and transform the time dependence into an imaginary frequency variable $\omega$. The expansion for $J(r, \sigma, t)$ is
+We employ an expansion in terms of spherical Bessel functions in $r$ and Fourier transform in time. The expansion for $J(r, \sigma, t)$ is then
 \be
 \label{eq:jrsigmat_expansion}
 J(r, \sigma, t) = \sum_{n=1}^{\infty} \int_{-\infty}^\infty \frac{d\omega}{2\pi} e^{-i\omega t} j_0\left(\kappa_n r\right) J(n, \sigma, \omega),
@@ -311,17 +311,17 @@ with
 J(n, \sigma, \omega) = \frac{2\kappa_n^2}{R} \int_0^R dr\ r^2 j_0(\kappa_n r) \int_{-\infty}^\infty dt\ e^{i\omega t} J(r, \sigma, t).
 \ee
 %TODO: Put J after "specific mean intensity" from Phil's edits? What does that mean?
-Here $J(r, \sigma t)$ is the formula for specific mean intensity $dE/(dA dt d\nu)$. Though it is written as a function of the photon frequency variable $\sigma$, it should be integrated over $d\nu$ to preserve its normalization. $J(n, \sigma, \omega)$ has units $dE/(dA d\nu)$. Inserting the expansion in Eq. \ref{eq:jrsigmat_expansion} in to Eq. \ref{eq:diffusion_eqn} and integrating against $\omega$, we obtain
+Here, $\omega$ describes the time-dependence of J. Though it is written as a function of the photon frequency variable $\sigma$, $J(r, \sigma, t)$ is the specific mean intensity $dE/(dA dt d\nu)$ and is a distribution in $\nu$. The Fourier coefficient $J(n, \sigma, \omega)$ has units $dE/(dA d\nu)$. Using Equation \ref{eq:jnsigmaomega}, we obtain
 \be \label{eq:diffusion_plugged_in}
  \left( \frac{3k\phi}{c}i\omega  -   \kappa_n^2 \right) J(n,\sigma,\omega)  &+& \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2J(n,\sigma,\omega)}{\partial\sigma^2} = -\frac{2\kappa_n^2}{R} \frac{\sqrt{6}}{4\pi} \frac{kE}{\Delta^2} \frac{1}{4\pi} \delta(\sigma - \sigma_s).
 \ee
 At $\sigma=\sigma_s$, continuity must be enforced,
 \be \label{eq:matching_condition_1}
-J_+ = J_-,
+J(n, \sigma^-, \omega) = J(n, \sigma^+, \omega),
 \ee
 and the discontinuity in $dJ/d\sigma$ due to the source is
 \be \label{eq:matching_condition_2}
-\frac{\partial J_+}{\partial \sigma} - \frac{\partial J_-}{\partial \sigma} & = & 
+\frac{\partial J(n, \sigma^+, \omega)}{\partial \sigma} - \frac{\partial J(n, \sigma^-, \omega)}{\partial \sigma} & = & 
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
 \ee
 At large values of $\sigma$ the line profile $\phi$ is small and Eq. \ref{eq:diffusion_plugged_in} becomes
@@ -336,13 +336,13 @@ This approximate solution implies a boundary condition at large $|\sigma|$
 \be \label{eq:single_j_derivative}
 \frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J,
 \ee
-where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to chose the finite solution as $|\sigma|\to 0$. Two numerical integrations are performed inward from large $|\sigma|$ to $\sigma_s$. Initial values for integration are obtained by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative}. Integration gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions, Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
+where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to chose the finite solution as $|\sigma|\to 0$. Numerical integrations are performed inward toward $\sigma_s$ over several domains: from large $|\sigma|$ to $\sigma_s$, from large $|\sigma|$ to 0, and from 0 to $\sigma_s$, depending on whether $\sigma_s$ is positive or negative. If $\sigma_s=0$, just two integrations are performed inward from large $|\sigma|$ to 0. Initial values for integration are obtained either by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative} at large $|\sigma|$ or by matching $J$ and $dJ/d\sigma$ at 0. This gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
 
-We now employ an ansatz that agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. However, the analysis presented in Appendix \ref{app:wkb} suggests the ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
+We now employ an ansatz that roughly agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. However, the analysis presented in Appendix \ref{app:wkb} suggests the ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
 \be \label{eq:jnsigmaomega_approx}
-J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + {\rm terms\ which\ vary\ slowly\ in\ \gamma}.
+J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + C(\sigma),
 \ee
-for which an application of the residue theorem gives
+where $C(\sigma)$ varies slowly in $\gamma$. An application of the residue theorem gives
 \be
 J_{nm}(r,\sigma,t) & \simeq & j_0(\kappa_n r) J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
@@ -363,6 +363,7 @@ to obtain the flux, which is
 F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
 = - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
+% TODO: PICK UP HERE
 Multiplying by $4\pi R^2$ gives the energy per time per frequency
 \be
 \frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
