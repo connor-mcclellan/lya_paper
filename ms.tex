@@ -363,15 +363,14 @@ to obtain the flux, which is
 F(R,\sigma,t) & =& - \frac{4\pi}{3k\phi} \frac{dJ(R,\sigma,t)}{dr} 
 = - \frac{4\pi}{3k\phi R}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
-% TODO: PICK UP HERE
-Multiplying by $4\pi R^2$ gives the energy per time per frequency
+Multiplying by $4\pi R^2$ gives the energy per time per frequency emerging from the sphere to be
 \be
 \frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \label{eq:dEdtdnu}
 \ee
-Integrating over time yields a factor $-1/\gamma_{nm}$, and by integrating over $d\nu$ we find
+Integrating over time yields a factor $1/\gamma_{nm}$, and by integrating over $d\nu$ we find
 \be \label{eq:sum_rule}
-1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
+1 & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE} \sum_{nm} (-1)^{n+1} \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
 This non-trivial ``sum rule'' provides a check on the values of $\gamma_{nm}$ and $J_{nm}(\sigma)$. This expression can also be written as
 \be
@@ -380,7 +379,7 @@ This non-trivial ``sum rule'' provides a check on the values of $\gamma_{nm}$ an
 \ee
 where the contribution of each mode is
 \be \label{eq:pnmsoln}
-P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^n \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
+P_{nm} & \equiv & \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3kE}  (-1)^{n+1} \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
 These coefficients are negative for odd values of $n$ and positive for even $n$. The size of each contribution scales roughly as $0.5/(m-7/8)^{2/3}$, with a weak dependence on $n$. This indicates the need for a large number of $n$ and $m$ to converge, in that it takes roughly ten times as many $m$ modes to reduce the size of $P_{nm}$ by a factor of ${\sim}$5. 
 
@@ -443,11 +442,11 @@ P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1
 \nonumber \\ & = &  \sum_{nm} P_{nm} \gamma_{nm} e^{-\gamma_{nm}t},
 \label{eq:waittime}
 \ee
-which is normalized to unity. For a sufficiently large number of spatial modes $n$ and frequency modes $m$, the result of this sum agrees with Monte Carlo escape time distributions. % Not sure if we want to say this yet? Maybe save for the escape time figure.
+which is normalized to unity. For a sufficiently large number of spatial modes $n$ and frequency modes $m$, the result of this sum agrees with Monte Carlo escape time distributions.
 
-The eigenfunction expansion method utilized here can produce an effective characterization of the escape time distribution, yet it is not a fast enough computational method to use as a distribution for sampling. However, the behavior of the solution is well-understood since the late-time distribution is simply an exponential falloff. The rate constant of the falloff is the lowest-order eigenfrequency, $\gamma_{00}$, and its scale is determined by the coefficient $P_{00}$ as in Eq. \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
+The eigenfunction expansion method utilized here can produce an effective characterization of the escape time distribution, yet it is not a fast enough computational method to use as a distribution for sampling. However, the behavior of the solution is well-understood since the late-time distribution is simply an exponential falloff. The rate constant of the falloff is the lowest-order eigenfrequency, $\gamma_{11}$, and its scale is determined by the coefficient $P_{11}$ as in Eq. \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
 \be \label{eq:fitting_function}
-P(t) = \exp{\left[-\left(\frac{t_{\rm diff}}{t}\right)^2\right]} \times \gamma_{00} P_{00} e^{-\gamma_{00}t}.
+P(t) = \exp{\left[-\left(\frac{t_{\rm diff}}{t}\right)^2\right]} \times \gamma_{11} P_{11} e^{-\gamma_{11}t}.
 \ee
 The first term represents the early-time distribution, which then transitions to an exponential falloff past a point $ct/R = ct_{\rm diff}/R = (a\tau_0)^{1/3}$, where $t_{\rm diff}$ is a characteristic diffusion timescale.
 
@@ -462,7 +461,7 @@ In Fig. \ref{fig:tau_scaling}, it is shown that the time constant of exponential
 
 We now evaluate the time-integrated spectrum of the response to an impulse and compare it with the solution for the $H_0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Integrating Eq. \ref{eq:dEdtdnu} over all times gives a distribution for the emitted frequencies. Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
-P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^n \gamma_{nm}^{-1} J_{nm}(\sigma).
+P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^{n+1} \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
 Integrating over $\nu$ then gives unity as required by the sum rule in Eq. \ref{eq:sumrule}. 
 
