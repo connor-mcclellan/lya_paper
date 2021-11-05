@@ -76,12 +76,23 @@ Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, with no photon 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-where $J$ is the mean intensity, $\sigma$ represents a change of variables in photon frequency (Eq. \ref{eq:change_of_variables}), and $\sigma_s$ is related to the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler units or Hz, respectively. The spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
+where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
+\be \label{eq:int_change_of_variables}
+\sigma = \sqrt{\frac{2}{3}}\int_0^x \frac{dx}{\phi(x) \Delta} \approx \sqrt{\frac{2}{3}}\frac{\pi}{a}\frac{x^3}{3}, 
+\ee
+where the approximation is applicable in the line wing. Then, the line profile is approximately (Equation \ref{eq:app:line_profile_wing})
+\be \label{eq:line_profile_approx}
+\phi \approx \frac{a}{\pi x^2 \Delta} \approx \left(\frac{2a}{\pi}\right)^{1/3} \frac{1}{3 \Delta} \sigma^{-2/3}.
+\ee
+$\sigma_s$ is related to the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler units or Hz, respectively.  The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
 \be
 J & = & \sqrt{3} H
 \label{eq:bc}
 \ee
 at $r=R$. 
+
+
+
 
 A solution for the mean intensity $J_d$ which is divergent at $\vec{x}=\vec{x_s}$ and $\sigma=\sigma_s$ is presented in \citet{1990ApJ...350..216N}. Here it is extended to spherical geometry and generalized to allow emission frequencies away from line center: 
 \be
@@ -279,7 +290,7 @@ Figure \ref{fig:sol_mc_xinit_lowtau} shows emission away from line center at the
     \label{fig:xinit}
 \end{figure}
 
-Figure \ref{fig:xinit} shows how the boundary term $H_{\rm bc}$ scales with both $\tau_0$ and $x_s$. In this figure, $x_s$ is shifted by integer multiples of $\tau_0$ in $\sigma$ frequency units (Eq. \ref{eq:change_of_variables}) such that the source, now written $\sigma_s$, falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different optical depths and the same source frequency $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as the optical depth becomes larger, indicating general agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Eq. \ref{eq:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are proportional to $(a\tau_0)^{-1/3}$.
+Figure \ref{fig:xinit} shows how the boundary term $H_{\rm bc}$ scales with both $\tau_0$ and $x_s$. In this figure, $x_s$ is shifted by integer multiples of $\tau_0$ in $\sigma$ frequency units (Eq. \ref{eq:change_of_variables}) such that the source, now written $\sigma_s$, falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different optical depths and the same source frequency $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as the optical depth becomes larger, indicating general agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Eq. \ref{eq:app:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are proportional to $(a\tau_0)^{-1/3}$.
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
@@ -403,7 +414,7 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2
 \be \label{eq:wkb_differential_eqn}
 \frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J,
 \ee
-where the line profile is approximated as in Eq. \ref{eq:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decaying evanescent solutions are found. This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
+where the line profile is approximated as in Eq. \ref{eq:app:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decaying evanescent solutions are found. This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
 \be \label{eq:sigma_tp}
 \sigma_{\rm tp} & = & \sqrt{\frac{2a}{\pi}}\left( \frac{k \gamma}{ \kappa_n^2 c \Delta} \right)^{3/2}
 \ee
@@ -641,7 +652,7 @@ where $\vec{H}(\vec{x})$ is the frequency integrated flux, and $\grad \cdot \vec
 \right].
 \ee
 As an example, on the damping wing, the line profile can be approximated as 
-\be \label{eq:line_profile_wing}
+\be \label{eq:app:line_profile_wing}
 \phi \simeq \frac{a}{\pi x^2 \Delta}
 \ee
 with $\langle u_\parallel \rangle \simeq 1/x$ and $\langle u_\parallel^2 \rangle \simeq 1/2$, and so this identity is satisfied. The redistribution function can then be rewritten
