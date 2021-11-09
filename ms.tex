@@ -68,23 +68,23 @@ Several other works have followed \citet{1973MNRAS.162...43H}, building upon the
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Consider a sphere of radius $R$ with uniform density $n_{\rm sc}$, luminosity $L$, and line-center optical depth $\tau_0$. We aim to find the intensity within the sphere as a function of radius and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler units is $x = (\nu-\nu_0)/\Delta$. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. Here $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} \pi e^2 f/(m_e c)$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = kR/(\sqrt{\pi}\Delta)$. 
+Consider a sphere of radius $R$ with uniform density $n_{\rm sc}$, luminosity $L$, and line-center optical depth $\tau_0$ containing a point source of photons. We aim to find the intensity within the sphere as a function of radius and photon frequency. The point source is assumed to be a delta function in space and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The photon frequency of the source is $\nu_s$. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler widths is $x = (\nu-\nu_0)/\Delta$, and $x_s = (\nu_s - \nu_0)/\Delta$ is the corresponding source frequency. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. Here $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} \pi e^2 f/(m_e c)$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = kR/(\sqrt{\pi}\Delta)$. 
 
-Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equation for convenience. The source is assumed to be a delta function in space and photon frequency. The photon frequency of the source is $\nu_s$, which is $x_s = (\nu_s - \nu_0)/\Delta$ in Doppler units. Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, ignoring photon destruction and including a photon emission term given by Eq. \ref{eq:jem}, the steady-state transfer equation is
+Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equation for convenience. Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, ignoring photon destruction and including a photon emission term given by Eq. \ref{eq:jem}, the steady-state transfer equation is
 \be
 \nabla^2 J + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} & = & 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
+where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source.  Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
 \be \label{eq:int_change_of_variables}
 \sigma(x) = \sqrt{\frac{2}{3}}\int_0^x \frac{dx}{\phi(x) \Delta} \approx \sqrt{\frac{2}{3}}\frac{\pi}{a}\frac{x^3}{3}, 
 \ee
 where the approximation is applicable on the damping wing. The line profile is then approximately (Equation \ref{eq:app:line_profile_wing})
 \be \label{eq:line_profile_approx}
-\phi \approx \frac{a}{\pi x^2 \Delta} \approx \frac{1}{3 \Delta}\left(\frac{2a}{\pi}\right)^{1/3}|\sigma^{-2/3}|.
+\phi \approx \frac{a}{\pi x^2 \Delta} \approx \frac{1}{3 \Delta}\left(\frac{2a}{\pi}\right)^{1/3}|\sigma|^{-2/3}.
 \ee
-$\sigma_s \equiv \sigma(x_s)$ is the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler units or Hz, respectively.  The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
+$\sigma_s \equiv \sigma(x_s)$ is the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler widths or Hz, respectively. Balancing the two terms on the left hand side of Equation \ref{eq:rt_no_destr} gives $\sigma \ {\sim}\ \tau_0$, or $x_{\rm peak}\ {\sim}\ (a\tau_0)^{1/3}$. The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
 \be
 J & = & \sqrt{3} H
 \label{eq:bc}
@@ -208,11 +208,11 @@ The Bessel functions are finite at the center and rise steeply toward the surfac
 
 \subsection{Scaling with Line Center Optical Depth $\tau_0$}
 
-We now estimate the scaling of $H_{\rm bc}$ with $\tau_0$. Balancing the two terms on the left hand side of Equation \ref{eq:rt_no_destr} gives $\sigma \ {\sim}\ \tau_0$, or $x_{\rm peak}\ {\sim}\ (a\tau_0)^{1/3}$. In the limit $J_{\rm bc} \gg H_{\rm bc}$, we find that $J_{\rm bc}\ {\sim}\ H_0$ from Equation \ref{eq:bc2}. We  calculate $H_{\rm bc}$ from $J_{\rm bc}$ using Equation \ref{eq:Hbc} as
+We now estimate the scaling of $H_{\rm bc}$ with $\tau_0$. In the limit $J_{\rm bc} \gg H_{\rm bc}$, we find that $J_{\rm bc}\ {\sim}\ H_0$ from Equation \ref{eq:bc2}. We  calculate $H_{\rm bc}$ from $J_{\rm bc}$ using Equation \ref{eq:Hbc} as
 \be
 H_{\rm bc}(R, \sigma)\ {\sim}\ \frac{1}{3k\phi}\frac{ks}{\Delta}H_0\ {\sim}\ H_0 s \frac{x^2}{a}\ {\sim}\ H_0 \frac{1}{\tau_0}\frac{(a\tau_0)^{2/3}}{a}\ {\sim}\ H_0 (a\tau_0)^{-1/3},
 \ee
-so that
+where we have used $s\ {\sim}\ 1/\sigma\ {\sim}\ 1/\tau_0$ so that
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto (a\tau_0)^{-1/3}.
 \ee
