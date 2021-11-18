@@ -68,7 +68,9 @@ Several other works have followed \citet{1973MNRAS.162...43H}, building upon the
 \section{STEADY-STATE SOLUTION}
 \label{sec:steadystate}
 
-Consider a sphere of radius $R$ with uniform density $n_{\rm sc}$, luminosity $L$, and line-center optical depth $\tau_0$ containing a point source of photons. We aim to find the intensity within the sphere as a function of radius and photon frequency. The point source is assumed to be a delta function in space and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The photon frequency of the source is $\nu_s$. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler widths is $x = (\nu-\nu_0)/\Delta$, and $x_s = (\nu_s - \nu_0)/\Delta$ is the corresponding source frequency. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. Here $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} \pi e^2 f/(m_e c)$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = kR/(\sqrt{\pi}\Delta)$. 
+Consider a sphere of radius $R$ with uniform density $n_{\rm sc}$, luminosity $L$, and line-center optical depth $\tau_0$ containing a point source of photons. We aim to find the intensity within the sphere as a function of radius and photon frequency. The point source is assumed to be a delta function in space and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The photon frequency of the source is $\nu_s$. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler widths is $x = (\nu-\nu_0)/\Delta$, and $x_s = (\nu_s - \nu_0)/\Delta$ is the corresponding source frequency. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. For the \lya transition and T=$10^4$ K, $a = 4.72\times 10^{-4}$. $\mathcal{H}(x,a)$ is the Voigt function, $k = n_{\rm sc} \pi e^2 f/(m_e c)$, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is then $\tau_0 = kR/(\sqrt{\pi}\Delta)$. 
+% Here $e$ and $m_e$ are the charge and mass of the electron, $f$ is the oscillator strength of the transition, 
+% Add the oscillator strength (number) cite Rybicki and Lightman
 
 Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equation for convenience. Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, ignoring photon destruction and including a photon emission term given by Eq. \ref{eq:jem}, the steady-state transfer equation is
 \be
@@ -76,7 +78,7 @@ Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equati
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source.  Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
+where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. We will consider only the case where $\vec{x}_s=0$. Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
 \be \label{eq:int_change_of_variables}
 \sigma(x) = \sqrt{\frac{2}{3}}\int_0^x \frac{dx}{\phi(x) \Delta} \approx \sqrt{\frac{2}{3}}\frac{\pi}{a}\frac{x^3}{3}, 
 \ee
@@ -90,9 +92,9 @@ J & = & \sqrt{3} H
 \label{eq:bc}
 \ee
 at $r=R$. 
-
-A solution for the mean intensity $J_d$ which is divergent at $\vec{x}=\vec{x_s}=0$ %TODO: This ok?
-and $\sigma=\sigma_s$ and zero at infinity is presented in \citet{1990ApJ...350..216N}. Here it is extended to spherical geometry and generalized to allow emission frequencies away from line center: 
+%TODO: Remove all references to \vec{x}_s in the paper. Specify once that it's set to zero.
+A solution for the mean intensity $J_d$ which is divergent at the origin
+and $\sigma=\sigma_s$ and is zero at infinity is presented in \citet{1990ApJ...350..216N}. Here it is extended to spherical geometry and generalized to allow emission frequencies away from line center: 
 \be
 J_{\rm d} & = & 
 \left(\frac{\sqrt{6}k^2L}{16\pi^3 \Delta^3}\right)\left(\frac{1}{(kr/\Delta)^2 + (\sigma - \sigma_{\rm s})^2}\right)
@@ -121,7 +123,7 @@ which can be summed to give the closed form expressions
 J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr}
 \left( 
-\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
+\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_s) \right] - \cos(\pi r/R)}
 \right)
 \label{eq:J0}
 \ee
@@ -131,11 +133,11 @@ H_0 & = &\frac{1}{3k\phi}
 \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr^2}
 \left( 
-\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
+\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_s) \right] - \cos(\pi r/R)}
 \right. \nonumber \\ & & \left. - \left( \frac{\pi r}{R} \right)
-\frac{ \cos(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
+\frac{ \cos(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_s) \right] - \cos(\pi r/R)}
 + \left( \frac{\pi r}{R} \right)
-\frac{ \sin^2(\pi r/R) }{ \left[ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R) \right]^2 }
+\frac{ \sin^2(\pi r/R) }{ \left[ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_s) \right] - \cos(\pi r/R) \right]^2 }
 \right).
 \label{eq:H0}
 \ee
@@ -151,7 +153,7 @@ n (-1)^n \exp{\left(\frac{-\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}\\
 \frac{\sqrt{6}L}{32\pi \Delta}
 \frac{1}{R^3}
 \left( 
-\frac{ 1 }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] +1 }
+\frac{ 1 }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_s) \right] +1 }
 \right).
 \label{eq:H0surf}
 \ee
@@ -214,7 +216,7 @@ where we have used $s\ {\sim}\ 1/\sigma\ {\sim}\ 1/\tau_0$ so that
 \be \label{eq:hbc_scaling}
 \frac{H_{\rm bc}(R, \sigma)}{H_0(R, \sigma)} \propto (a\tau_0)^{-1/3}.
 \ee
-At large $\tau_0$, it is expected that the correction term will be small, but it will become increasingly important as $\tau_0$ decreases. Our solution of the transfer equation is only valid when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large $\tau_0$. For \lya and H atoms with $T=10^4$ K, the damping parameter is $a = 4.72\times 10^{-4}$. Thus, the value of $x$ at which the Doppler and Lorentzian components of the line wing are equal is $x_{\rm cw}=3.3$. Setting $x_{\rm cw} = x_{\rm peak}$ and solving for $\tau_0$ gives the value at which the peak of the spectrum falls at the Doppler core boundary, which is $\tau_{\rm cp} \approx 10^5$ (``core-peak'' optical depth). Hence $H_{\rm bc}/H_0 {\sim} (\tau_{\rm cp}/\tau_0)^{1/3}$ is large at $\tau_0 \leq \tau_{\rm cp}$ and decreases relatively slowly as $\tau_0$ increases. Additionally, the optical depth at $x_{\rm peak}$ is proportional to $(a\tau_0)^{1/3}$, so photons here become optically thin when $a\tau_0 {\sim} 1$.
+At large $\tau_0$, it is expected that the correction term will be small, but it will become increasingly important as $\tau_0$ decreases. Our solution of the transfer equation is only valid when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large $\tau_0$. Thus, the value of $x$ at which the Doppler and Lorentzian components of the line wing are equal is $x_{\rm cw}=3.3$. Setting $x_{\rm cw} = x_{\rm peak}$ and solving for $\tau_0$ gives the value at which the peak of the spectrum falls at the Doppler core boundary, which is $\tau_{\rm cp} \approx 10^5$ (``core-peak'' optical depth). Hence $H_{\rm bc}/H_0 {\sim} (\tau_{\rm cp}/\tau_0)^{1/3}$ is large at $\tau_0 \leq \tau_{\rm cp}$ and decreases relatively slowly as $\tau_0$ increases. Additionally, the optical depth at $x_{\rm peak}$ is proportional to $(a\tau_0)^{1/3}$, so photons here become optically thin when $a\tau_0 {\sim} 1$.
 
 \subsection{Comparison to Monte Carlo}
 The Monte Carlo method is used to solve the transfer equation numerically in order to compare the analytic approximation to an ``exact'' solution. This method is valid at all $\tau_0$, being restricted only by its computational demand which grows proportionally to the number of photons used and $\tau_0$. For each simulation, a total of ${\sim}10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the sphere until escaping, at which point their positions, outgoing angles, and escape frequencies are tabulated to obtain the spectrum at the surface of the spherical simulation domain. A constant temperature of $T=10^4\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil. In the comparisons shown in this section, the raw photon data is binned in frequency to obtain spectra. Further details of the Monte Carlo implementation are discussed in \cite{2017ApJ...851..150H}.
@@ -269,11 +271,11 @@ Figure \ref{fig:sol_mc_xinit_lowtau} shows emission away from line center at the
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{xinit.pdf}
-    \caption{$H_{\rm bc}$ vs. frequency. Here $P(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$, as in Eq. \ref{eq:prob_spectrum}. Thicker lines indicate larger optical depth labeled by $\tau_0=10^5, 10^7,$ and $10^9$, and darker lines indicate $\sigma_s$ further from line center, labeled by $\sigma_s=0.0, \tau_0, 2\tau_0$. The location of the core-wing boundary $x_{cw}$ is shown with green vertical lines of increasing thickness for each $\tau_0$. The axes are scaled to show that the size of the corrective factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
+    \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Eq. \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. Thicker lines indicate larger optical depth labeled by $\tau_0=10^5, 10^7,$ and $10^9$, and darker lines indicate $\sigma_s$ further from line center, labeled by $\sigma_s=0.0, \tau_0, 2\tau_0$. The location of the core-wing boundary $x_{cw}$ is shown with green vertical lines of increasing thickness for each $\tau_0$. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
     \label{fig:xinit}
 \end{figure}
 
-Figure \ref{fig:xinit} shows how the boundary term $H_{\rm bc}$ scales with both $\tau_0$ and $x_s$. In this figure, $\sigma_s$ is shifted by integer multiples of $\tau_0$ (Eq. \ref{eq:change_of_variables}) such that the source falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different $\tau_0$ and the same $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as $\tau_0$ becomes larger, indicating agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Eq. \ref{eq:app:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are indeed proportional to $(a\tau_0)^{-1/3}$.
+Figure \ref{fig:xinit} shows how the correction $P_{\rm bc}(x)$ (Eq. \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) scales with both $\tau_0$ and $x_s$. In this figure, $\sigma_s$ is shifted by integer multiples of $\tau_0$ (Eq. \ref{eq:change_of_variables}) such that the source falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different $\tau_0$ and the same $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as $\tau_0$ becomes larger, indicating agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Eq. \ref{eq:app:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \cite{1973MNRAS.162...43H}, \cite{1990ApJ...350..216N}, \cite{2006ApJ...649...14D} and others are indeed proportional to $(a\tau_0)^{-1/3}$.
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
@@ -330,11 +332,13 @@ This approximate solution implies a boundary condition at large $|\sigma|$
 \ee
 where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to choose the finite solution as $|\sigma|\to 0$. Numerical integrations are performed inward toward $\sigma_s$ over several domains: from large $|\sigma|$ to $\sigma_s$, from large $|\sigma|$ to 0, and from 0 to $\sigma_s$, depending on whether $\sigma_s$ is positive or negative. If $\sigma_s=0$, just two integrations are performed inward from large $|\sigma|$ to 0. Initial values for integration are obtained either by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative} at large $|\sigma|$ or by matching $J$ and $dJ/d\sigma$ at 0. This gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
 
-We now wish to find an expression for the eigenfunctions $J(n, \sigma, \omega)$ in order to express the specific mean intensity $J(r, \sigma, t)$ as a sum over both spatial and frequency modes. To do so, we employ an ansatz that roughly agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. However, the analysis presented in Appendix \ref{app:wkb} suggests the ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
+We now wish to reconstruct the specific mean intensity $J(r, \sigma, t)$. While one might expect this could be expressed as a sum over eigenmodes, the analysis presented in Appendix \ref{app:wkb} suggests this ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. This treatment roughly agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. 
+
+Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
 \be \label{eq:jnsigmaomega_approx}
 J(n,\sigma,-i\gamma) & \simeq \frac{ J_{nm}(\sigma) }{\gamma_{nm} - \gamma} + C(\gamma, \sigma),
 \ee
-where $C(\gamma, \sigma)$ varies slowly in $\gamma$. An application of the residue theorem gives %TODO: Problematic, but can this be improved given that we know it doesn't work?
+where $C(\gamma, \sigma)$ varies slowly in $\gamma$. If the $\omega$-integral in Equation \ref{eq:jrsigmat_expansion} could be closed at infinity and evaluated using the residue theorem, the result would be
 \be
 J(r,\sigma,t) & \simeq & j_0(\kappa_n r) J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \ee
@@ -390,7 +394,7 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2
 \begin{figure}
     \centering
     \includegraphics{Jsoln_n1_m100.pdf}
-    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and $m=1, ..., 100$ with $x_s=0$, $a = 4.72\times 10^{-4}$ and $\tau_0=10^7$. } %TODO: Mentioned in previous caption that 'a' needs to be included. What's the solution here? Include or not? Reference?
+    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and $m=1, ..., 100$ with $x_s=0$ and $\tau_0=10^7$. }
     \label{fig:jsoln}
 \end{figure}
 \noindent The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{\rm tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Eq. \ref{eq:diffusion_plugged_in} and examining the resulting homogeneous differential equation. We obtain
@@ -477,6 +481,7 @@ By comparison with Monte Carlo simulations, we have shown that the enforcement o
 The time-dependence of the problem is solved for a $J=0$ boundary condition to characterize the distribution of photon escape times. Solving the differential equation requires a semi-analytic approach, utilizing an expansion in both space and photon frequency. By matching boundary conditions on either side of the photon source frequency $x_s$, the flux at the surface of the sphere is found as a function of $t$ and $\nu$, expressed as a sum over spatial and frequency modes $n$ and $m$, respectively. Calculating additional spatial eigenmodes provides a more accurate model of the physics nearer to line center, but convergence is slow due to each eigenmode's weak dependence on $n$. Additional frequency eigenmodes introduce fast-oscillating terms that improve the accuracy of the sum, as their contributions cancel with components of lower-order terms to better represent the true solution. Integrating the solution over time produces a spectrum that is shown to broadly agree with the steady-state calculations in Section \ref{sec:steadystate}, provided a sufficient number of terms in the sum and emission at the line-center frequency $\nu_0$. Integrating the solution over frequency leads to a distribution of photon escape times, which can be compared directly with Monte Carlo simulations. The sum over eigenmodes produces an escape-time distribution that broadly captures the behavior shown by Monte Carlo data---a rise at early times, transitioning to exponential decay in the tail of the distribution. It is expected that the accuracy of the rate constant for the tail of the distribution is limited by the effect of the Doppler core, which can trap photons at high optical depths until they diffuse outward in frequency, weighting the distribution toward later times. This physics is not modeled by our solution for two reasons: 1) our calculations ignored the Gaussian component of the Voigt line profile, leaving the Lorentzian piece which is accurate only in the line wing, and 2) knowing the core is not modeled accurately, we do not include a large enough number of spatial eigenmodes in the sum to resolve it. However, an approximate fitting function dependent on parameters $a$ and $\tau_0$ is found that adequately represents the escape time distribution within these constraints.
 
 This leads in to a possible application of this work. Models of the escape of hydrogen gas in exoplanet atmospheres can be constructed with a treatment of resonant scattering of \lya in spherical geometry. The Monte Carlo method can be used for this problem, but is limited by its high computational demand for large $\tau_0$ where there are many photon scatterings before escape. We seek to develop a computationally efficient random walk model which requires a solution in spherical geometry. There are several methods that are commonly used to accelerate Monte Carlo radiation transfer calculations, including core skipping methods \citep{1968ApJ...153..783A,2002ApJ...567..922A} and hybrid diffusion methods \citep{2018MNRAS.479.2065S} but we believe that these methods are not sufficient for our application. %TODO: Why? Not bc of Fokker-Planck---we use that too. Core skipping obviously oversimplifies the spatial / frequency redistribution, but why not hybrid diffusion? Smith et al 2018 outlines this in sec 5.1 but has it actually been implemented?
+% Core skipping only really gives a good speedup for low tau0, 10^4 or 10^5. You still have tau0 scatterings on the wing. You also don't know how long you spend in the core, which prevents you from getting the intensity.
 Another approach with wide application is modified random walk methods, such as those discussed in \citet{1984JCoPh..54..508F, 2009A&A...497..155M, 2010A&A...520A..70R}; an outgoing photon is randomly sampled on the surface of the outgoing sphere by drawing its properties from distributions in outgoing frequencies, directions, and escape times, based on solutions to the diffusion equation. A method similar to this has been applied by \citet{2006ApJ...645..792T} to Lyman $\alpha$ transfer using the \cite{1990ApJ...350..216N} solution, but this solution of course does not use the correct frequency-dependent boundary condition at the surface of the sphere. Furthermore, to perform a full radiation hydrodynamic simulation with Monte Carlo acceleration, it will be necessary to calculate radiation forces due to \lya transfer on the faces of each grid cell in the simulation. Similar calculations have been done in \citet{1976ApJ...208..286W} in plane-parallel geometry. However, these solutions are limited to optical depths below $2.5 \times 10^3$. For this work, it would be necessary to model line center optical depths of up to 1 million or more. We will utilize the solution derived here as the basis for our own novel implementation of the modified random walk method.
 
 \section{Summary}
@@ -710,20 +715,25 @@ where $\sigma_s = \sigma(\nu_s)$.
 
 \section{WKB Approximation} \label{app:wkb}
 
-We start with the differential equation Eq. \ref{eq:wkb_differential_eqn}. Near line center, this has two independent solutions which can be written
+In this appendix, we will find a WKB solution for the differential equation Eq. \ref{eq:wkb_differential_eqn} subject to the boundary conditions in Equations %TODO: Ref 28 and 29. 
+We will find this solution for the case $\sigma_s = 0$.
+
+% TODO: All the sigma in this appendix are presumed to be positive, but we've just assumed thta. It happens to be symmetric in this case;
+
+Near line center, this has two independent solutions which can be written
 \be \label{eq:wkb_J}
 J(n,\sigma,s) & = & a_1 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/2} J_{-3/4}\left( k_c \left[ \frac{\sigma}{\sigma_{\rm tp} }\right]^{2/3} \right)
 \nonumber \\ &  + &  a_2 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/2} J_{3/4}\left( k_c \left[ \frac{\sigma}{\sigma_{\rm tp} }\right]^{2/3} \right),
 \ee
-where $J_\alpha(...)$ are Bessel functions of the first kind, $a_1$ and $a_2$ are normalization constants, $\sigma_{tp}$ is given in Eq. \ref{eq:sigma_tp}, and $k_c=3\kappa_n \Delta \sigma_{\rm tp}/2k$. The solution far from line center is 
-\be
+where $J_\alpha(x)$ are Bessel functions of the first kind, $a_1$ and $a_2$ are normalization constants, $\sigma_{tp}$ is given in Eq. \ref{eq:sigma_tp}, and $k_c=3\kappa_n \Delta \sigma_{\rm tp}/2k$. The solution far from line center is 
+\be \label{eq:wkb_J_far}
 J(n,\sigma,s) & = & a_3 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/6} Ai\left(k_c^{2/3} \left[ \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{2/3} - 1 \right]\right),
 \ee
-where $Ai(...)$ is the Airy function of the first kind. Again, $a_3$ is a normalization constant. When $\sigma_s=0$, we can enforce the discontinuity in Eq. \ref{eq:matching_condition_2} to find 
+where $Ai(x)$ is the Airy function of the first kind. Again, $a_3$ is a normalization constant. We can enforce the discontinuity in Eq. \ref{eq:matching_condition_2} to find 
 \be \label{eq:a2}
 a_2 & = & - \frac{\Gamma(7/4) \sigma_{\rm tp}}{ 2^{1/4} k_c^{3/4}} \frac{6^{1/2}}{8} n^2 \frac{E}{kR^3}.
 \ee
-The discontinuity sets the value of $a_2$, and the corresponding term in Eq. \ref{eq:wkb_J} is non-resonant. The discontinuity does not set the value of $a_1$ as that solution does not have a term linear in $\sigma$ when the source is at $\sigma_s=0$. When $\sigma_s=0$, we may show that the solutions both near and far from $\sigma=0$ have the same approximate form in terms of sines and cosines where both functions have short-wavelength behavior. Matched asymptotic expansion \citep{1999amms.book.....B} allows us to relate the normalization coefficients $a_1$ and $a_3$. The matching conditions are
+The discontinuity sets the value of $a_2$, and the corresponding term in Eq. \ref{eq:wkb_J} is non-resonant. The discontinuity does not set the value of $a_1$ as that solution does not have a term linear in $\sigma$. Matched asymptotic expansions \citep{1999amms.book.....B} allows us to relate the normalization coefficients $a_1$ and $a_3$. The matching conditions are
 \be \label{eq:a1/a2}
 \frac{a_1}{a_2} & = & \frac{ \sin \left( \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} + \frac{\pi}{8} \right) }{ \sin \left(  \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} - \frac{\pi}{8} \right) }
 \ee
@@ -732,7 +742,22 @@ The discontinuity sets the value of $a_2$, and the corresponding term in Eq. \re
 \ee
 By setting the to denominator of this expression equal to zero and solving it for the eigenfrequency $\gamma_{nm}$ contained in $\sigma_{\rm tp}$, we find the dispersion relation in Eq. \ref{eq:gamma_nm}.
 
-We have applied this approximation for $\sigma_s=0$. In this case, we have obtained Equations \ref{eq:a1/a2} and \ref{eq:a3/a2} which approach infinity near the eigenfrequencies $\gamma_{nm}$, so there will be no contribution from the $a_2$ term in Equation \ref{eq:wkb_J} at these resonant frequencies. We now seek to understand the behavior of the solution when emission is away from line center ($\sigma_s \neq 0$). The eigenfunction expansion in Equation \ref{eq:Jrsigmat} assumed that a closed contour at infinity, bounding an infinite number of simple poles along the real $\gamma$-axis, could be integrated to find that $J(r, \sigma, t)$ is the sum of the residues of the poles contained within the contour. Equation \ref{eq:a2} shows there is an additional contribution unrelated to the eigenfunctions that is non-resonant. In the case where $\sigma_s \neq 0$, this non-resonant piece contributes to the asymmetry of the the solution about line center. When $\sigma_s=0$, however, the solution is symmetric about line center and the non-resonant piece has no contribution except to produce the matching conditions in Equations \ref{eq:a1/a2} and \ref{eq:a3/a2}. Since we have applied the WKB approximation only when $\sigma_s = 0$, the non-resonant piece which allows the outgoing spectrum to be asymmetric is not captured by the methods outlined here.
+
+%The eigenfunctions themselves are symmetric
+% ^^^ Put this as the first thing we're saying. 
+
+% Summarize the necessary points of the sigmas=0 solution 
+
+%
+
+% In this case, we have obtained Equations \ref{eq:a1/a2} and \ref{eq:a3/a2} which approach infinity near the eigenfrequencies $\gamma_{nm}$, so there will be no contribution from the $a_2$ term in Equation \ref{eq:wkb_J} at these resonant frequencies. We now seek to understand the behavior of the solution when emission is away from line center ($\sigma_s \neq 0$).
+
+While the solution above is specific to the case $\sigma_s = 0$, we can extend this approach to understand the case where $\sigma_s \neq 0$. We have found that, even in this case of emission away from the line center, the eigenfunctions are symmetric about the line center. This is because Equation \ref{eq:wkb_J_far} has dropped a term, $Bi(x)$, that is infinite far from line center; yet, in the region $0 < \sigma < \sigma_s$, this term is finite and contributes an asymmetric piece to the solution. This term is missing from the Equations \ref{eq:wkb_J} and \ref{eq:wkb_J_far}, meaning any solution produced by a sum over eigenmodes will always be symmetric about the line-center since the eigenfunctions themselves are always symmetric even when $\sigma_s \neq 0$. 
+
+
+%The eigenfunction expansion in Equation \ref{eq:Jrsigmat} assumed that a closed contour at infinity, bounding an infinite number of simple poles along the real $\gamma$-axis, could be integrated to find that $J(r, \sigma, t)$ is the sum of the residues of the poles contained within the contour.
+
+% Equation \ref{eq:a2} shows there is an additional contribution unrelated to the eigenfunctions that is non-resonant. In the case where $\sigma_s \neq 0$, this non-resonant piece contributes to the asymmetry of the solution about line center. When $\sigma_s=0$, however, the solution is symmetric about line center and the non-resonant piece has no contribution except to produce the matching conditions in Equations \ref{eq:a1/a2} and \ref{eq:a3/a2}. Since we have applied the WKB approximation only when $\sigma_s = 0$, the non-resonant piece which allows the outgoing spectrum to be asymmetric is not captured by the methods outlined here. Thus, 
 
 \bibliography{ref.bib}{}
 \bibliographystyle{aasjournal}
