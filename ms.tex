@@ -121,7 +121,7 @@ which can be summed to give the closed form expressions
 J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr}
 \left( 
-\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R)}
+\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
 \right)
 \label{eq:J0}
 \ee
@@ -131,11 +131,11 @@ H_0 & = &\frac{1}{3k\phi}
 \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr^2}
 \left( 
-\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R)}
+\frac{ \sin(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
 \right. \nonumber \\ & & \left. - \left( \frac{\pi r}{R} \right)
-\frac{ \cos(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R)}
+\frac{ \cos(\pi r/R) }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R)}
 + \left( \frac{\pi r}{R} \right)
-\frac{ \sin^2(\pi r/R) }{ \left[ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] - \cos(\pi r/R) \right]^2 }
+\frac{ \sin^2(\pi r/R) }{ \left[ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] - \cos(\pi r/R) \right]^2 }
 \right).
 \label{eq:H0}
 \ee
@@ -151,7 +151,7 @@ n (-1)^n \exp{\left(\frac{-\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}\\
 \frac{\sqrt{6}L}{32\pi \Delta}
 \frac{1}{R^3}
 \left( 
-\frac{ 1 }{ \cosh \left[ \frac{\pi \Delta}{k R} (\sigma - \sigma_{\rm s}) \right] +1 }
+\frac{ 1 }{ \cosh \left[ \frac{\pi \Delta}{k R} |\sigma - \sigma_s| \right] +1 }
 \right).
 \label{eq:H0surf}
 \ee
