@@ -116,7 +116,7 @@ and
 \be \label{eq:H0_sum}
 H_0 = - \frac{1}{3k\phi} \frac{\partial J_0}{\partial r} = -\frac{1}{3k\phi}\frac{\sqrt{6}L}{16\pi\Delta} \frac{1}{R^2}\sum_{n=1}^{\infty}n\left(\frac{\cos{\kappa_n r}}{r} - \frac{\sin{\kappa_n r}}{\kappa_n r^2}\right)\exp{\left(\frac{-\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)},
 \ee
-which can be summed to give the closed form expressions
+where $\kappa_n=n\pi/R$. These can be summed to give the closed form expressions
 \be
 J_0 & = & \frac{\sqrt{6}L}{32\pi^2 \Delta}
 \frac{1}{Rr}
@@ -216,15 +216,15 @@ where we have used $s\ {\sim}\ 1/\sigma\ {\sim}\ 1/\tau_0$ so that
 \ee
 At large $\tau_0$, it is expected that the correction term will be small, but it will become increasingly important as $\tau_0$ decreases. Our solution of the transfer equation is only valid when the peaks of the spectral energy distribution lie well outside of the Doppler core, e.g., for large $\tau_0$. Thus, the value of $x$ at which the Doppler and Lorentzian components of the line wing are equal is $x_{\rm cw}=3.3$. Setting $x_{\rm cw} = x_{\rm peak}$ and solving for $\tau_0$ gives the value at which the peak of the spectrum falls at the Doppler core boundary, which is $\tau_{\rm cp} \approx 10^5$ (``core-peak'' optical depth). Hence $H_{\rm bc}/H_0 {\sim} (\tau_{\rm cp}/\tau_0)^{1/3}$ is large at $\tau_0 \leq \tau_{\rm cp}$ and decreases relatively slowly as $\tau_0$ increases. Additionally, the optical depth at $x_{\rm peak}$ is proportional to $(a\tau_0)^{1/3}$, so photons here become optically thin when $a\tau_0 {\sim} 1$.
 
-\subsection{Comparison to Monte Carlo}
-The Monte Carlo method is used to solve the transfer equation numerically in order to compare the analytic approximation to an ``exact'' solution. This method is valid at all $\tau_0$, being restricted only by its computational demand which grows proportionally to the number of photons used and $\tau_0$. For each simulation, a total of ${\sim}10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the sphere until escaping, at which point their positions, outgoing angles, and escape frequencies are tabulated to obtain the spectrum at the surface of the spherical simulation domain. A constant temperature of $T=10^4\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil. In the comparisons shown in this section, the raw photon data is binned in frequency to obtain spectra. Further details of the Monte Carlo implementation are discussed in \cite{2017ApJ...851..150H}.
-
 \begin{figure}
     \centering
     \includegraphics{final_residual.pdf}
-    \caption{Spectrum $P(x)$ vs. frequency $x$. The analytic solutions for the outgoing spectrum are calculated at a line center optical depth of $\tau_0 = 1 \times 10^7$ and $a = 4.72\times 10^{-4}$ with $x_s = 0.0$. The top panel is linear scale, the middle panel is log scale with $|\rm H_{bc}|$ shown instead of $\rm H_{bc}$, and the bottom panel is the residual of each solution with Monte Carlo.} 
+    \caption{Spectrum $P(x)$ vs. frequency $x$. The analytic solutions for the outgoing spectrum are calculated at a line center optical depth of $\tau_0 = 1 \times 10^7$ with $x_s = 0.0$. The top panel is linear scale, the middle panel is log scale with $|\rm H_{bc}|$ shown instead of $\rm H_{bc}$, and the bottom panel is the residual of each solution with Monte Carlo.} 
     \label{fig:sol_mc_residual_0}
 \end{figure}
+
+\subsection{Comparison to Monte Carlo}
+The Monte Carlo method is used to solve the transfer equation numerically in order to compare the analytic approximation to an ``exact'' solution. This method is valid at all $\tau_0$, being restricted only by its computational demand which grows proportionally to the number of photons used and $\tau_0$. For each simulation, a total of ${\sim}10^6$ photon packets are initialized at a monochromatic source frequency $x_s$ and are allowed to propagate through the sphere until escaping, at which point their positions, outgoing angles, and escape frequencies are tabulated to obtain the spectrum at the surface of the spherical simulation domain. A constant temperature of $T=10^4\ \rm K$ is set for the gas. Frequency redistribution is calculated at each scattering, including the effects of recoil. In the comparisons shown in this section, the raw photon data is binned in frequency to obtain spectra. Further details of the Monte Carlo implementation are discussed in \cite{2017ApJ...851..150H}.
 
 We now compare each of the previously-discussed solutions for surface flux to the Monte Carlo results. The spectrum $P(x)$ is defined as the specific luminosity at the surface divided by the source luminosity, or
 \be \label{eq:prob_spectrum}
@@ -232,11 +232,11 @@ P(x) = \frac{16\pi^2R^2H(R, x)\Delta}{L}.
 \ee
 This is normalized as $\int P(x)dx = 1$. Since $H(r, x)$ is per $d\nu$, a factor of $\Delta$ gives the expression the correct units. 
 
-In Figure \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown along with that of the solutions $H_{\rm d}$, $H_0$, and $H_{\rm 0 + bc} = H_0 + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$.  The $H_{\rm bc}$ term is negative at the peak of the spectrum and positive in the line wing such that, when added to $H_0$, it corrects for the apparent excess of flux in the peaks of the spectrum. The solution with the correct frequency-dependent boundary condition enforced, $H_{0 + \rm bc}$, has lower residuals to Monte Carlo results than the other solutions, especially in the line wing. The boundary term corrects the deficit of $H_0$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings.
+In Figure \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown along with that of the solutions $H_{\rm d}$, $H_0$, and $H_0 + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$.  The $H_{\rm bc}$ term is negative at the peak of the spectrum and positive in the line wing such that, when added to $H_0$, it corrects for the apparent excess of flux in the peaks of the spectrum. The solution with the correct frequency-dependent boundary condition enforced, $H_0 + H_{\rm bc}$, has lower residuals to Monte Carlo results than the other solutions, especially in the line wing. The boundary term corrects the deficit of $H_0$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings.
 
  \begin{figure}
     \centering
-    \includegraphics{tau_threepanel.pdf}
+    \includegraphics[width=\textwidth]{tau_threepanel.pdf}
     \caption{The same as Figure \ref{fig:sol_mc_residual_0}, but for $\tau_0 = 10^5, 10^6, 10^7$. The $x$ and $y$ axes are scaled by $(a\tau_0)^{1/3}$. Photons are initialized with $\rm x_s = 0.0$ in each case.}
     \label{fig:sol_mc_tau}
 \end{figure}
@@ -248,14 +248,14 @@ In Figure \ref{fig:sol_mc_tau} we show the solutions alongside Monte Carlo for $
  
  \begin{figure}
     \centering
-    \includegraphics{xinit_threepanel.pdf}
+    \includegraphics[width=\textwidth]{xinit_threepanel.pdf}
     \caption{The same as Figure \ref{fig:sol_mc_residual_0}, but for $\rm x_s = 0.0, 6.0, 12.0$. The optical depth at each of these source frequencies is $\tau_s = 10^7, 77,$ and $19$, respectively.} 
     \label{fig:sol_mc_xinit}
 \end{figure}
 
  \begin{figure}
     \centering
-    \includegraphics{xinit_threepanel_tau1e6.pdf}
+    \includegraphics[width=\textwidth]{xinit_threepanel_tau1e6.pdf}
     \caption{The same as Fig. \ref{fig:sol_mc_xinit}, but at a lower optical depth $\tau_0 = 10^6$. The shift $x_s$ is a much larger fraction of the distance to the spectral peak $(a\tau_0)^{1/3}$, and thus the asymmetry in the spectrum is much larger. The optical depth at the source frequency is $\tau_s = 10^6$, $7.7$, and $1.9$ for $x_s=0.0, 6.0,$ and $12.0$, respectively. } 
     \label{fig:sol_mc_xinit_lowtau}
 \end{figure}
@@ -268,7 +268,7 @@ Figure \ref{fig:sol_mc_xinit_lowtau} shows emission away from line center at the
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{xinit.pdf}
+    \includegraphics[width=0.8\textwidth]{xinit.pdf}
     \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Eq. \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. Thicker lines indicate larger optical depth labeled by $\tau_0=10^5, 10^7,$ and $10^9$, and darker lines indicate $\sigma_s$ further from line center, labeled by $\sigma_s=0.0, \tau_0, 2\tau_0$. The location of the core-wing boundary $x_{cw}$ is shown with green vertical lines of increasing thickness for each $\tau_0$. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
     \label{fig:xinit}
 \end{figure}
@@ -360,7 +360,7 @@ Multiplying by $4\pi R^2$ gives the energy per time per frequency emerging from 
 \frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \label{eq:dEdtdnu}
 \ee
-Integrating over time yields a factor $1/\gamma_{nm}$, and by integrating over $d\nu$ we find
+Integrating over time yields a factor $-1/\gamma_{nm}$, and by integrating over $d\nu$ we find
 \be \label{eq:sum_rule}
 E & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3k} \sum_{nm} (-1)^{n+1} \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
@@ -408,7 +408,7 @@ Thus, to ensure accuracy in each term of Eq. \ref{eq:Jrsigmat}, the bounds of $\
 The eigenfunction's oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution at late times always comes from the ($n=1, m=1$) lowest-order eigenfunction. Fig. \ref{fig:jsoln} shows a set of eigenfunctions $J_{nm}(\sigma)$ to illustrate their relative scales for different $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1. For H atoms with $T=10^4$ K and $\tau_0=10^7$, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$ in units of specific mean intensity times time. Additional terms add smaller-magnitude, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel, so many modes $m$ and $n$ are required for convergence to the correct solution. 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{gamma_nm.pdf}
+    \includegraphics[width=0.8\textwidth]{gamma_nm.pdf}
     \caption{Decay rate vs. mode number. Overlapping solid lines are plotted for each $n$. The thickness of the lines decrease with $n$ in order to clearly show where they are in agreement. These numerically-obtained resonant frequencies are compared with the analytic expression in Eq. \ref{eq:gamma_nm}. The parameters for the calculation are $\tau_0=10^7$ and $x_s=0.0$.}
     \label{fig:gamma_nm}
 \end{figure}
@@ -452,7 +452,7 @@ In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is sho
 \begin{figure}
     \centering
     \includegraphics{steadystate.pdf}
-    \caption{Time-integrated spectrum $P(x)$ vs. $x$. The steady-state and time-integrated spectra for $n=1, ..., 20$ and $m=1, ..., 500$ are shown with $x_s=0$, $a = 4.72\times 10^{-4}$ and $\tau_0=10^7$.}
+    \caption{Time-integrated spectrum $P(x)$ vs. $x$. The steady-state and time-integrated spectra for $n=1, ..., 20$ and $m=1, ..., 500$ are shown with $x_s=0$ and $\tau_0=10^7$.}
     \label{fig:steadystate}
 \end{figure}
 
