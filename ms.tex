@@ -360,7 +360,7 @@ Multiplying by $4\pi R^2$ gives the energy per time per frequency emerging from 
 \frac{dE}{dtd\nu} & = & - \frac{16\pi^2 R}{3k\phi}  \sum_{nm} (-1)^n J_{nm}(\sigma) e^{-\gamma_{nm}t}.
 \label{eq:dEdtdnu}
 \ee
-Integrating over time yields a factor $-1/\gamma_{nm}$, and by integrating over $d\nu$ we find
+Integrating over time yields a factor $1/\gamma_{nm}$, and by integrating over $d\nu$ we find
 \be \label{eq:sum_rule}
 E & = &  \sqrt{ \frac{3}{2} } \frac{16\pi^2R\Delta^2}{3k} \sum_{nm} (-1)^{n+1} \gamma_{nm}^{-1} \int d\sigma J_{nm}(\sigma).
 \ee
@@ -422,7 +422,7 @@ as shown in Appendix \ref{app:wkb}. The power law in $m$ is weak, requiring up t
 
 We now calculate the distribution of the times it takes each photon to escape the sphere. This is obtained by integrating Eq. \ref{eq:dEdtdnu} over all frequencies. We find
 \be
-P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^n  e^{-\gamma_{nm}t} \int d\sigma J_{nm}(\sigma) 
+P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^{n+1}  e^{-\gamma_{nm}t} \int d\sigma J_{nm}(\sigma) 
 \nonumber \\ & = &  \sum_{nm} P_{nm} \gamma_{nm} e^{-\gamma_{nm}t},
 \label{eq:waittime}
 \ee
