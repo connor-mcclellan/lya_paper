@@ -1,4 +1,4 @@
-\documentclass{aastex63}
+\documentclass[linenumbers]{aastex63}
 \usepackage{amsmath}
 \newcommand{\be}{\begin{eqnarray}}
 \newcommand{\ee}{\end{eqnarray}}
@@ -192,7 +192,7 @@ where $A(s)$ is the Fourier amplitude. Inserting Eq. \ref{eq:Jbc} into Eq. \ref{
 \label{eq:bc3}
 \ee
 Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\Delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\Delta s = 2\pi/(N\Delta \sigma)$, where $N$ is the number of points for each grid. The result is a linear system to solve for the $A(s)$. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate close to the boundaries. Given the Fourier amplitudes $A(s)$, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\delta s = 2\pi/(N\delta \sigma)$, where $N$ is the number of points for each grid. The result is a linear system to solve for the $A(s)$. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate close to the boundaries. Given the Fourier amplitudes $A(s)$, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\sigma) & = & -\frac{1}{3k\phi}
 \frac{\partial J_{\rm bc}(r,\sigma)}{\partial r}
@@ -230,7 +230,7 @@ We now compare each of the previously-discussed solutions for surface flux to th
 \be \label{eq:prob_spectrum}
 P(x) = \frac{16\pi^2R^2H(R, x)\Delta}{L}.
 \ee
-This is normalized as $\int P(x)dx = 1$. Since $H(r, x)$ is per $d\nu$, a factor of $\Delta$ gives the expression the correct units. 
+This is normalized as $\int P(x)dx = 1$. Since $H(R, x)$ is per $d\nu$, a factor of $\Delta$ gives the expression the correct units. 
 
 In Figure \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown along with that of the solutions $H_{\rm d}$, $H_0$, and $H_0 + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$.  The $H_{\rm bc}$ term is negative at the peak of the spectrum and positive in the line wing such that, when added to $H_0$, it corrects for the apparent excess of flux in the peaks of the spectrum. The solution with the correct frequency-dependent boundary condition enforced, $H_0 + H_{\rm bc}$, has lower residuals to Monte Carlo results than the other solutions, especially in the line wing. The boundary term corrects the deficit of $H_0$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings.
 
@@ -322,15 +322,15 @@ At large values of $\sigma$ the line profile $\phi$ is small and Eq. \ref{eq:dif
 \ee
 which has solutions 
 \be
-J(n, \sigma, \omega)\ {\sim}\ e^{\pm \Delta \kappa_n \sigma / k}.
+J(n, \sigma, \omega)\ {\sim}\ e^{\pm \kappa_n \sigma \Delta / k}.
 \ee
 This approximate solution implies a boundary condition at large $|\sigma|$
 \be \label{eq:single_j_derivative}
-\frac{\partial J}{\partial \sigma} = \mp \frac{\Delta\kappa_n}{k} J,
+\frac{\partial J}{\partial \sigma} = \mp \frac{\kappa_n\Delta}{k} J,
 \ee
 where a negative sign is taken for large $+\sigma$ and a positive sign is taken for large $-\sigma$ to choose the finite solution as $|\sigma|\to 0$. Numerical integrations are performed inward toward $\sigma_s$ over several domains: from large $|\sigma|$ to $\sigma_s$, from large $|\sigma|$ to 0, and from 0 to $\sigma_s$, depending on whether $\sigma_s$ is positive or negative. If $\sigma_s=0$, just two integrations are performed inward from large $|\sigma|$ to 0. Initial values for integration are obtained either by setting $J=1$ and $dJ/d\sigma$ from Equation \ref{eq:single_j_derivative} at large $|\sigma|$ or by matching $J$ and $dJ/d\sigma$ at 0. This gives $J$ and $J'$ on either side of $\sigma_s$, where a prime indicates the derivative $\partial/\partial \sigma$. By enforcing the matching conditions Eqs. \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}, the eigenfunctions $J(n, \sigma, \omega)$ are obtained over the domain of photon frequencies $\sigma$. Since the solutions are linear in the starting conditions, only two integrations with different starting values are necessary.
 
-We now wish to reconstruct the specific mean intensity $J(r, \sigma, t)$. While one might expect this could be expressed as a sum over eigenmodes, the analysis presented in Appendix \ref{app:wkb} suggests this ansatz is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. This treatment roughly agrees with Monte Carlo results for $x_s=0$ based on numerical calculations of this result. 
+We now wish to reconstruct the specific mean intensity $J(r, \sigma, t)$. While one might expect this could be expressed as a sum over eigenmodes, the analysis presented in Appendix \ref{app:wkb} suggests this treatment is incomplete in the case where $x_s \neq 0$ and the solution is asymmetric about the line center. This ansatz does, however, roughly agree with Monte Carlo results for $x_s=0$ based on numerical calculations of this result.
 
 Let us define the damping rate to be $\gamma \equiv i\omega$, which is real and positive for damped solutions. At the eigenvalues $\gamma=\gamma_{nm}$, the response $J(n, \sigma, \omega)$ is resonant. Near these $\gamma_{nm}$ poles, the eigenfunctions will have the form 
 \be \label{eq:jnsigmaomega_approx}
