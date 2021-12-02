@@ -457,7 +457,7 @@ In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is sho
 \end{figure}
 
 
-In Figure \ref{fig:escape_time} escape time distributions calculated from Eq. \ref{eq:waittime} are shown alongside Monte Carlo and the fitting function Eq. \ref{eq:fitting_function} for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is likely due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. A cumulative distribution function can be created from Eq. \ref{eq:fitting_function} using a simple rejection method, which allows the function to be sampled rapidly.
+In Figure \ref{fig:escape_time} escape time distributions calculated from Eq. \ref{eq:waittime} are shown alongside Monte Carlo and the fitting function Eq. \ref{eq:fitting_function} for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. Many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. Thus, the rate constant for the exponential falloff is overestimated slightly in the eigenfunction solution as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
 
 \begin{figure}
     \centering
@@ -465,8 +465,6 @@ In Figure \ref{fig:escape_time} escape time distributions calculated from Eq. \r
     \caption{Wait-time distribution of escaping photons $P(t)$ vs. t  for $\tau_0=10^6$ and $10^7$, which is fit using Eq. \ref{eq:fitting_function}. A sum over 20 spatial eigenmodes and 500 frequency eigenmodes is labeled ``Eigenfunctions''. All calculations were performed with a monochromatic source of photons at line center ($x_s = 0.0$).}
     \label{fig:escape_time}
 \end{figure}
-
-The effect of many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. This explains the deficit of photons in the semi-analytic escape time distributions at late times, in that the rate constant for the exponential falloff is overestimated slightly as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
 
 \section{Discussion}
 
