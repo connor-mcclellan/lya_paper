@@ -490,7 +490,7 @@ NASA ATP grant 80NSSC18K0696, ``Exoplanetary MHD Outflows Driven by EUV Heating,
 \appendix
 \section{ derivation of the transfer equation } \label{app:rteqn_derivation}
 
-The problem is as follows. The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. Here the time-dependence of $I$ has been ignored, which assumes the fluid is changing on timescales long compared to a light-crossing time. The intensity $I=I(\vec{x},\vec{n}, \nu)$ will be considered a function of position $\vec{x}$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
+The problem is as follows. The radiative intensity $I = dE/(dA dt d\Omega d\nu)$ is the energy per perpendicular area $dA$, per time $dt$, per solid angle $d\Omega$ and per frequency $d\nu$ \citep{1986rpa..book.....R}. The intensity $I=I(\vec{x}, t, \vec{n}, \nu)$ will be considered a function of position $\vec{x}$, time $t$, photon (unit) direction vector $\vec{n}$, and cyclic frequency $\nu$. In the Eddington and two-stream approximations, $I(\vec{x},\nu) \simeq J(\vec{x},\nu) + 3 \vec{n} \cdot \vec{H}(\vec{x},\nu)$, where $J=(1/4\pi) \int d\Omega I$ is the mean intensity and $\vec{F} = 4\pi \vec{H}= \int d\Omega \vec{n} I$ is the flux.  
 
 The transfer equation is \citep{1986rpa..book.....R}
 \be
@@ -502,11 +502,11 @@ The scattering coefficient, or inverse mean free path to scattering, is
 \alpha_{\rm sc} & = & n_{\rm sc}\, \frac{\pi e^2}{m_e c}\, f\, \frac{\mathcal{H}(x,a)}{\sqrt{\pi} \Delta}
 = k \phi.
 \ee
-The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over number density of the absorber times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. Photon destruction will not be considered, so $p$ is set to 0 in this work.
+The absorption coefficient $\alpha_{\rm abs}$, or inverse mean free path to true absorption, is a sum over species number density times absorption cross section. Once the incoming photon has promoted the electron to an excited state, the collisional de-excitation probability is $p$, and hence only a fraction $1-p$ of the excitations lead to re-emission of photons. 
 
-\citet{1973MNRAS.162...43H} first showed that the transfer equation for the mean  intensity $J$ will satisfy a Poisson equation involving second derivatives of space and frequency variables. In this section we will briefly review the derivation of this equation including photon destruction terms and an emission term.
+\citet{1973MNRAS.162...43H} first showed that the transfer equation for the mean intensity $J$ will satisfy a Poisson equation involving space and frequency. In this section we will briefly review the derivation of this equation including photon destruction terms and an emission term.
 
- ``Hummer Case II-b"  \citep{1962MNRAS.125...21H} will be used for the redistribution function, for which the incoming photon is absorbed by the atom according to the natural broadening in the rest frame, re-emitted with a dipole phase function $g(\vec{n},\vec{n}^\prime)=(3/16\pi)(1+[\vec{n}\cdot \vec{n}^\prime]^2)$, which is appropriate for a 1s-2p transition \citep{1982qe}, and the result is averaged over a Maxwell-Boltzmann distribution of speeds for the atom. The result can be written
+ ``Hummer Case II-b"  \citep{1962MNRAS.125...21H} will be used for the redistribution function, for which the incoming photon is absorbed by the atom according to the natural broadening profile in the rest frame, then is re-emitted with a dipole phase function $g(\vec{n},\vec{n}^\prime)=(3/16\pi)(1+[\vec{n}\cdot \vec{n}^\prime]^2)$, which is appropriate for a 1s-2p transition \citep{1982qe}, and then is averaged over a Maxwell-Boltzmann distribution of speeds for the atom. The result can be written
 \be
 j_{\rm sc}(\vec{x},\vec{n},\nu) & = & k \int \frac{ d^3v}{ \pi^{3/2} v_{\rm th}^3} e^{-v^2/v_{\rm th}^2}\, 
 \int d\Omega^\prime \int d\nu^\prime \,
@@ -537,14 +537,14 @@ and
 \int d\nu^\prime \ R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime) 
 & = & \frac{1}{4\pi} g(\vec{n},\vec{n}^\prime) \phi(\nu)
 \ee 
-where the right hand side is the usual Voigt function, the thermal average of the Lorentzian. The former result implies that the integrated source and sink terms for scattering cancel for $p=1$. In addition, $d\nu d\Omega 4\pi R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime)/\phi(\nu^\prime) $ is the normalized distribution for the outgoing $\vec{n}$ and $\nu$ given the incoming $\vec{n}^\prime$ and $\nu^\prime$. 
+where the right hand side is the usual Voigt function, the thermal average of the Lorentzian. The former result implies that the integrated source and sink terms for scattering cancel for $p=1$. In addition, $4\pi R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime)/\phi(\nu^\prime) $ is the normalized distribution for the outgoing $\vec{n}$ and $\nu$ given the incoming $\vec{n}^\prime$ and $\nu^\prime$. 
 
 This probability distribution can be used to define the moments of the frequency shift
 \be
-\langle \Delta \nu^n \rangle & = & \frac{ \int d\nu^\prime R (\nu-\nu^\prime)^n}{\int d\nu^\prime R}
+\langle \delta \nu^n \rangle & = & \frac{ \int d\nu^\prime R (\nu^\prime-\nu)^n}{\int d\nu^\prime R}
 = \frac{1}{\phi(\nu)}
 \int \frac{ d^3v}{ \pi^{3/2} v_{\rm th}^3} e^{-v^2/v_{\rm th}^2}\,
-\left( \frac{\nu_0 \vec{v} \cdot (\vec{n}-\vec{n}^\prime) }{c} \right)^n
+\left( \frac{\nu_0 \vec{v} \cdot (\vec{n}^\prime-\vec{n}) }{c} \right)^n
 \left( \frac{\Gamma/4\pi^2}{ \left(\nu - \nu_0 - \nu_0 \vec{v} \cdot \vec{n}/c \right)^2 + (\Gamma/4\pi)^2 } \right),
 \ee
 which are functions of $\nu$, $\vec{n}$ and $\vec{n}^\prime$. These integrals can be evaluated in terms of the dimensionless moments of the parallel velocity distribution, defined as
@@ -554,15 +554,15 @@ which are functions of $\nu$, $\vec{n}$ and $\vec{n}^\prime$. These integrals ca
 \ee
 The end results for the first and second moments are
 \be
-\langle \Delta \nu \rangle & = & \Delta \langle u_\parallel \rangle \left( 1 - \vec{n} \cdot \vec{n}^\prime \right)
+\langle \delta \nu \rangle & = & -\langle u_\parallel \rangle \left( 1 - \vec{n} \cdot \vec{n}^\prime \right) \Delta 
 \\
-\langle \Delta \nu^2 \rangle & = & \Delta^2 
+\langle \delta \nu^2 \rangle & = & 
 \left[ \langle u_\parallel^2 \rangle
 \left( 1 - \vec{n} \cdot \vec{n}^\prime \right)^2
-+ \frac{1}{2} \left( 1 - \left( \vec{n} \cdot \vec{n}^\prime\right)^2 \right) \right].
++ \frac{1}{2} \left( 1 - \left( \vec{n} \cdot \vec{n}^\prime\right)^2 \right) \right] \Delta^2 .
 \ee
 
-For small frequency shifts $\nu-\nu^\prime$, the incoming intensity may be expanded as 
+For small frequency shifts $\nu^\prime-\nu$, the incoming intensity may be expanded as 
 \be
 I(\vec{x},\vec{n}^\prime,\nu^\prime) & \simeq  &
 I(\vec{x},\vec{n}^\prime,\nu) 
@@ -582,10 +582,10 @@ I(\vec{x},\vec{n}^\prime,\nu) + \frac{\partial I(\vec{x},\vec{n}^\prime,\nu)}{\p
 k\phi(\nu) \int d\Omega^\prime g 
 \left[ 
 I(\vec{x},\vec{n}^\prime,\nu) 
-- \frac{\partial I(\vec{x},\vec{n}^\prime,\nu)}{\partial \nu }
-\langle \Delta \nu \rangle
++ \frac{\partial I(\vec{x},\vec{n}^\prime,\nu)}{\partial \nu }
+\langle \delta \nu \rangle
 + \frac{1}{2} \frac{\partial^2 I(\vec{x},\vec{n}^\prime,\nu)}{\partial \nu^2 }
-\langle \Delta \nu^2 \rangle
+\langle \delta \nu^2 \rangle
 \right].
 \ee 
 To perform the angular integrals, the Eddington approximation for the angular dependence is inserted with the following result
@@ -601,13 +601,13 @@ k\phi J - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \
 \frac{\partial^2 J}{\partial \nu^2} .
 \label{eq:jsc}
 \ee
-The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involving frequency derivatives of $\vec{H}$, if carried through the calculation, end up giving terms smaller than then largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here on.
+The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involving frequency derivatives of $\vec{H}$, if carried through the calculation, end up giving terms smaller than the largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here onward.
 
 If only scattering is included, the transfer equation becomes
 \be
 \frac{1}{c} \frac{\partial }{\partial t} \left( J + 3\vec{n} \cdot \vec{H} \right)
 + \vec{n} \cdot \grad \left( J + 3\vec{n} \cdot \vec{H} \right)
-& = & - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \nu} 
+& = & -3k\phi \vec{n} \cdot \vec{H} - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \nu} 
 + \frac{1}{2} \Delta^2 k\phi \left( \frac{7}{5} \langle u_\parallel^2 \rangle + \frac{3}{10} \right)
 \frac{\partial^2 J}{\partial \nu^2}.
 \ee
@@ -643,10 +643,8 @@ j_{\rm sc} & \simeq & k\phi J + \frac{1}{2} k \Delta^2 \frac{\partial }{\partial
 \simeq k\phi J + \frac{1}{2} k \Delta^2 \frac{\partial }{\partial \nu} 
 \left( \phi \frac{\partial J}{\partial \nu}  \right),
 \ee
-where the last equality (see e.g. \citealt{1994ApJ...427..603R}) is valid on the damping wing where $\langle u_\parallel^2 \rangle \simeq 1/2$.
-The following equations will use the approximations for the damping wing.
-
-Thus far the transfer equation is
+%TODO: where the last equality (see e.g. \citealt{1994ApJ...427..603R}) is valid on the damping wing.
+The following equations will use the approximations for the damping wing. Thus far the transfer equation is
 \be
 \frac{1}{c} \frac{\partial }{\partial t} \left( J + 3\vec{n} \cdot \vec{H} \right) + \vec{n} \cdot \grad \left( J + 3 \vec{n} \cdot \vec{H} \right)
 & =& j_{\rm em}
@@ -657,7 +655,7 @@ k\phi J + \frac{1}{2} k \Delta^2 \frac{\partial }{\partial \nu}
 \left( \phi \frac{\partial J}{\partial \nu}  \right)
 \right]
 \nonumber \\ & \simeq & 
-j_{\rm em} - 3k\phi \vec{n} \cdot \vec{H} - \left( p k\phi  + \alpha_{\rm abs} \right) J 
+j_{\rm em} - 3(k\phi + \alpha_{\rm abs}) \vec{n} \cdot \vec{H} - \left( p k\phi  + \alpha_{\rm abs} \right) J 
 + \frac{1}{2} k \Delta^2 \frac{\partial }{\partial \nu} 
 \left( \phi \frac{\partial J}{\partial \nu}  \right),
 \label{eq:rteqn2}
