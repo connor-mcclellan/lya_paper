@@ -27,17 +27,13 @@
 
 \title{Resonant Scattering in a Uniform Sphere with Large Optical Depth}
 
-
-
 \correspondingauthor{B. Connor McClellan}
 \email{bcm2vn@virginia.edu}
 
 \author[0000-0002-6040-8281]{B. Connor McClellan}
-\address{} %TODO: McCormick address
 \author[0000-0001-7488-4468]{Shane Davis}
 \author[0000-0001-5611-1349]{Phil Arras}
-\affiliation{Department of Astronomy, University of Virginia, Charlottesville, VA 22904, USA}
-%TODO: Complete postal address for each author, including zip code
+\address{Department of Astronomy, University of Virginia, Charlottesville, VA 22904, USA}
 
 \begin{abstract}
 %TODO: 225 words! All done.
@@ -71,7 +67,7 @@ Several other works have followed \citet{1973MNRAS.162...43H}, building upon the
 
 Consider a sphere of radius $R$ with uniform density $n_{\rm sc}$, luminosity $L$, and line-center optical depth $\tau_0$ containing a point source of photons. We aim to find the intensity within the sphere as a function of radius and photon frequency. The point source is assumed to be a delta function in space and photon frequency. Photons of frequency $\nu$ near the line center frequency $\nu_0$ are considered. The photon frequency of the source is $\nu_s$. The Doppler width is $\Delta = \nu_0 v_{\rm th}/c$, where $v_{\rm th}=\sqrt{2k_{\rm B}T/m_{\rm H}}$ is the thermal speed of hydrogen atoms of mass $m_{\rm H}$ and temperature $T$, and $c$ is the speed of light. The photon frequency in Doppler widths is $x = (\nu-\nu_0)/\Delta$, and $x_s = (\nu_s - \nu_0)/\Delta$ is the corresponding source frequency. For upper-state de-excitation rate $\Gamma$, the ratio of natural to Doppler broadening is $a=\Gamma/(4\pi \Delta)$. For the \lya transition and T=$10^4$ K, $a = 4.72\times 10^{-4}$. $\mathcal{H}(x,a)$ is the Voigt function, and the Voigt line profile is $\phi = \mathcal{H}(x,a)/(\sqrt{\pi} \Delta)$, which is normalized as $\int d\nu\, \phi(\nu) = 1$. The line center optical depth is $\tau_0 = kR/(\sqrt{\pi}\Delta)$, where $k = n_{\rm sc} \pi e^2 f/(m_e c)$. Here, $e$ and $m_e$ are the charge and mass of the electron, and $f$ is the oscillator strength of the transition, which is 0.4162 for \lya \citep{1986rpa..book.....R}.
 
-Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equation for convenience. Starting with the full transfer equation, Eq. \ref{eq:finaleqn}, ignoring photon destruction and including a photon emission term given by Eq. \ref{eq:jem}, the steady-state transfer equation is
+Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equation for convenience. Starting with the full transfer equation, Equation \ref{eq:finaleqn}, ignoring photon destruction and including a photon emission term given by Equation \ref{eq:jem}, the steady-state transfer equation is
 \be
 \nabla^2 J + \left( \frac{k}{\Delta} \right)^2 \frac{\partial^2 J}{\partial \sigma^2} & = & 
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
@@ -156,7 +152,7 @@ n (-1)^n \exp{\left(\frac{-\kappa_n \Delta}{k}|\sigma - \sigma_s|\right)}\\
 \right).
 \label{eq:H0surf}
 \ee
-Eq. \ref{eq:H0surf} will be shown to be a better approximation to the solution than Eq. \ref{eq:Hd}. It is still valid near the delta function at $r=0$, but is also a better approximation at $r=R$. $J_0$ decreases exponentially rather than as a power-law in frequency as it does for $J_d$, giving a much smaller flux on the line wings as compared to the divergent solution. 
+Equation \ref{eq:H0surf} will be shown to be a better approximation to the solution than Equation \ref{eq:Hd}. It is still valid near the delta function at $r=0$, but is also a better approximation at $r=R$. $J_0$ decreases exponentially rather than as a power-law in frequency as it does for $J_d$, giving a much smaller flux on the line wings as compared to the divergent solution. 
 
 In order to enforce the boundary conditions, a different solution method is attempted here, namely a continuous Fourier expansion in the frequency variable $\sigma$. The solution of this problem is split into two pieces: $J_0$ which includes the delta function source and satisfies $J=0$ at $r=R$, and $J_{\rm bc}$ which allows the boundary condition $J=\sqrt{3}H$ to be satisfied at $r=R$. The total solution is
 \be
@@ -185,15 +181,15 @@ J_{\rm bc}(r,\sigma) & = &
 \frac{i_0(krs/\Delta)}{i_0(kRs/\Delta)},
 \label{eq:Jbc}
 \ee
-where $A(s)$ is the Fourier amplitude. Inserting Eq. \ref{eq:Jbc} into Eq. \ref{eq:bc2} leads to the following equation for the Fourier amplitudes,
+where $A(s)$ is the Fourier amplitude. Inserting Equation \ref{eq:Jbc} into Equation \ref{eq:bc2} leads to the following equation for the Fourier amplitudes,
 \be
 \int_{-\infty}^\infty \frac{ds}{2\pi} e^{is\sigma} A(s)
 \left[ 1 + \left( \frac{s}{\sqrt{3} \Delta \phi} \right) \left( \frac{i_0^\prime(kRs/\Delta)}{i_0(kRs/\Delta)} \right) \right]
 & = & \sqrt{3} H_0(R,\sigma).
 \label{eq:bc3}
 \ee
-Discretization of Eq. \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
-leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\delta s = 2\pi/(N\delta \sigma)$, where $N$ is the number of points for each grid. The result is a linear system to solve for the $A(s)$. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate close to the boundaries. Given the Fourier amplitudes $A(s)$, $J_{\rm bc}$ is computed using Eq. \ref{eq:Jbc}, and the flux is given by
+Discretization of Equation \ref{eq:bc3} for frequency variables $\sigma_i$ and wavenumbers $s_j$
+leads to a set of coupled linear equations for the $A(s_j)$. We use equally-spaced points $\delta \sigma = 2\sigma_{\rm max}/(N-1)$ and $\delta s = 2\pi/(N\delta \sigma)$, where $N$ is the number of points for each grid. The result is a linear system to solve for the $A(s)$. The maximum frequency is set as $\sigma_{\rm max} = {\rm constant} \times \tau_0$, for a large enough constant that the end of the frequency grid is at such small intensities that it does not affect the solution except close to the boundaries. The number of points was increased until the solution was well-resolved near line center, and only became inaccurate close to the boundaries. Given the Fourier amplitudes $A(s)$, $J_{\rm bc}$ is computed using Equation \ref{eq:Jbc}, and the flux is given by
 \be
 H_{\rm bc}(r,\sigma) & = & -\frac{1}{3k\phi}
 \frac{\partial J_{\rm bc}(r,\sigma)}{\partial r}
@@ -244,7 +240,7 @@ In Figure \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a f
 
 The size of $H_{\rm bc}$ is dependent on $\tau_0$. $H_{\rm bc}$ is significant even at $\tau_0 {\sim} 10^7$ where the $H_0$ solution is expected to perform well, i.e., photons are pushed further out into the wing where the simplifying assumptions made in the derivation of the differential equation are a better approximation. 
 
-In Figure \ref{fig:sol_mc_tau} we show the solutions alongside Monte Carlo for $\tau_0=10^5, 10^6$, and $10^7$. From Eq. \ref{eq:hbc_scaling}, the size of the term $H_{\rm bc}$ should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. Indeed, agreement between Eq. \ref{eq:H0surf} and the Monte Carlo points in Fig. \ref{fig:sol_mc_tau} improves as $\tau_0$ increases, with $H_{\rm bc}$ providing a fractionally smaller correction to $H_0$. One factor of $(a\tau_0)^{1/3}$ has been scaled out of the x-axis such that the peaks of the distributions are horizontally aligned. This scaling has also been applied to the y-axis to preserve normalization of the escape probability. At lower $\tau_0$, the scattering of photons within the Doppler core of the line becomes important, but our analytic solution does not include this effect. The effects of line core scattering can be seen in the Monte Carlo data for $\tau_0=10^5$ and, to a lesser extent, $
+In Figure \ref{fig:sol_mc_tau} we show the solutions alongside Monte Carlo for $\tau_0=10^5, 10^6$, and $10^7$. From Equation \ref{eq:hbc_scaling}, the size of the term $H_{\rm bc}$ should become smaller with larger optical depths, following a $(a\tau_0)^{-1/3}$ scaling. Indeed, agreement between Equation \ref{eq:H0surf} and the Monte Carlo points in Fig. \ref{fig:sol_mc_tau} improves as $\tau_0$ increases, with $H_{\rm bc}$ providing a fractionally smaller correction to $H_0$. One factor of $(a\tau_0)^{1/3}$ has been scaled out of the x-axis such that the peaks of the distributions are horizontally aligned. This scaling has also been applied to the y-axis to preserve normalization of the escape probability. At lower $\tau_0$, the scattering of photons within the Doppler core of the line becomes important, but our analytic solution does not include this effect. The effects of line core scattering can be seen in the Monte Carlo data for $\tau_0=10^5$ and, to a lesser extent, $
 \tau_0=10^6$.
  
  \begin{figure}
@@ -270,11 +266,11 @@ Figure \ref{fig:sol_mc_xinit_lowtau} shows emission away from line center at the
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{xinit.pdf}
-    \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Eq. \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. Thicker lines indicate larger optical depth labeled by $\tau_0=10^5, 10^7,$ and $10^9$, and darker lines indicate $\sigma_s$ further from line center, labeled by $\sigma_s=0.0, \tau_0, 2\tau_0$. The location of the core-wing boundary $x_{cw}$ is shown with green vertical lines of increasing thickness for each $\tau_0$. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
+    \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Equation \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. Thicker lines indicate larger optical depth labeled by $\tau_0=10^5, 10^7,$ and $10^9$, and darker lines indicate $\sigma_s$ further from line center, labeled by $\sigma_s=0.0, \tau_0, 2\tau_0$. The location of the core-wing boundary $x_{cw}$ is shown with green vertical lines of increasing thickness for each $\tau_0$. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
     \label{fig:xinit}
 \end{figure}
 
-Figure \ref{fig:xinit} shows how the correction $P_{\rm bc}(x)$ (Eq. \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) scales with both $\tau_0$ and $x_s$. In this figure, $\sigma_s$ is shifted by integer multiples of $\tau_0$ (Eq. \ref{eq:change_of_variables}) such that the source falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Eq. \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different $\tau_0$ and the same $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as $\tau_0$ becomes larger, indicating agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Eq. \ref{eq:app:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \citet{1973MNRAS.162...43H}, \citet{1990ApJ...350..216N}, \citet{2006ApJ...649...14D} and others are indeed proportional to $(a\tau_0)^{-1/3}$.
+Figure \ref{fig:xinit} shows how the correction $P_{\rm bc}(x)$ (Equation \ref{eq:prob_spectrum} with $H \rightarrow H_{\rm bc}$) scales with both $\tau_0$ and $x_s$. In this figure, $\sigma_s$ is shifted by integer multiples of $\tau_0$ (Equation \ref{eq:change_of_variables}) such that the source falls near the peak of the spectrum for each $\tau_0$. For clarity, only the $x > 0$ side of the spectrum is shown. From Equation \ref{eq:hbc_scaling}, it is expected that the fractional size of $H_{\rm bc}$ relative to $H_0$ should become smaller with larger optical depths following $(a\tau_0)^{-1/3}$. This factor has been scaled out of the figure such that solutions for different $\tau_0$ and the same $\sigma_s$ should show close agreement in scale on the figure's vertical axis if the relation holds. Indeed, the scaled solutions converge as $\tau_0$ becomes larger, indicating agreement with the $(a\tau_0)^{-1/3}$ scaling. The remaining discrepancy present in the vertical axis for fixed $\sigma_s$ results from $x_{\rm peak}$ becoming close to $x_{\rm cw}$; at lower $\tau_0$, this causes the line profile approximation in the wing (Equation \ref{eq:app:line_profile_wing}) to break down. From this, we conclude that the errors introduced by the incorrect separation of variables in \citet{1973MNRAS.162...43H}, \citet{1990ApJ...350..216N}, \citet{2006ApJ...649...14D} and others are indeed proportional to $(a\tau_0)^{-1/3}$.
 
 \section{Time-Dependent Diffusion}
 \label{sec:time_dependent}
@@ -284,7 +280,7 @@ In order to understand how long it takes for the photons to escape the uniform s
 \subsection{Derivation of the time-dependent solution}
 \label{subsec:time_dependent:background}
 
-The emissivity for an impulsive source with energy E, source position $\vec{x}_s$, and frequency $\nu_s$ is derived in Appendix \ref{app:rteqn_derivation}. Considering a photon source at $\vec{x}_s=0$, we have (Eq. \ref{eq:jem})
+The emissivity for an impulsive source with energy E, source position $\vec{x}_s$, and frequency $\nu_s$ is derived in Appendix \ref{app:rteqn_derivation}. Considering a photon source at $\vec{x}_s=0$, we have (Equation \ref{eq:jem})
 \be
 j_{\rm em} & = & \frac{E}{4\pi} \delta^3(\vec{x}) \delta(\nu-\nu_{\rm s})\delta (t) ,
 \label{eq:jem2}
@@ -317,7 +313,7 @@ and the discontinuity in $dJ/d\sigma$ due to the source is
 \frac{\partial J(n, \sigma^+, \omega)}{\partial \sigma} - \frac{\partial J(n, \sigma^-, \omega)}{\partial \sigma} & = & 
 - \frac{\sqrt{6}}{8} n^2 \frac{E}{kR^3}.
 \ee
-At large values of $\sigma$ the line profile $\phi$ is small and Eq. \ref{eq:diffusion_plugged_in} becomes
+At large values of $\sigma$ the line profile $\phi$ is small and Equation \ref{eq:diffusion_plugged_in} becomes
 \be \label{eq:diffusion_at_large_sigma}
 \frac{\partial^2J}{\partial\sigma^2} \approx \frac{\Delta^2\kappa_n^2}{k^2} J,
 \ee
@@ -396,24 +392,24 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2
     \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and $m=1, ..., 100$ with $x_s=0$ and $\tau_0=10^7$. }
     \label{fig:jsoln}
 \end{figure}
-\noindent The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{\rm tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Eq. \ref{eq:diffusion_plugged_in} and examining the resulting homogeneous differential equation. We obtain
+\noindent The form of a single eigenmode $J_{nm}(\sigma)$ is oscillatory out to some turning point, $\sigma_{\rm tp}$, at which point the function becomes evanescent. The location of the turning point can be found by ignoring the delta-function discontinuity at the source frequency $\sigma_s$ in Equation \ref{eq:diffusion_plugged_in} and examining the resulting homogeneous differential equation. We obtain
 \be \label{eq:wkb_differential_eqn}
 \frac{d^2J}{d\sigma^2} & = & \left[ \left( \frac{\kappa_n \Delta }{k} \right)^2 - \frac{3\phi \gamma\Delta^2}{ck}\right] J,
 \ee
-where the line profile is approximated as in Eq. \ref{eq:app:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decaying evanescent solutions are found. This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
+where the line profile is approximated as in Equation \ref{eq:app:line_profile_wing}. When the coefficient on the right hand side is positive, exponential growth or decaying evanescent solutions are found. This occurs on the line wings. When the coefficient on the right hand side is negative, oscillatory solutions are found (propagation), which occurs near the line core. The boundary between propagation and evanescence occurs at the turning point, given by
 \be \label{eq:sigma_tp}
 \sigma_{\rm tp} & = & \sqrt{\frac{2a}{\pi}}\left( \frac{k \gamma}{ \kappa_n^2 c \Delta} \right)^{3/2}
 \ee
-Thus, to ensure accuracy in each term of Eq. \ref{eq:Jrsigmat}, the bounds of $\sigma$ must be set sufficiently far outside of $\sigma_{\rm tp}$ such that the function is small at the edges. The scale of an $e$-folding in $J_{nm}(\sigma)$ is $k/(\kappa_n \Delta) = \tau_0 / (\sqrt{\pi} n)$, so a grid of $\sigma$ is chosen that spans a large enough number of $e$-foldings that no oscillatory behavior is present at the boundaries of the domain.
+Thus, to ensure accuracy in each term of Equation \ref{eq:Jrsigmat}, the bounds of $\sigma$ must be set sufficiently far outside of $\sigma_{\rm tp}$ such that the function is small at the edges. The scale of an $e$-folding in $J_{nm}(\sigma)$ is $k/(\kappa_n \Delta) = \tau_0 / (\sqrt{\pi} n)$, so a grid of $\sigma$ is chosen that spans a large enough number of $e$-foldings that no oscillatory behavior is present at the boundaries of the domain.
 
 The eigenfunction's oscillatory forms have varying amplitudes which sum to create the final form of the mean intensity. The largest contribution at late times always comes from the ($n=1, m=1$) lowest-order eigenfunction. Fig. \ref{fig:jsoln} shows a set of eigenfunctions $J_{nm}(\sigma)$ to illustrate their relative scales for different $m$ at a fixed spatial eigenmode $n$. The overall scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$ with $E$ arbitrarily set to 1. For H atoms with $T=10^4$ K and $\tau_0=10^7$, an eigenfunction has typical size ${\sim} E a / \left(R^2 \Delta \right) = 10^{-37}$ in units of specific mean intensity times time. Additional terms add smaller-magnitude, faster-oscillating components that lead to higher accuracy upon summation with the lower-order terms. The oscillations of various modes must cancel, so many modes $m$ and $n$ are required for convergence to the correct solution. 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{gamma_nm.pdf}
-    \caption{Decay rate vs. mode number. Overlapping solid lines are plotted for each $n$. The thickness of the lines decrease with $n$ in order to clearly show where they are in agreement. These numerically-obtained resonant frequencies are compared with the analytic expression in Eq. \ref{eq:gamma_nm}. The parameters for the calculation are $\tau_0=10^7$ and $x_s=0.0$.}
+    \caption{Decay rate vs. mode number. Overlapping solid lines are plotted for each $n$. The thickness of the lines decrease with $n$ in order to clearly show where they are in agreement. These numerically-obtained resonant frequencies are compared with the analytic expression in Equation \ref{eq:gamma_nm}. The parameters for the calculation are $\tau_0=10^7$ and $x_s=0.0$.}
     \label{fig:gamma_nm}
 \end{figure}
-The values of the $\gamma_{nm}$ can be described approximately with Eq. \ref{eq:gamma_nm}. Their values depend on $m$, $n$, and other physical parameters according to 
+The values of the $\gamma_{nm}$ can be described approximately with Equation \ref{eq:gamma_nm}. Their values depend on $m$, $n$, and other physical parameters according to 
 \be \label{eq:gamma_nm}
 \gamma_{nm} = 2^{-1/3} \pi^{13/6} n^{4/3}\left(m-\frac{7}{8}\right)^{2/3}\frac{c}{R}(a\tau_0)^{-1/3}
 \ee
@@ -421,13 +417,13 @@ as shown in Appendix \ref{app:wkb}. The power law in $m$ is weak, requiring up t
 
 \subsection{Comparison with Steady State and Monte Carlo}
 
-We now calculate the distribution of the times it takes each photon to escape the sphere. This is obtained by integrating Eq. \ref{eq:dEdtdnu} over all frequencies. We find
+We now calculate the distribution of the times it takes each photon to escape the sphere. This is obtained by integrating Equation \ref{eq:dEdtdnu} over all frequencies. We find
 \be
 P(t)  & = & \sqrt{\frac{3}{2}} \frac{16\pi^2 R \Delta^2 }{3kE}     \sum_{nm} (-1)^{n+1}  e^{-\gamma_{nm}t} \int d\sigma J_{nm}(\sigma) 
 \nonumber \\ & = &  \sum_{nm} P_{nm} \gamma_{nm} e^{-\gamma_{nm}t},
 \label{eq:waittime}
 \ee
-which is normalized to unity. For a sufficiently large number of spatial modes $n$ and frequency modes $m$, the result of this sum can agree with Monte Carlo escape time distributions when $x_s=0$. The late-time distribution is simply an exponential falloff. The rate constant of the falloff is the lowest-order eigenfrequency, $\gamma_{11}$, and its scale is determined by the coefficient $P_{11}$ as in Eq. \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
+which is normalized to unity. For a sufficiently large number of spatial modes $n$ and frequency modes $m$, the result of this sum can agree with Monte Carlo escape time distributions when $x_s=0$. The late-time distribution is simply an exponential falloff. The rate constant of the falloff is the lowest-order eigenfrequency, $\gamma_{11}$, and its scale is determined by the coefficient $P_{11}$ as in Equation \ref{eq:pnmsoln}. Thus, an approximate ``fitting function'' that captures both the peak of the escape time distribution and the exponential falloff is
 \be \label{eq:fitting_function}
 P(t) = \exp{\left[-\left(\frac{t_{\rm diff}}{t}\right)^2\right]} \times \gamma_{11} P_{11} e^{-\gamma_{11}t}.
 \ee
@@ -442,13 +438,13 @@ In Fig. \ref{fig:tau_scaling}, it is shown that the time constant of exponential
     \label{fig:tau_scaling}
 \end{figure}
 
-We now evaluate the time-integrated spectrum of the response to an impulse and compare it with the solution for the $H_0$ steady-state spectrum (Eq. \ref{eq:H0surf}). Integrating Eq. \ref{eq:dEdtdnu} over all times gives a distribution for the emitted frequencies. Dividing by the energy $E$, we find the probability distribution
+We now evaluate the time-integrated spectrum of the response to an impulse and compare it with the solution for the $H_0$ steady-state spectrum (Equation \ref{eq:H0surf}). Integrating Equation \ref{eq:dEdtdnu} over all times gives a distribution for the emitted frequencies. Dividing by the energy $E$, we find the probability distribution
 \be \label{eq:spectrum}
 P(\nu) & = &  \frac{16\pi^2 R}{3k\phi E}  \sum_{nm} (-1)^{n+1} \gamma_{nm}^{-1} J_{nm}(\sigma).
 \ee
-Integrating over $\nu$ then gives unity as required by the sum rule in Eq. \ref{eq:sumrule}. 
+Integrating over $\nu$ then gives unity as required by the sum rule in Equation \ref{eq:sumrule}. 
 
-In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady state $H_0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Eq. \ref{eq:H0surf}. Additional spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes are calculated, the agreement with the steady state spectrum extends further toward the line core, with an infinite number of modes required for convergence at $x=x_s=0$. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over eigenmodes which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would primarily affect the distribution at late times due to the large mean diffusion time of photons near the line core. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated.
+In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is shown for a sum up to $n=20$ and $m=500$ (labelled ``Time-integrated'') as compared with two analytic solutions: the steady state $H_0$ solution with no time dependence (``Steady State'') and the result for summing \textit{only} spatial modes in the eigenfunction expansion with the time dependence ignored (``Partial Sum''), as in Equation \ref{eq:H0surf}. Additional spatial modes contribute to the solutions' accuracy in the core of the line. If more spatial modes are calculated, the agreement with the steady state spectrum extends further toward the line core, with an infinite number of modes required for convergence at $x=x_s=0$. If additional frequency modes are calculated, faster-oscillating terms are incorporated into the sum over eigenmodes which create more perfect cancellations with the lower-order terms, reducing the ``ringing'' seen in the time-integrated spectrum. Extending the calculation deep into the line core by adding additional spatial modes could have an impact on the accuracy of the escape time distribution, but this would primarily affect the distribution at late times due to the large mean diffusion time of photons near the line core. This was the motivation for choosing a comparatively low number of spatial eigenmodes with respect to the number of frequency eigenmodes calculated.
 
 \begin{figure}
     \centering
@@ -458,12 +454,12 @@ In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is sho
 \end{figure}
 
 
-In Figure \ref{fig:escape_time} escape time distributions calculated from Eq. \ref{eq:waittime} are shown alongside Monte Carlo and the fitting function Eq. \ref{eq:fitting_function} for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. Many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. Thus, the rate constant for the exponential falloff is overestimated slightly in the eigenfunction solution as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
+In Figure \ref{fig:escape_time} escape time distributions calculated from Equation \ref{eq:waittime} are shown alongside Monte Carlo and the fitting function Equation \ref{eq:fitting_function} for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. Many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. Thus, the rate constant for the exponential falloff is overestimated slightly in the eigenfunction solution as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
 
 \begin{figure}
     \centering
     \includegraphics{waittime.pdf}
-    \caption{Wait-time distribution of escaping photons $P(t)$ vs. t  for $\tau_0=10^6$ and $10^7$, which is fit using Eq. \ref{eq:fitting_function}. A sum over 20 spatial eigenmodes and 500 frequency eigenmodes is labeled ``Eigenfunctions''. All calculations were performed with a monochromatic source of photons at line center ($x_s = 0.0$).}
+    \caption{Wait-time distribution of escaping photons $P(t)$ vs. t  for $\tau_0=10^6$ and $10^7$, which is fit using Equation \ref{eq:fitting_function}. A sum over 20 spatial eigenmodes and 500 frequency eigenmodes is labeled ``Eigenfunctions''. All calculations were performed with a monochromatic source of photons at line center ($x_s = 0.0$).}
     \label{fig:escape_time}
 \end{figure}
 
@@ -606,7 +602,7 @@ k\phi J - k\phi \Delta \langle u_\parallel \rangle  \frac{\partial J}{\partial \
 \frac{\partial^2 J}{\partial \nu^2} .
 \label{eq:jsc}
 \ee
-The first term in Eq. \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Eq. \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involving frequency derivatives of $\vec{H}$, if carried through the calculation, end up giving terms smaller than the largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here onward.
+The first term in Equation \ref{eq:jsc}, $k\phi J$, represents re-emission of the photon through de-excitation of the atom. It cancels the $-k\phi J$ term in Equation \ref{eq:rteqn} that corresponds to excitation of the atom. The terms involving frequency derivatives of $\vec{H}$, if carried through the calculation, end up giving terms smaller than the largest terms by a factor of $1/x^2$, which is small on the line wing. These terms are ignored from here onward.
 
 If only scattering is included, the transfer equation becomes
 \be
@@ -703,7 +699,7 @@ For emission with luminosity $L$, with a delta function in space $\delta^3(\vec{
 j_{\rm em} & = & \frac{L}{4\pi} \delta^3(\vec{x} - \vec{x}_s) \delta(\nu-\nu_{\rm s}).
 \label{eq:jem}
 \ee
-Multiplying by a factor $-3k\phi$, as appears in Eq. \ref{eq:finaleqn}, the delta function in $\nu$ becomes a delta function in $\sigma$ of the form
+Multiplying by a factor $-3k\phi$, as appears in Equation \ref{eq:finaleqn}, the delta function in $\nu$ becomes a delta function in $\sigma$ of the form
 \be
 -3k\phi j_{\rm em}  &= & - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}),
 \label{eq:jem_v2}
@@ -712,7 +708,7 @@ where $\sigma_s = \sigma(\nu_s)$.
 
 \section{WKB Approximation} \label{app:wkb}
 
-In this appendix, we will find a WKB solution for the differential equation Eq. \ref{eq:wkb_differential_eqn} subject to the boundary conditions in Equations \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}.
+In this appendix, we will find a WKB solution for the differential equation Equation \ref{eq:wkb_differential_eqn} subject to the boundary conditions in Equations \ref{eq:matching_condition_1} and \ref{eq:matching_condition_2}.
 We will find this solution for the case $\sigma_s = 0$, assuming $\sigma \geq 0$ for simplicity since the solution is symmetric about $0$.
 
 Near the line center, this has two independent solutions which can be written
@@ -720,39 +716,24 @@ Near the line center, this has two independent solutions which can be written
 J(n,\sigma,s) & = & a_1 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/2} J_{-3/4}\left( k_c \left[ \frac{\sigma}{\sigma_{\rm tp} }\right]^{2/3} \right)
 \nonumber \\ &  + &  a_2 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/2} J_{3/4}\left( k_c \left[ \frac{\sigma}{\sigma_{\rm tp} }\right]^{2/3} \right),
 \ee
-where $J_\alpha(x)$ are Bessel functions of the first kind, $a_1$ and $a_2$ are normalization constants, $\sigma_{tp}$ is given in Eq. \ref{eq:sigma_tp}, and $k_c=3\kappa_n \Delta \sigma_{\rm tp}/2k$. The solution far from line center is 
+where $J_\alpha(x)$ are Bessel functions of the first kind, $a_1$ and $a_2$ are normalization constants, $\sigma_{tp}$ is given in Equation \ref{eq:sigma_tp}, and $k_c=3\kappa_n \Delta \sigma_{\rm tp}/2k$. The solution far from line center is 
 \be \label{eq:wkb_J_far}
 J(n,\sigma,s) & = & a_3 \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{1/6} Ai\left(k_c^{2/3} \left[ \left( \frac{\sigma}{\sigma_{\rm tp}} \right)^{2/3} - 1 \right]\right),
 \ee
-where $Ai(x)$ is the Airy function of the first kind. Again, $a_3$ is a normalization constant. We can enforce the discontinuity in Eq. \ref{eq:matching_condition_2} to find 
+where $Ai(x)$ is the Airy function of the first kind. Again, $a_3$ is a normalization constant. We can enforce the discontinuity in Equation \ref{eq:matching_condition_2} to find 
 \be \label{eq:a2}
 a_2 & = & - \frac{\Gamma(7/4) \sigma_{\rm tp}}{ 2^{1/4} k_c^{3/4}} \frac{6^{1/2}}{8} n^2 \frac{E}{kR^3}.
 \ee
-The discontinuity sets the value of $a_2$, and the corresponding term in Eq. \ref{eq:wkb_J} is non-resonant. The discontinuity does not set the value of $a_1$ as that solution does not have a term linear in $\sigma$. Matched asymptotic expansions \citep{1999amms.book.....B} allows us to relate the normalization coefficients $a_1$ and $a_3$. The matching conditions are
+The discontinuity sets the value of $a_2$, and the corresponding term in Equation \ref{eq:wkb_J} is non-resonant. The discontinuity does not set the value of $a_1$ as that solution does not have a term linear in $\sigma$. Matched asymptotic expansions \citep{1999amms.book.....B} allows us to relate the normalization coefficients $a_1$ and $a_3$. The matching conditions are
 \be \label{eq:a1/a2}
 \frac{a_1}{a_2} & = & \frac{ \sin \left( \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} + \frac{\pi}{8} \right) }{ \sin \left(  \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} - \frac{\pi}{8} \right) }
 \ee
 \be \label{eq:a3/a2}
 \frac{a_3}{a_2} & = & \frac{ k_c^{-1/3} }{ \sin \left(  \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} - \frac{\pi}{8} \right) }.
 \ee
-By setting the to denominator of this expression equal to zero and solving it for the eigenfrequency $\gamma_{nm}$ contained in $\sigma_{\rm tp}$, we find the dispersion relation in Eq. \ref{eq:gamma_nm}.
-
-
-%The eigenfunctions themselves are symmetric
-% ^^^ Put this as the first thing we're saying. 
-
-% Summarize the necessary points of the sigmas=0 solution 
-
-%
-
-% In this case, we have obtained Equations \ref{eq:a1/a2} and \ref{eq:a3/a2} which approach infinity near the eigenfrequencies $\gamma_{nm}$, so there will be no contribution from the $a_2$ term in Equation \ref{eq:wkb_J} at these resonant frequencies. We now seek to understand the behavior of the solution when emission is away from line center ($\sigma_s \neq 0$).
+By setting the to denominator of this expression equal to zero and solving it for the eigenfrequency $\gamma_{nm}$ contained in $\sigma_{\rm tp}$, we find the dispersion relation in Equation \ref{eq:gamma_nm}.
 
 While the solution above is specific to the case $\sigma_s = 0$, we can extend this approach to understand the case where $\sigma_s \neq 0$. We have found that even in this case of emission away from the line center, the eigenfunctions are symmetric about the line center. This is because Equation \ref{eq:wkb_J_far} has dropped a term, $Bi(x)$, that is infinite far from line center; yet, in the region $0 < \sigma < \sigma_s$, this term is finite and contributes an asymmetric piece to the solution. This term is not included in the Equations \ref{eq:wkb_J} and \ref{eq:wkb_J_far}, meaning any solution produced by a sum over eigenmodes will always be symmetric about the line-center since the eigenfunctions themselves are symmetric even when $\sigma_s \neq 0$. 
-
-
-%The eigenfunction expansion in Equation \ref{eq:Jrsigmat} assumed that a closed contour at infinity, bounding an infinite number of simple poles along the real $\gamma$-axis, could be integrated to find that $J(r, \sigma, t)$ is the sum of the residues of the poles contained within the contour.
-
-% Equation \ref{eq:a2} shows there is an additional contribution unrelated to the eigenfunctions that is non-resonant. In the case where $\sigma_s \neq 0$, this non-resonant piece contributes to the asymmetry of the solution about line center. When $\sigma_s=0$, however, the solution is symmetric about line center and the non-resonant piece has no contribution except to produce the matching conditions in Equations \ref{eq:a1/a2} and \ref{eq:a3/a2}. Since we have applied the WKB approximation only when $\sigma_s = 0$, the non-resonant piece which allows the outgoing spectrum to be asymmetric is not captured by the methods outlined here. Thus, 
 
 \bibliography{ref.bib}{}
 \bibliographystyle{aasjournal}
