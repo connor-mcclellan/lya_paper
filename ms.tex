@@ -36,7 +36,7 @@
 \address{Department of Astronomy, University of Virginia, Charlottesville, VA 22904, USA}
 
 \begin{abstract}
-The radiation transfer equation for resonant scattering is solved in spherical geometry. A monochromatic source of photons is assumed at the center of a uniform sphere of constant gas density. The intensity within the sphere and at its surface is found in the limit of large line-center optical depth using the Eddington approximation for the angular dependence. Two limits are studied: a steady source and an impulsive source. For the steady-state problem, the solution can be represented as a sum of two terms: a previously-known analytic solution of the equation with  mean intensity $J=0$ at the surface, and a novel, semi-analytic solution which enforces the correct boundary condition of zero-ingoing intensity at the surface. This solution is compared to that of the Monte-Carlo method, which is valid at arbitrary optical depth. It is shown that the size of the correction is order unity when the spectral peaks approach the Doppler core and decreases slowly with line center optical depth, which may explain discrepancies in previous studies. For the impulsive problem, the time, spatial, and frequency dependence of the solution are expressed using an eigenfunction expansion in order to characterize the escape time distribution and emergent spectra of photons. It is shown that the lowest-order eigenfrequency agrees well with the decay rate found in the Monte Carlo escape time distribution at sufficiently large line-center optical depths.
+The radiation transfer equation for resonant scattering is solved in spherical geometry. A monochromatic source of photons is assumed at the center of a uniform sphere of constant gas density. The intensity within the sphere and at its surface is found in the limit of large line-center optical depth using the Eddington approximation for the angular dependence. Two limits are studied: a steady source and an impulsive source. For the steady-state problem, the solution can be represented as a sum of two terms: a previously-known analytic solution of the equation with  mean intensity $J=0$ at the surface, and a novel, semi-analytic solution which enforces the correct boundary condition of zero-ingoing intensity at the surface. This solution is compared to that of the Monte Carlo method, which is valid at arbitrary optical depth. It is shown that the size of the correction is order unity when the spectral peaks approach the Doppler core and decreases slowly with line center optical depth, which may explain discrepancies in previous studies. For the impulsive problem, the time, spatial, and frequency dependence of the solution are expressed using an eigenfunction expansion in order to characterize the escape time distribution and emergent spectra of photons. It is shown that the lowest-order eigenfrequency agrees well with the decay rate found in the Monte Carlo escape time distribution at sufficiently large line-center optical depths.
 
 \end{abstract}
 
@@ -72,7 +72,7 @@ Appendix \ref{app:rteqn_derivation} contains a derivation of the transfer equati
 - \frac{ \sqrt{6} kL}{4\pi \Delta^2} \delta^3(\vec{x} - \vec{x}_s) \delta (\sigma - \sigma_{\rm s}).
 \label{eq:rt_no_destr}
 \ee
-where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. We will consider only the case where $\vec{x}_s=0$. Following \citet{1973MNRAS.162...43H}, we have used a change of variables from $x$ to $\sigma$,
+where $J$ is the mean intensity, the spatial variable is $\vec{x}$, and $\vec{x}_s$ is the position of the source. We will consider only the case where $\vec{x}_s=0$. Following \citet{1973MNRAS.162...43H}, we have used a change of variables in photon frequency from $x$ to $\sigma$,
 \be \label{eq:int_change_of_variables}
 \sigma(x) = \sqrt{\frac{2}{3}}\int_0^x \frac{dx}{\phi(x) \Delta} \approx \sqrt{\frac{2}{3}}\frac{\pi}{a}\frac{x^3}{3}, 
 \ee
@@ -80,7 +80,7 @@ where the approximation is applicable on the damping wing. From Equation (\ref{e
 \be \label{eq:line_profile_approx}
 \phi \approx \frac{a}{\pi x^2 \Delta} \approx \frac{1}{3 \Delta}\left(\frac{2a}{\pi}\right)^{1/3}|\sigma|^{-2/3}.
 \ee
-In Equation (\ref{eq:rt_no_destr}), $\sigma_s \equiv \sigma(x_s)$ is the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler widths or Hz, respectively. Balancing the two terms on the left hand side of Equation (\ref{eq:rt_no_destr}) gives $\sigma \ {\sim}\ \tau_0$, or $x_{\rm peak}\ {\sim}\ (a\tau_0)^{1/3}$. The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
+In Equation (\ref{eq:rt_no_destr}), $\sigma_s \equiv \sigma(x_s)$ is the photon frequency of the source. $\sigma_s$ is interchangeable with $x_s$ and $\nu_s$ in Doppler widths or Hz, respectively. Balancing the two terms on the left-hand side of Equation (\ref{eq:rt_no_destr}) gives $\sigma \ {\sim}\ \tau_0$, or $x_{\rm peak}\ {\sim}\ (a\tau_0)^{1/3}$. The boundary condition of no incoming intensity at the surface \citep{1986rpa..book.....R} is
 \be
 J & = & \sqrt{3} H
 \label{eq:bc}
