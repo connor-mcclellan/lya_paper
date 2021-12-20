@@ -226,7 +226,7 @@ We now compare each of the previously-discussed solutions for surface flux to th
 \be \label{eq:prob_spectrum}
 P(x) = \frac{16\pi^2R^2H(R, x)\Delta}{L}.
 \ee
-This is normalized as $\int P(x)dx = 1$. Since $H(R, x)$ is per $d\nu$, a factor of $\Delta$ gives the expression the correct units. 
+This is normalized so that $\int P(x)dx = 1$. Since $H(R, x)$ is per $d\nu$, a factor of $\Delta$ gives the expression the correct units. 
 
 In Figure \ref{fig:sol_mc_residual_0}, the Monte Carlo escape probability as a function of frequency is shown along with that of the solutions $H_{\rm d}$, $H_0$, and $H_0 + H_{\rm bc}$ for an optical depth of $\tau_0 = 10^7$ and photons emitted at line center $\rm x_s = 0$.  The $H_{\rm bc}$ term is negative at the peak of the spectrum and positive in the line wing such that, when added to $H_0$, it corrects for the apparent excess of flux in the peaks of the spectrum. The solution with the correct frequency-dependent boundary condition enforced, $H_0 + H_{\rm bc}$, has lower residuals to Monte Carlo results than the other solutions, especially in the line wing. The boundary term corrects the deficit of $H_0$ in the line wings, further improving agreement with the numerical result. Note that the residuals to the $H_0$ solution are a close match to the $H_{\rm bc}$ term, since the Monte Carlo represents the ``true'' solution, $H$, and $H_{\rm bc} = H - H_0$. It is evident that the divergent solution $H_{\rm d}$ fails in the line wings.
 
@@ -453,7 +453,7 @@ In Fig. \ref{fig:steadystate}, the spectrum for $x_s=0$ and $\tau_0=10^7$ is sho
 \end{figure}
 
 
-In Figure \ref{fig:escape_time} escape time distributions calculated from Equation (\ref{eq:waittime}) are shown alongside Monte Carlo and the fitting function Equation (\ref{eq:fitting_function}) for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. Many scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. Thus, the rate constant for the exponential falloff is overestimated slightly in the eigenfunction solution as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
+In Figure \ref{fig:escape_time} escape time distributions calculated from Equation (\ref{eq:waittime}) are shown alongside Monte Carlo and the fitting function Equation (\ref{eq:fitting_function}) for $\tau_0=10^6, 10^7$ with $x_s=0$. It is seen that the fitting function matches well with the late-time behavior of the eigenfunction solution, indicating that the tail of the escape time distribution can be modeled effectively by simple exponential decay. The remaining disagreement between the tail of the distribution and the Monte Carlo data is due to line core scattering which is not modeled by the eigenfunction solution, but improves for larger optical depth as seen in the figure. A large number of scatterings in the Doppler core affects the tail of the escape-time distribution, since photons with frequencies near line center will take longer to escape. Thus, the rate constant for the exponential falloff is overestimated slightly in the eigenfunction solution as compared with the Monte Carlo. The error in this rate constant is a function of $\tau_0$ since the effect from the Doppler core is greatest when it extends into the peak of the spectrum.
 
 \begin{figure}
     \centering
@@ -541,7 +541,7 @@ where the right hand side is the usual Voigt function, the thermal average of th
 
 This probability distribution can be used to define the moments of the frequency shift
 \be
-\langle \delta \nu^n \rangle & = & \frac{ \int d\nu^\prime R (\nu^\prime-\nu)^n}{\int d\nu^\prime R}
+\langle \delta \nu^n \rangle & = & \frac{ \int d\nu^\prime (\nu^\prime-\nu)^n R}{\int d\nu^\prime R}
 = \frac{1}{\phi(\nu)}
 \int \frac{ d^3v}{ \pi^{3/2} v_{\rm th}^3} e^{-v^2/v_{\rm th}^2}\,
 \left( \frac{\nu_0 \vec{v} \cdot (\vec{n}^\prime-\vec{n}) }{c} \right)^n
