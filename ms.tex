@@ -534,10 +534,9 @@ which defines the Case II-b redistribution function
 R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime) & = & \frac{ g(\vec{n},\vec{n}^\prime) }{ 4\pi }
 \int \frac{ d^3v}{ \pi^{3/2} v_{\rm th}^3} e^{-v^2/v_{\rm th}^2}\,
 \delta \left( \nu - \nu^\prime - \nu_0 \vec{v} \cdot (\vec{n}-\vec{n}^\prime)/c \right)
-\left( \frac{\Gamma/4\pi^2}{ \left(\nu^\prime - \nu_0 - \nu_0 \vec{v} \cdot \vec{n}^\prime/c \right)^2 + (\Gamma/4\pi)^2 } \right)
+\left( \frac{\Gamma/4\pi^2}{ \left(\nu^\prime - \nu_0 - \nu_0 \vec{v} \cdot \vec{n}^\prime/c \right)^2 + (\Gamma/4\pi)^2 } \right),
 \ee
-found in \citet{1962MNRAS.125...21H}.
-
+\textbf{\citep{1952PASJ....4..100U, 1962MNRAS.125...21H}}.
 
 The integral of the redistribution function over outgoing and incoming frequency are
 \be
@@ -549,9 +548,9 @@ and
 \int d\nu^\prime \ R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime) 
 & = & \frac{1}{4\pi} g(\vec{n},\vec{n}^\prime) \phi(\nu)
 \ee 
-where the right hand side is the usual Voigt function, the thermal average of the Lorentzian. The former result implies that the integrated source and sink terms for scattering cancel for $p=1$. In addition, $4\pi R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime)/\phi(\nu^\prime) $ is the normalized distribution for the outgoing $\vec{n}$ and $\nu$ given the incoming $\vec{n}^\prime$ and $\nu^\prime$. 
+where the right hand side is the usual Voigt function, the thermal average of the Lorentzian. The former result implies that the integrated source and sink terms for scattering cancel for $p=0$. In addition, $4\pi R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime)/\phi(\nu^\prime) $ is the normalized distribution for the outgoing $\vec{n}$ and $\nu$ given the incoming $\vec{n}^\prime$ and $\nu^\prime$. 
 
-This probability distribution can be used to define the moments of the frequency shift
+This probability distribution can be used to define the moments of the frequency shift \citep{1962ApJ...135..195O}
 \be
 \langle \delta \nu^n \rangle & = & \frac{ \int d\nu^\prime (\nu^\prime-\nu)^n R}{\int d\nu^\prime R}
 = \frac{1}{\phi(\nu)}
@@ -582,7 +581,7 @@ I(\vec{x},\vec{n}^\prime,\nu)
 \frac{\partial I(\vec{x},\vec{n}^\prime,\nu)}{\partial \nu }(\nu^\prime-\nu)
 + \frac{1}{2} \frac{\partial^2 I(\vec{x},\vec{n}^\prime,\nu)}{\partial \nu^2} (\nu^\prime-\nu)^2 + ...
 \ee 
-and the Fokker-Planck expansion of $j_{\rm sc}$ is
+and the Fokker-Planck expansion of $j_{\rm sc}$ is \citep{1994ApJ...427..603R}
 \be
 j_{\rm sc}(\vec{x},\vec{n},\nu) & \simeq  & 4\pi k \int d\Omega^\prime \int d\nu^\prime R(\vec{n},\nu; \vec{n}^\prime,\nu^\prime) 
 \left[ 
@@ -635,7 +634,7 @@ k \int d\nu J \frac{\partial }{\partial \nu}
 \left( \phi \Delta \langle u_\parallel \rangle
 + \frac{\partial }{\partial \nu}\left[ \frac{1}{2} \phi \Delta^2 
 \left( \frac{7}{5} \langle u_\parallel^2 \rangle + \frac{3}{10}  \right) \right]
-\right) = 0,
+\right),
 \ee
 where $\vec{H}(\vec{x})$ is the frequency integrated flux, and $\grad \cdot \vec{H}(\vec{x})  = 0 $ if there are no sources or sinks of radiation. Integration by parts has been used to factor $J$ out, assuming each term goes to zero at infinity. The quantity inside parentheses must be constant, and since each term should go to zero at infinity, that constant is zero. Hence the first and second moments of the frequency shift are related by
 \be
@@ -741,7 +740,7 @@ The discontinuity sets the value of $a_2$, and the corresponding term in Equatio
 \be \label{eq:a3/a2}
 \frac{a_3}{a_2} & = & \frac{ k_c^{-1/3} }{ \sin \left(  \frac{\kappa_n \sigma_{\rm tp} \Delta}{k} - \frac{\pi}{8} \right) }.
 \ee
-By setting the to denominator of this expression equal to zero and solving for the eigenfrequency $\gamma_{nm}$ contained in $\sigma_{\rm tp}$, we find the dispersion relation in Equation (\ref{eq:gamma_nm}).
+By setting the denominator of this expression equal to zero and solving for the eigenfrequency $\gamma_{nm}$ contained in $\sigma_{\rm tp}$, we find the dispersion relation in Equation (\ref{eq:gamma_nm}).
 
 While the solution above is specific to the case $\sigma_s = 0$, we can extend this approach to understand the case where $\sigma_s \neq 0$. In the interval $\sigma \in (0, \sigma_s)$, both the $Ai$ and $Bi$ Airy function solutions must be included, while for $\sigma \in (-\infty, 0)$ only $Ai$ is finite. The $Bi$ term causes the asymmetry. As $\gamma \rightarrow \gamma_{nm}$, however, it is small compared to the $Ai$ term, and hence the eigenfunctions are symmetric. 
 
