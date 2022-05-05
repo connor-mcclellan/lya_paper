@@ -5,17 +5,12 @@
 \def\la{\mathbin{\lower 3pt\hbox
       {$\rlap{\raise 5pt\hbox{$\char'074$}}\mathchar"7218$}}}
 \def\ga{\mathbin{\lower 3pt\hbox
-      {$\rlap{\raise 5pt\hbox{$\char'076$}}\mathchar"7218$}}} %> or of order
+      {$\rlap{\raise 5pt\hbox{$\char'076$}}\mathchar"7218$}}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\grad}{\mathbf{\nabla}}
 \newcommand\lya{Ly$\alpha$\ }
 
-\newcommand{\todo}{\textbf{TODO: }}
-
-\received{}
-\revised{}
-\accepted{\today}
-\submitjournal{APJ}
+\submitjournal{ApJ}
 
 
 \shorttitle{Resonant Scattering}
@@ -27,7 +22,6 @@
 \begin{document}
 
 \title{A Novel Solution for Resonant Scattering Using Self-Consistent Boundary Conditions}
-% the paper formerly known as Resonant Scattering in a Uniform Sphere with Large Optical Depth
 
 \correspondingauthor{B. Connor McClellan}
 \email{bcm2vn@virginia.edu}
@@ -49,9 +43,9 @@
 \section{Introduction}
 \label{sec:intro}
 
-Given the abundance of hydrogen in the universe, \textbf{the Lyman $\alpha$ (Ly$\alpha$) line is an important component of radiation fields in a wide range of astrophysical settings. \lya radiation transport is an active area of research in the study of planets, stars, galaxies, and cosmology \citep{2019SAAS...46....1D}. An example application motivating our work is the role of \lya in planetary atmospheres.} The outer layers of the atmosphere are central to a planet's evolution, since they can shelter the lower atmosphere from high energy radiation as well as regulate the escape of gas into space.  There are two sources of Ly$\alpha$: the star, and recombinations in the planet's atmosphere. \lya may ionize atoms and dissociate molecules, as well as exert pressure forces that drive an outflow \textbf{ \citep{2018A&A...620A.147B}}. \lya can also excite H atoms to the 2p state, creating a population of Balmer-line absorbers that can be observed via transmission spectroscopy \citep{2017ApJ...851..150H}. Due to the low gas densities in the upper atmosphere, collisional de-excitation and broadening are of secondary importance and \lya may undergo ``resonant scattering''.
+Given the abundance of hydrogen in the universe, \textbf{the Lyman $\alpha$ (Ly$\alpha$) line is an important component of radiation fields in a wide range of astrophysical settings. \lya radiation transport is an active area of research in the study of planets, stars, galaxies, and cosmology \citep{2019SAAS...46....1D}. An example application motivating our work is the role of \lya in planetary atmospheres.} The outer layers of the atmosphere are central to a planet's evolution, since they can shelter the lower atmosphere from high energy radiation as well as regulate the escape of gas into space.  There are two sources of Ly$\alpha$: the star, and recombinations in the planet's atmosphere. \lya may ionize atoms and dissociate molecules, as well as exert pressure forces that drive an outflow \textbf{ \citep{2018A&A...620A.147B}}. \lya can also excite H atoms to the 2p state, creating a population of Balmer-line absorbers that can be observed via transmission spectroscopy \citep{2017ApJ...851..150H, 2021ApJ...907L..47Y}. Due to the low gas densities in the upper atmosphere, collisional de-excitation and broadening are of secondary importance and \lya may undergo ``resonant scattering''.
 
-Hubble Space Telescope (HST) observations with the STIS have found large \lya transit depths around a handful of exoplanets \citep{2003Natur.422..143V, 2012A&A...543L...4L, 2012A&A...547A..18E, 2015Natur.522..459E,  2017A&A...597A..26B, 2017A&A...599L...3B, 2017A&A...602A.106B, 2018A&A...620A.147B, 2019AJ....158...50W, 2019EPSC...13.1928L, 2020ApJ...888L..21G,2021arXiv210309864B}. These observations have revealed a population of atoms extending out to distances of order a few planetary radii or more for several planets around bright, nearby stars, motivating a study of the physics of \lya interactions with the H atom population. The transition from the atomic to the molecular layer in these hot upper atmospheres may take place at pressures of order ${\sim}\ 10\ \mu$bar (see discussion in \citet{2017ApJ...851..150H} for details). This suggests the presence of a thick layer of atomic H which can have a line center optical depth of $\tau_0\ {\sim}\ 10^8$. A careful treatment of resonant scattering is necessary in order to construct accurate models of H atom excitation, heating, and radiative forces. 
+Hubble Space Telescope (HST) observations with the STIS have found large \lya transit depths around a handful of exoplanets \citep{2003Natur.422..143V, 2012A&A...543L...4L, 2012A&A...547A..18E, 2015Natur.522..459E,  2017A&A...597A..26B, 2017A&A...599L...3B, 2017A&A...602A.106B, 2018A&A...620A.147B, 2019AJ....158...50W, 2019EPSC...13.1928L, 2020ApJ...888L..21G,2021arXiv210309864B}. These observations have revealed a population of atoms extending out to distances of order a few planetary radii or more for several planets around bright, nearby stars, motivating a study of the physics of \lya interactions with the H atom population. The transition from the atomic to the molecular layer in these hot upper atmospheres may take place at pressures of order ${\sim}\ 10\ \mu$bar (see discussion in \citealt{2017ApJ...851..150H} for details). This suggests the presence of a thick layer of atomic H which can have a line center optical depth of $\tau_0\ {\sim}\ 10^8$. A careful treatment of resonant scattering is necessary in order to construct accurate models of H atom excitation, heating, and radiative forces. 
 
 Due to the technical challenge of including resonant scattering, the fully three-dimensional geometry, and the presence of an outflow, numerical simulations may be required to fully understand the dynamics of these irradiated exoplanet atmospheres. The large optical depths at \lya line center impose a steep computational cost for solving radiative transfer with Monte Carlo methods directly coupled with fluid dynamics \textbf{\citep{2017MNRAS.464.2963S}}. The number of scatterings a photon undergoes is proportional to the line center optical depth, $\tau_0$, of the domain \textbf{\citep{1972ApJ...174..439A}}. Near the base of the atomic layer, the line center optical depth is ${\sim}10^8$, so most of the time is spent following photons in these cells. A method that can accurately characterize transfer through these zones without following every photon scattering has the potential to greatly accelerate the calculation \textbf{(see e.g. \citealt{1968ApJ...153..783A,2002ApJ...567..922A}).}
 
@@ -64,7 +58,7 @@ where $2B$ is the slab optical depth at line center, $\phi$ is the line profile,
 
 Several other works have followed \citet{1973MNRAS.162...43H}. \citet{1990ApJ...350..216N} extends the solution to media of intermediate optical depth, including the effects of scattering in the Doppler core of the line. \citet{2006ApJ...649...14D} generalize the same problem to spherical geometry, as is used here. \textbf{\cite{2020MNRAS.497.3925L} generalize both the slab and sphere solutions to arbitrary power-law density and emissivity profiles. Each of these works, and several others \citep{2020ApJS..250....9S, 2021MNRAS.504...89T}, use either the same surface boundary condition and ansatz as \citet{1973MNRAS.162...43H}, or use a solution that does not handle the frequency-dependence of the boundary condition. Our novel steady-state solution involves a frequency-dependent correction to the solution that fixes an observed excess at the spectral peaks as compared with Monte Carlo, which is present in many of the works cited above.}
 
-\textbf{The motivation for including time-dependence in the transfer equation is to characterize the distribution of photon escape times, which is needed to calculate the radiation moments in the Monte Carlo simulation. Additionally, steady-state solutions to this problem are not always sufficient to describe all the physics of \lya transport. Time-variable, optically-thick environments necessitate a time-dependent solution to include the dynamic effects of \lya transfer. These include the optical afterglow of gamma-ray bursts \citep{2010ApJ...716..604R} and \lya sources redshifted by cosmological expansion %, which may reveal information about their neutral hydrogen halos and the intergalactic medium 
+\textbf{The motivation for including time-dependence in the transfer equation is to characterize the distribution of photon escape times, which is needed to calculate the radiation moments in the Monte Carlo simulation. Additionally, steady-state solutions to this problem are not always sufficient to describe all the physics of \lya transport. Time-variable, optically-thick environments necessitate a time-dependent solution to include the dynamic effects of \lya transfer. These include the optical afterglow of gamma-ray bursts \citep{2010ApJ...716..604R} and \lya sources redshifted by cosmological expansion
 \citep{2011MNRAS.418..853X}, among others.}
 
 \section{STEADY-STATE SOLUTION}
@@ -271,8 +265,7 @@ Figure \ref{fig:sol_mc_xinit_lowtau} shows emission away from line center at the
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{xinit.pdf}
-    \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Equation (\ref{eq:prob_spectrum}) with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. %\textbf{Each panel shows $\sigma_s$ further from line center, labeled by $\sigma_s=0, \tau_0, 2\tau_0$. The solution is shown at a range of line center optical depths between $\tau_0=10^5$ and $10^9$ with solid overlapping lines. The thickness of the lines decreases with increasing optical depth to more clearly show where they overlap. The location of the core-wing boundary $x_{cw}$ for each $\tau_0$ is shown with dashed vertical lines which match the color of the corresponding solution}. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.
-    \textbf{Each panel shows $\sigma_s$ further from line center, labeled by $\sigma_s=0, \tau_0, 2\tau_0$. The solution is shown at a range of line center optical depths between $\tau_0=10^5$ and $10^9$ with solid lines. The location of the core-wing boundary $x_{cw}$ for each $\tau_0$ is shown with dashed vertical lines which match the color of the corresponding solution}. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
+    \caption{$P_{\rm bc}(x) = 16\pi^2R^2H_{\rm bc}(R, x)\Delta/L$ (Equation (\ref{eq:prob_spectrum}) with $H \rightarrow H_{\rm bc}$) vs. frequency $x$. \textbf{Each panel shows $\sigma_s$ further from line center, labeled by $\sigma_s=0, \tau_0, 2\tau_0$. The solution is shown at a range of line center optical depths between $\tau_0=10^5$ and $10^9$ with solid lines. The location of the core-wing boundary $x_{cw}$ for each $\tau_0$ is shown with dashed vertical lines which match the color of the corresponding solution}. The axes are scaled to show that the size of the correction factor agrees with the predicted $(a\tau_0)^{-1/3}$ scaling.}
     \label{fig:xinit}
 \end{figure}
 
@@ -396,7 +389,7 @@ J_{nm}(\sigma) & \simeq & \frac{ J(n,\sigma,-i\gamma_1)  - J(n,\sigma,-i\gamma_2
 \begin{figure}
     \centering
     \includegraphics{Jsoln_n1_m100.pdf}
-    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and $m=1, ..., 100$ with $x_s=0$ and $\tau_0=10^7$. \textbf{The scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$, which here is ${\sim}10^{-37}$ in units of ergs/(cm$^2$ Hz).}}
+    \caption{Eigenfunctions $J_{nm}(x)$ for the lowest-order spatial eigenmode $n=1$, and $m=1, ..., 100$ with $x_s=0$ and $\tau_0=10^7$. \textbf{The scale of the $J_{nm}(\sigma)$ are set by the factor $E/(kR^3)$, which here is ${\sim}10^{-37}$ in ergs/(cm$^2$ Hz).}}
     \label{fig:jsoln}
 \end{figure}
 
@@ -414,7 +407,7 @@ The eigenfunction's oscillatory forms have varying amplitudes which sum in Equat
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{gamma_nm.pdf}
-    \caption{Decay time vs. mode number. Overlapping solid lines are plotted for each $n$. The thickness of the lines decrease with $n$ in order to clearly show where they are in agreement. These numerically-obtained resonant frequencies are compared with the analytic expression in Equation (\ref{eq:gamma_nm}), shown as a dashed line. The parameters for the calculation are $\tau_0=10^7$ and $x_s=0$. The value of $n$ is given by the color bar on the right-hand side.}
+    \caption{Dimensionless decay time vs. mode number. Overlapping solid lines are plotted for each $n$. The thickness of the lines decrease with $n$ in order to clearly show where they are in agreement. These numerically-obtained resonant frequencies are compared with the analytic expression in Equation (\ref{eq:gamma_nm}), shown as a dashed line. The parameters for the calculation are $\tau_0=10^7$ and $x_s=0$. The value of $n$ is given by the color bar on the right-hand side.}
     \label{fig:gamma_nm}
 \end{figure}
 The values of the $\gamma_{nm}$ can be described approximately with Equation (\ref{eq:gamma_nm}). Their values depend on $m$, $n$, and other physical parameters according to 
@@ -496,7 +489,7 @@ The time-dependent transfer equation for the impulsive source is solved numerica
 This research was funded by NASA ATP grant 80NSSC18K0696, ``Exoplanetary MHD Outflows Driven by EUV Heating, Lyman alpha Radiation Forces and Stellar Tides". Resources supporting this work were provided by the NASA High-End Computing (HEC) Program through the NASA Advanced Supercomputing (NAS) Division at Ames Research Center. We thank the referee for a detailed report that helped improve the presentation of our work.
 \restartappendixnumbering
 
-\software{\texttt{numpy} \citep{2020NumPy-Array}, \texttt{scipy} \citep{2020SciPy-NMeth}}
+\software{\texttt{numpy} \citep{2020NumPy-Array}, \texttt{scipy} \citep{2020SciPy-NMeth}, Coblis - Color Blindness Simulator (\href{https://www.color-blindness.com/coblis-color-blindness-simulator/}{color-blindness.com})}}
 
 \appendix
 \section{ derivation of the transfer equation } \label{app:rteqn_derivation}
